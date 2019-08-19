@@ -5,3 +5,5 @@
 PlayOS allows applications to communicate with each other in a sandboxed environment. This way apps can be integrated with each other, without building the infrastructure for it. Take for example the files app. It allows users to click on the file and choose which app to give access to that specific file/folder.
 
 PlayOS can be integrated with any blockchain that supports some sort of programmable interface.
+
+We are still porting code over to a decentralised manner, any help is greatly appreciated.
