@@ -1,0 +1,16 @@
+@import './lib/blur';
+@import './layout/importer';
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: white;
+    margin: 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+}

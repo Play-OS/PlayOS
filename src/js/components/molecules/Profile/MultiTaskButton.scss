@@ -1,0 +1,18 @@
+@import '../../../../scss/variables';
+
+:local .buttonWrapper {
+    background-color: transparent;
+    width: $header-height;
+    height: $header-height;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    border: none;
+    outline: none;
+
+    &.inactive {
+        visibility: hidden;
+        opacity: 0;
+    }
+}

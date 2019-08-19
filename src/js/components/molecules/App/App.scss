@@ -1,0 +1,5 @@
+$amountOfApps: 4;
+
+:local .appWrapper {
+    width: calc(100% * (1 / #{$amountOfApps}));
+}

@@ -1,0 +1,55 @@
+@import '../../../../scss/variables';
+
+:local .mobileProfile {
+    display: block;
+}
+
+:local .desktopProfile {
+    display: none;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+:local .mobileProfile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+:local .hamburgerIcon {
+    padding: 3px;
+    margin-right: 5px;
+}
+
+:local .arrowLeft {
+    margin-right: 34px;
+
+    &.turnedAround {
+        transform: rotate(180deg);
+    }
+}
+
+:local .profilePicture {
+    margin-right: 20px;
+    display: none;
+}
+
+:local .name {
+    margin-right: 24px;
+    font-size: 16px;
+}
+
+:local .mobileCloseButton {
+    width: $header-height-mobile!important;
+    height: $header-height-mobile!important;
+}
+
+@media screen and (min-width: 767px) {
+    :local .desktopProfile {
+        display: flex;
+    }
+
+    :local .mobileProfile {
+        display: none;
+    }
+}

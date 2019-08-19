@@ -1,0 +1,49 @@
+:local .reactCodeInput {
+    margin: 20px auto;
+    text-align: center;
+    width: 100%;
+
+    input {
+        width: 33px;
+        border: none;
+        border-bottom: 1px solid;
+        margin: 4px;
+        text-align: center;
+        font-size: 33px;
+        outline: none;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            /* display: none; <- Crashes Chrome on hover */
+            -webkit-appearance: none;
+            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+        }
+    }
+}
+
+:local .resetCodeButton {
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+:local .description {
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+:local .loadingWrapper {
+    margin: 0 auto;
+    text-align: center;
+}
+
+:local .welcomeText {
+    opacity: 0;
+    margin-bottom: 1em !important;
+    transition: opacity 1s ease-in-out;
+}
+
+:local .welcomeTextShow {
+    opacity: 1;
+}

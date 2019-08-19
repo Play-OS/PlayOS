@@ -1,0 +1,43 @@
+.IndexPage {
+    &-Form {
+        &-Input {
+            text-align: left;
+            width: 100%;
+            padding: 12px 10px;
+            border: none;
+            display: block;
+            max-width: 93%;
+            outline: none;
+            background: rgba(255, 255, 255, 0.8);
+            -webkit-font-smoothing: antialiased;
+            font-size: 17px;
+
+            &:first-child {
+                border-bottom: 1px solid lightgray;
+            }
+        }
+
+        &-Login, &-Register {
+            margin-top:20px;
+        }
+
+        &-Error {
+            text-align: center;
+            display: block;
+            margin: 0 auto;
+            font-weight: bold;
+            font-size: 17px;
+            color:black;
+            margin-bottom: 10px;
+        }
+    }
+
+    &-SwitchPage {
+        margin-top:20px;
+        cursor: pointer;
+        color: #8b8b8b;
+        text-align: center;
+        text-decoration: none;
+        display: block;
+    }
+}

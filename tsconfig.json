@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "outDir": "./build/",
+      "noImplicitAny": true,
+      "allowSyntheticDefaultImports" :true,
+      "module": "commonjs",
+      "target": "es5",
+      "jsx": "react",
+      "allowJs": true,
+      "experimentalDecorators": true,
+      "suppressImplicitAnyIndexErrors": true,
+      "lib": [
+          "es2015",
+          "es2016",
+          "dom",
+          "scripthost"
+      ]
+    }
+  }

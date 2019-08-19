@@ -1,0 +1,43 @@
+:local .drawer {
+    & > div {
+        & span {
+            color: white!important;
+
+            &:hover {
+                background: linear-gradient(to right, rgb(0, 201, 253) 0%, rgb(129, 238, 142) 100%) 0px 0px repeat scroll rgba(0, 0, 0, 0)!important;
+            }
+        }
+
+        &:last-child {
+            background-color: #333333!important;
+        }
+    }
+}
+
+:local .profilePic {
+    position: absolute;
+    top:4px;
+    right: 20px;
+}
+
+// Desktop only styles.
+@media screen and (min-width: 767px) {
+    :local .drawer {
+        // The background for the drawer
+        & > div:first-child {
+            background: none!important;
+        }
+
+        // The Drawer
+        & > div:last-child {
+            // height: calc(100% - #{$header-height}) !important;
+            // margin-top: $header-height;
+            border-left: 1px solid rgba(255, 255, 255, 0.28);
+
+            // MenuItem
+            & > div:first-child {
+                display: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true
+    },
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "max-len": 0,
+        "no-underscore-dangle": 0,
+        "react/jsx-indent": [
+            "error",
+            4
+        ],
+        "react/jsx-indent-props": [
+            "error",
+            4
+        ]
+    },
+    "globals": {
+        "Meister": true
+    },
+    "extends": "airbnb"
+}

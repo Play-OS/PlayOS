@@ -1,0 +1,25 @@
+.HomeButton {
+    padding-left: 10px;
+    display: inline-block;
+    max-height: 30px;
+    cursor: pointer;
+    padding-right: 10px;
+
+    // &:hover {
+    //     background: white;
+    // }
+
+    &-Icon {
+        padding:3px;
+        height: 24px;
+    }
+
+    button {
+        border:none;
+        background-color: transparent;
+        font-size: inherit;
+        color:white;
+        padding:0;
+        outline: none;
+    }
+}

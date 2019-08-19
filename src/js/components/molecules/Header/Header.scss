@@ -1,0 +1,49 @@
+@import '../../../../scss/variables';
+
+.Header {
+    color: white;
+    font-weight: 100;
+    font-size: 18px;
+    width: 100%;
+    height: $header-height-mobile;
+    // text-shadow: 0px 0px 15px black;
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    // box-shadow: lightgrey 0px 0px 1px 0px;
+
+    // border-bottom: 2px solid rgba(86, 86, 86, 0.63);
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-Item {
+        width: 33.333333%;
+    }
+
+    &-Controls {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    &--no-transparent {
+        background-color: #252525;
+    }
+}
+
+
+// Desktop only styles.
+@media screen and (min-width: 767px) {
+    .Header {
+        height: $header-height;
+    }
+}
