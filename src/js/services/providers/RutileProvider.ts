@@ -37,17 +37,15 @@ class RutileProvider implements IProvider {
         return JSON.parse(keys);
     }
 
-    getAccountInfo(key: PrivateKey): Promise<Account> {
-        return new Promise((resolve) => {
-            // setTimeout(() => {
-                resolve({
-                    fullName: 'Franklin Waller',
-                    address: '0x000',
-                    profilePic: '',
-                    wallpaper: 'https://i.imgur.com/HvLbgjE.jpg',
-                });
-            // }, 2000);
-        });
+    async getAccountInfo(key: PrivateKey): Promise<Account> {
+        return {
+            currencyTicker: 'RUT',
+            balance: '10000',
+            fullName: 'Franklin Waller',
+            address: '0x000',
+            profilePic: '',
+            wallpaper: 'https://i.imgur.com/HvLbgjE.jpg',
+        };
     }
 
     async getInstalledApplications(key: PrivateKey): Promise<Application[]> {
@@ -57,9 +55,10 @@ class RutileProvider implements IProvider {
             apps: [],
             icon: 'https://picsum.photos/512',
             isFolder: false,
-            main: '',
+            main: `https://google.com/?token=${key.privateKey}`,
             properties: {
                 background_color: '',
+                openInNewWindow: true,
             },
             status: ApplicationStatus.STANDARD,
             supportedDeviceTypes: [],

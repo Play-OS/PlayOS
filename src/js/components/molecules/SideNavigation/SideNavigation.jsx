@@ -6,6 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import BusinessIcon from 'material-ui/svg-icons/communication/business';
 import AccountIcon from 'material-ui/svg-icons/action/account-circle';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import PowerIcon from 'material-ui/svg-icons/action/power-settings-new';
 import ArrowRightIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -42,6 +43,10 @@ class SideNavigation extends React.Component {
         window.location.reload();
     }
 
+    openWallet() {
+
+    }
+
     getMenuItems() {
         const profileMenuItem = <MenuItem onClick={() => this.handleRequestChange(false)} leftIcon={<ArrowRightIcon color={white} />} rightIcon={<ProfilePic className={styles.profilePic} />}>{this.props.user.info.fullName}</MenuItem>;
 
@@ -59,6 +64,7 @@ class SideNavigation extends React.Component {
         return (
             <React.Fragment>
                 {profileMenuItem}
+                <MenuItem onClick={() => this.openWallet()} leftIcon={<AccountBalanceWalletIcon />}>Wallet</MenuItem>
                 <MenuItem onClick={() => this.openApp(SETTINGS_NAMESPACE)} leftIcon={<AccountIcon color={white} />}>Profile</MenuItem>
                 { hasBusiness && <MenuItem onClick={() => this.openApp(BUSINESS_NAMESPACE)} leftIcon={<BusinessIcon color={white} />}>Manage accounts</MenuItem>}
                 <MenuItem onClick={this.handleLogoutClick} leftIcon={<PowerIcon color={white} />}>Log out</MenuItem>

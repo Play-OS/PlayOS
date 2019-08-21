@@ -5,6 +5,8 @@ export interface UserInfo {
     info: {
         fullName: string;
         wallpaper: string;
+        balance: string;
+        currencyTicker: string;
     },
     settings: string[],
 }
@@ -13,6 +15,8 @@ const defaultState: UserInfo = {
     info: {
         fullName: '',
         wallpaper: '',
+        balance: '0',
+        currencyTicker: 'N/A',
     },
     settings: [''],
 };

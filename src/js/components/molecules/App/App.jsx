@@ -64,7 +64,9 @@ class App extends React.Component {
             if (!userWantsToOpen) return;
         }
 
-        this.props.dispatch(openApp(this.props.app));
+        window.open(this.props.app.main);
+        // window.location.href = this.props.app.main;
+        // this.props.dispatch(openApp(this.props.app));
     }
 
     handlePopoverClose() {

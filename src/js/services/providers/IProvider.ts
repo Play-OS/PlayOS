@@ -11,6 +11,8 @@ export interface Account {
     address: string;
     profilePic: string;
     wallpaper: string;
+    currencyTicker: string;
+    balance: string;
 }
 
 export default interface IProvider {

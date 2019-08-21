@@ -7,6 +7,8 @@ import KeyService from '../../services/KeyService';
 import Header from '../../components/molecules/Header';
 import AppSection from '../../components/organims/AppSection';
 import { loadApps } from '../../store/ApplicationStore';
+import Wallet from '../../components/molecules/Wallet';
+import AppCanvasHolder from '../../components/organims/AppCanvasHolder';
 const styles = require('./HomePage.scss');
 
 interface Props {
@@ -53,6 +55,8 @@ class HomePage extends React.Component<Props, State> {
                     <>
                         <Header />
                         <AppSection />
+                        {/* <AppCanvasHolder /> */}
+                        <Wallet />
                     </>
                 }
             </React.Fragment>

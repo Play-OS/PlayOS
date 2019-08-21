@@ -18,7 +18,7 @@ function AppSection(props: Props) {
             <Paper className={styles['AppSection-Wrapper']}>
                 <div className={styles.AppSection}>
                     <div className={styles['AppSection-Apps']}>
-                        <Typography variant="h4" className={styles['AppSection-Title']}>Apps</Typography>
+                        <Typography variant="h4" className={styles['AppSection-Title']}>My Apps</Typography>
                         <Grid container spacing={4}>
                             {props.apps.map((app) => {
                                 if (app.isFolder) {
