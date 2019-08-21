@@ -59,9 +59,13 @@ $max-width-app-section-wrapper: 1000px;
 .AppSection {
     max-width: $app-section-width;
     margin:0 auto;
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;
+    // overflow: scroll;
+    // -webkit-overflow-scrolling: touch;
     padding-top: 50px;
+
+    &-Title {
+        margin-bottom: 1.5em!important;
+    }
 
     &-Wrapper-Shadow-Top {
         display: none;
@@ -88,11 +92,12 @@ $max-width-app-section-wrapper: 1000px;
     // background: rgba(255, 255, 255, 0.71);
 
     &-Wrapper {
-        background-color: rgba(255, 255, 255, 0.40);
-        box-shadow: 0 40px 60px 0 rgba(0,0,0,0.05);
+        background-color: rgba(255, 255, 255, 0.90)!important;
+        // box-shadow: 0 40px 60px 0 rgba(0,0,0,0.05);
         overflow-y: auto;
         margin: 10px;
         max-height: calc(98% - 6px);
+
 
         &.shadow-top {
             .AppSection-Wrapper-Shadow-Top {
@@ -128,7 +133,7 @@ $max-width-app-section-wrapper: 1000px;
 
         &-Wrapper {
             max-width: $max-width-app-section-wrapper;
-            margin: 236px auto 0;
+            margin: 96px auto 0;
             max-height: 85%;
         }
 

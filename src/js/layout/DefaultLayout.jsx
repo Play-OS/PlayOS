@@ -28,6 +28,8 @@ class DefaultLayout extends React.Component {
             [styles.defaultLayoutBackgroundDefault]: !wallpaper,
         });
 
+        console.log('[] styles -> ', styles);
+
         return (
             <MuiThemeProvider>
                 <div className={styles.defaultLayout}>
@@ -54,7 +56,11 @@ class DefaultLayout extends React.Component {
                         </section>
                     }
 
-                    {this.props.currentPathName === '/home' && <div>{this.props.children}</div> }
+                    {this.props.currentPathName === '/home' &&
+                        <div className={styles.childrenWrapper}>
+                            {this.props.children}
+                        </div>
+                    }
                     <SnackBarMessage />
                 </div>
             </MuiThemeProvider>

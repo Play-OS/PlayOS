@@ -10,26 +10,24 @@ interface ApplicationProperties {
     },
 }
 
-enum ApplicationStatus {
+export enum ApplicationStatus {
     STANDARD = 'STANDARD',
 }
 
 interface Application {
     id: string,
     title: string,
-    storeTitle: string,
-    namespace: string,
     main: string,
     icon: string,
     properties?: ApplicationProperties,
     status: ApplicationStatus,
     isFolder?: boolean,
-    isRemoteFolder?: boolean,
+    // isRemoteFolder?: boolean,
     apps?: Application[],
-    businessInfo: {
-        name: string,
-        id: string,
-    },
+    // businessInfo: {
+    //     name: string,
+    //     id: string,
+    // },
     supportedDeviceTypes: string[],
 }
 

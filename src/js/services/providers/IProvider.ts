@@ -1,3 +1,5 @@
+import Application from "../../models/Application";
+
 export interface PrivateKey {
     mnemonic: string;
     address: string;
@@ -16,5 +18,6 @@ export default interface IProvider {
     fromMnemonic: (mnemonic: string) => PrivateKey;
     keysFromStorage: () => PrivateKey;
     saveKeys: (key: PrivateKey) => void;
-    getAccountInfo(key: PrivateKey): Promise<Account>
+    getAccountInfo(key: PrivateKey): Promise<Account>;
+    getInstalledApplications(key: PrivateKey): Promise<Application[]>;
 }

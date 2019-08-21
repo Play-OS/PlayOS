@@ -6,6 +6,7 @@ import { UserInfo, loadUserInfo } from '../../store/UserInfoStore';
 import KeyService from '../../services/KeyService';
 import Header from '../../components/molecules/Header';
 import AppSection from '../../components/organims/AppSection';
+import { loadApps } from '../../store/ApplicationStore';
 const styles = require('./HomePage.scss');
 
 interface Props {
@@ -27,6 +28,7 @@ class HomePage extends React.Component<Props, State> {
 
         if (!this.props.user.info.fullName && keys) {
             this.props.dispatch(loadUserInfo(keys));
+            this.props.dispatch(loadApps());
         }
     }
 
@@ -48,10 +50,10 @@ class HomePage extends React.Component<Props, State> {
                     <LoginLoadingScreen />
                 }
                 {this.state.isLoaded &&
-                    <div>
+                    <>
                         <Header />
                         <AppSection />
-                    </div>
+                    </>
                 }
             </React.Fragment>
         );

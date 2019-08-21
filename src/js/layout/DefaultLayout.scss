@@ -1,10 +1,11 @@
 .defaultLayout {
-    position: fixed;
+    // position: fixed;
     width: 100%;
     height: 100%;
 
     &Background {
         position: absolute;
+        top: 0;
         background-color: #252525;
         background-repeat: no-repeat;
         background-size: cover;
@@ -12,7 +13,6 @@
         transition: background-image 2s ease-in-out;
         width: 100%;
         height: 100%;
-        z-index: -1;
 
         &Default {
             background-image: url('/res/img/background.jpg')!important;
@@ -60,4 +60,10 @@
         }
     }
 
+}
+
+.childrenWrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }

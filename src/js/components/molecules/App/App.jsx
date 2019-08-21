@@ -8,8 +8,10 @@ import { confirm } from 'material-ui-dialogs';
 import Configuration from '../../../Configuration';
 import AppUninstallDialog from '../../molecules/AppUninstallDialog';
 import AppService from '../../../services/AppService';
-import styles from './App.scss';
 import { openApp } from '../../../store/AppCanvasStore';
+import Grid from '@material-ui/core/Grid';
+
+const styles = require('./App.scss');
 
 const popoverStyle = {
     textAlign: 'center',
@@ -119,13 +121,13 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="col-3-sm" onTouchEnd={this.handleTouchEnd} onContextMenu={this.handleContextMenuRequest} ref={(elem) => { this.wrapperElem = elem; }}>
+            <Grid item xs={3} sm={2} md={2} lg={2} ref={(elem) => this.wrapperElem = elem}>
                 <AppUninstallDialog app={this.props.app} onRequestClose={this.handleDialogClose} isOpen={this.state.showUninstsallDialog} />
-                <div ref={(tappable) => { this.tappableElem = tappable; }} className="App" component="div" onClick={this.handleAppClick}>
-                    <div className="App-Icon">
+                <div ref={(tappable) => { this.tappableElem = tappable; }} className={styles['App']} component="div" onClick={this.handleAppClick}>
+                    <div className={styles['App-Icon']}>
                         <img alt={this.props.app.title} src={this.getAppIcon()} />
                     </div>
-                    <span className="App-Title">
+                    <span className={styles['App-Title']}>
                         <Typography noWrap variant="body1">{this.props.app.title}</Typography>
                     </span>
                     <Popover
@@ -141,7 +143,9 @@ class App extends React.Component {
                         </Menu>
                     </Popover>
                 </div>
-            </div>
+            </Grid>
+            // <div className="col-3-sm" onTouchEnd={this.handleTouchEnd} onContextMenu={this.handleContextMenuRequest} ref={(elem) => { this.wrapperElem = elem; }}>
+            // </div>
         );
     }
 }

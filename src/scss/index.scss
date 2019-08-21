@@ -1,5 +1,6 @@
 @import './lib/blur';
 @import './layout/importer';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
 html, body {
     height: 100%;
@@ -7,7 +8,7 @@ html, body {
     overflow: hidden;
     background: white;
     margin: 0;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #app {
