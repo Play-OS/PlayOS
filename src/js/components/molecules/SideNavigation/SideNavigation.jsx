@@ -15,7 +15,7 @@ import styles from './SideNavigation.scss';
 import ProfilePic from './ProfilePicture.jsx';
 import UserService from '../../../services/UserService';
 import { setOpenSideBarNavigationState } from '../../../store/SideBarNavigationStore';
-import { openApp } from '../../../store/AppCanvasStore';
+import { openApp } from '../../../store/AppProcessesStore';
 
 const SETTINGS_NAMESPACE = 'io.playos.settings';
 const BUSINESS_NAMESPACE = 'io.playos.enterprise';

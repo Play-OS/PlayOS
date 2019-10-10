@@ -20,6 +20,12 @@ export default interface IProvider {
     fromMnemonic: (mnemonic: string) => PrivateKey;
     keysFromStorage: () => PrivateKey;
     saveKeys: (key: PrivateKey) => void;
-    getAccountInfo(key: PrivateKey): Promise<Account>;
+    getAccountInfo(address: string): Promise<Account>;
     getInstalledApplications(key: PrivateKey): Promise<Application[]>;
+    login(): Promise<Account>;
+    logout(): Promise<void>;
+    encrypt(content: Buffer): Promise<Buffer>;
+    decrypt(content: Buffer): Promise<Buffer>;
+    isLoggedIn(): Promise<boolean>;
+    getPrivateKeyForApp(appId: string, nonce: number, userKeys: PrivateKey): PrivateKey;
 }

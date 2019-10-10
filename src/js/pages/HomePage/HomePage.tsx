@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 import LoginLoadingScreen from './LoginLoadingScreen/LoginLoadingScreen';
 import { UserInfo, loadUserInfo } from '../../store/UserInfoStore';
@@ -7,8 +6,7 @@ import KeyService from '../../services/KeyService';
 import Header from '../../components/molecules/Header';
 import AppSection from '../../components/organims/AppSection';
 import { loadApps } from '../../store/ApplicationStore';
-import Wallet from '../../components/molecules/Wallet';
-import AppCanvasHolder from '../../components/organims/AppCanvasHolder';
+import AppProcessesHolder from '../../components/organims/AppProcessesHolder';
 const styles = require('./HomePage.scss');
 
 interface Props {
@@ -29,7 +27,7 @@ class HomePage extends React.Component<Props, State> {
         const keys = KeyService.keysFromStorage();
 
         if (!this.props.user.info.fullName && keys) {
-            this.props.dispatch(loadUserInfo(keys));
+            this.props.dispatch(loadUserInfo());
             this.props.dispatch(loadApps());
         }
     }
@@ -55,8 +53,7 @@ class HomePage extends React.Component<Props, State> {
                     <>
                         <Header />
                         <AppSection />
-                        {/* <AppCanvasHolder /> */}
-                        <Wallet />
+                        <AppProcessesHolder />
                     </>
                 }
             </React.Fragment>

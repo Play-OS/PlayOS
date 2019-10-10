@@ -11,7 +11,7 @@ const config = {
         domain: DEV_HOST + 'authentication/',
         host: DEV_HOST,
         homeUrl: DEV_HOST + 'home/',
-        provider: new RutileProvider(),
+        provider: new RutileProvider('http://localhost:8545/', 101),
     },
     production: {
         appName: 'Authentication',
@@ -20,18 +20,18 @@ const config = {
         domain: '/',
         host: '/',
         homeUrl: '#/home',
-        provider: new RutileProvider(),
+        provider: new RutileProvider('http://localhost:8545/', 101),
     },
 };
 
 config.development = config.production;
 
 export default class Configuration {
-    static get(key) {
+    static get(key: string) {
         return config[environment][key];
     }
 
-    static set(key, value) {
+    static set(key: string, value: any) {
         config[environment][key] = value;
     }
 

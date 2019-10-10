@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import CloseIcon from 'material-ui/svg-icons/navigation/close';
 import styles from './CloseAppButton.styles.scss';
 import classnames from 'classnames';
-import { closeApp } from '../../../store/AppCanvasStore';
+import { closeApp } from '../../../store/AppProcessesStore';
 
 class CloseAppButton extends React.Component {
     constructor(props) {

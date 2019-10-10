@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import ExampleStore from './ExampleStore';
 import SnackBarMessageStore from './SnackBarMessageStore';
 import UserInfoStore from './UserInfoStore';
-import AppCanvasStore from './AppCanvasStore';
+import AppProcessesStore from './AppProcessesStore';
 import SideBarNavigationStore from './SideBarNavigationStore';
 import ApplicationStore from './ApplicationStore';
 import MultitaskStore from './MultitaskStore';
@@ -21,7 +21,7 @@ const reducers = combineReducers({
     routing: routerReducer,
     SnackBarMessageStore,
     UserInfoStore,
-    AppCanvasStore,
+    AppProcessesStore,
     SideBarNavigationStore,
     ApplicationStore,
     MultitaskStore,

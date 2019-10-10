@@ -1,0 +1,32 @@
+.BulletNavigation {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bullet {
+    background: white;
+    opacity: 0.6;
+    width: 10px;
+    height: 10px;
+    border: none;
+    border-radius: 100%;
+    padding: 0;
+    display: block;
+    cursor: pointer;
+
+    &.active {
+        opacity: 1;
+    }
+}
+
+.bulletWrapper {
+    padding: 5px;
+    border: none;
+    background: transparent;
+}

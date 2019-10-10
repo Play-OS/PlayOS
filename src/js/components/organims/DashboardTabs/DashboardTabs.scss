@@ -1,0 +1,20 @@
+.tabsWrapper {
+    margin-top: 50px;
+}
+
+.tabIndicator {
+    background-color: white!important;
+}
+
+.tabs {
+    color: white!important;
+
+    & > div > span {
+        background-color: white!important;
+    }
+}
+
+.tab {
+    text-transform: none!important;
+    font-size: 1rem!important;
+}

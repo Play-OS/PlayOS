@@ -1,0 +1,13 @@
+@import '../../../../scss/variables';
+
+.AppGrid {
+    display: flex;
+    flex-flow: wrap;
+}
+
+@media screen and (min-width: $desktop-breakpoint) {
+    .AppGrid {
+        max-width: $container-large;
+        margin: 0 auto;
+    }
+}

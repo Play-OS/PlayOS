@@ -1,0 +1,50 @@
+@import '../../../../scss/variables';
+
+$window-border-radius: 5px;
+$appbar-height: 35px;
+
+.rnd {
+    pointer-events: all;
+}
+
+.window {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: white;
+    border-radius: $window-border-radius;
+    top: 0;
+    box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
+
+    &.halfSnapped {
+        width: 50% !important;
+        height: 100% !important;
+    }
+
+    &.fullSnapped {
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+.appBar {
+    width: 100%;
+    height: $appbar-height;
+    background: #f6f6f6;
+    color: #3c3c3c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: $window-border-radius;
+    border-top-right-radius: $window-border-radius;
+}
+
+.appBody {
+    height: calc(100% - #{$appbar-height});
+}
+
+.iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}

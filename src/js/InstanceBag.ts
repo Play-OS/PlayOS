@@ -1,11 +1,11 @@
-const store = [];
+const store: any[] = [];
 
 class InstanceBag {
-    static set(key, value) {
+    static set(key: string, value: any) {
         store[key] = value;
     }
 
-    static get(key) {
+    static get(key: string) {
         return store[key];
     }
 }

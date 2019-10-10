@@ -10,7 +10,7 @@ const styles = require('./MultiTaskButton.scss');
 
 interface Props {
     className?: string,
-    appCanvasStore: {
+    appCanvasStore?: {
         currentlyOpenSettings: {
             theme_color?: string,
         },
@@ -19,8 +19,8 @@ interface Props {
         }
     },
 
-    dispatch: Function,
-    multitaskStore: MultitaskStoreState,
+    dispatch?: Function,
+    multitaskStore?: MultitaskStoreState,
 }
 
 

@@ -1,42 +1,54 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import App from '../../molecules/App';
+import SwipeableViewsRaw from 'react-swipeable-views';
+// @ts-ignore
+import { bindKeyboard } from 'react-swipeable-views-utils';
 import Application from '../../../models/Application';
+import sortAppsInGrids from '../../../services/micro/sortAppsInGrids';
+import AppGrid from '../../molecules/AppGrid';
+import useMedia from '../../../services/hooks/useMedia';
+import BulletNavigation from '../../atoms/BulletNavigation';
 // import Folder from '../Folder';
 const styles = require('./AppSection.styles.scss');
+const SwipeableViews = bindKeyboard(SwipeableViewsRaw)
 
 interface Props {
     apps: Application[];
 }
 
 function AppSection(props: Props) {
+    const isDesktop = useMedia('(min-width: 960px)');
+    const [viewIndex, setViewIndex] = React.useState(0);
+
+    let amountPerGrid = 20;
+
+    if (isDesktop) {
+        amountPerGrid = 28;
+    }
+
+    const appGrids = sortAppsInGrids(props.apps, amountPerGrid);
+
+    function handleChangeIndex(index: number) {
+        setViewIndex(index);
+    }
+
     return (
         <React.Fragment>
-            <Paper className={styles['AppSection-Wrapper']}>
-                <div className={styles.AppSection}>
-                    <div className={styles['AppSection-Apps']}>
-                        <Typography variant="h4" className={styles['AppSection-Title']}>My Apps</Typography>
-                        <Grid container spacing={4}>
-                            {props.apps.map((app) => {
-                                if (app.isFolder) {
-                                    // return <Folder key={app.id} folder={app} />;
-                                }
-
-                                return <App key={app.id} app={app} />;
-                            })}
-                        </Grid>
-                    </div>
+            <div className={styles.AppSection}>
+                <div className={styles.wrapper}>
+                    <SwipeableViews enableMouseEvents resistance onChangeIndex={handleChangeIndex} index={viewIndex}>
+                        {appGrids.map((appGrid, index) => {
+                            return <AppGrid grid={appGrid} key={index} />
+                        })}
+                    </SwipeableViews>
+                    <BulletNavigation amount={appGrids.length} activeIndex={viewIndex} onClick={handleChangeIndex} />
                 </div>
-            </Paper>
+            </div>
         </React.Fragment>
     );
 }
 
 const mapStateToProps = (store: any) => {
-    console.log('[] store -> ', store);
     return {
         apps: store.ApplicationStore.apps,
     };

@@ -7,6 +7,7 @@ import './src/scss/index.scss';
 import InstanceBag from './src/js/InstanceBag';
 import Configuration from './src/js/Configuration';
 import packageJson from './package.json';
+import web3 from 'web3';
 
 // injectTapEventPlugin();
 
@@ -18,7 +19,6 @@ const env = Configuration.getEnvironment();
 // });
 
 // InstanceBag.set('sdk', sdk);
-
 const app = new App('app');
 app.run();
 

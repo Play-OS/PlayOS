@@ -7,6 +7,7 @@ export interface UserInfo {
         wallpaper: string;
         balance: string;
         currencyTicker: string;
+        address: string;
     },
     settings: string[],
 }
@@ -17,6 +18,7 @@ const defaultState: UserInfo = {
         wallpaper: '',
         balance: '0',
         currencyTicker: 'N/A',
+        address: '0x',
     },
     settings: [''],
 };
@@ -39,9 +41,9 @@ function UserInfoStore(state = defaultState, action: any) {
     return currentState;
 }
 
-export function loadUserInfo(keys: PrivateKey) {
+export function loadUserInfo() {
     return async (dispatch: any) => {
-        const user = await AuthService.getAccountInfo(keys);
+        const user = await AuthService.login();
 
         // Make sure we preload the background image to get a nice effect
         const response = await fetch(user.wallpaper);

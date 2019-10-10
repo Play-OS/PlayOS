@@ -130,8 +130,8 @@ class Header extends React.Component<Props, State> {
                 <div style={this.state.navStyle} className={styles.Header}>
                     <div className={styles['Header-Item']}>
                         <div className={styles['Header-Controls']}>
-                            <BackButton />
-                            <HomeButton />
+                            {/* <BackButton /> */}
+                            {/* <HomeButton /> */}
                         </div>
                     </div>
                     <div className={styles['Header-Item']}>

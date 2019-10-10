@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 // import Configuration from '../Configuration';
 // import HomeIcon from 'material-ui/svg-icons/action/home';
 // import { white } from 'material-ui/styles/colors';
-import { closeApp } from '../../../store/AppCanvasStore';
+import { closeApp } from '../../../store/AppProcessesStore';
 import InstanceBag from '../../../InstanceBag';
 const styles = require('./HomeButton.scss');
 

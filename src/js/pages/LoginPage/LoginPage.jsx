@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import Configuration from '../../Configuration';
 import KeyService from '../../services/KeyService';
 import { loadUserInfo } from '../../store/UserInfoStore';
-import TextField from '@material-ui/core/TextField';
+import AuthService from '../../services/AuthService';
+const styles = require('./LoginPage.scss');
 
 class IndexPage extends React.Component {
     constructor(props) {
@@ -29,6 +32,15 @@ class IndexPage extends React.Component {
     state = {
         privateKey: '',
         isLoading: false,
+    }
+
+    async componentDidMount() {
+        const isLoggedIn = await AuthService.isLoggedIn();
+
+        if (isLoggedIn) {
+            this.props.dispatch(loadUserInfo());
+            window.location.href = Configuration.get('homeUrl');
+        }
     }
 
     async handleFormSubmit(event) {
@@ -74,9 +86,9 @@ class IndexPage extends React.Component {
         const redirectUri = decodeURIComponent(this.props.location.query.redirectUri);
 
         if (redirectUri && redirectUri !== 'undefined') {
-            window.location.href = `${Configuration.get('domain')}#/register?redirectUri=${encodeURIComponent(redirectUri)}`;
+            window.location.href = `#/register?redirectUri=${encodeURIComponent(redirectUri)}`;
         } else {
-            window.location.href = `${Configuration.get('domain')}#/register`;
+            window.location.href = `#/register`;
         }
     }
 
@@ -84,12 +96,12 @@ class IndexPage extends React.Component {
         return (
             <div className="IndexPage">
                 <React.Fragment>
-                    <form className="IndexPage-Form" onSubmit={this.handleFormSubmit}>
-                        <TextField label="Recovery phrase" multiline margin="normal" onChange={this.handleChange} value={this.state.privateKey} />
+                    <form className={styles.form} onSubmit={this.handleFormSubmit}>
+                        <TextField fullWidth label="Recovery phrase" required multiline onChange={this.handleChange} value={this.state.privateKey} className={styles.input} />
                         {/* <input type="email" multiline required placeholder="Recovery phrase" ref={(elem) => { this.emailInput = elem; }} className="IndexPage-Form-Input" /> */}
-                        <RaisedButton type="submit" primary className="IndexPage-Form-Login" label="Login" fullWidth />
+                        <Button type="submit" color="primary" variant="contained" fullWidth className={styles.button}>Login</Button>
                     </form>
-                    <a className="IndexPage-SwitchPage" onClick={this.handleRegisterClick}>Don't have an account? Create one!</a>
+                    <a className={styles.link} onClick={this.handleRegisterClick}>Don't have an account? Create one!</a>
                 </React.Fragment>
             </div>
         );

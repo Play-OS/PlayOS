@@ -8,7 +8,7 @@ import { confirm } from 'material-ui-dialogs';
 import Configuration from '../../../Configuration';
 import AppUninstallDialog from '../../molecules/AppUninstallDialog';
 import AppService from '../../../services/AppService';
-import { openApp } from '../../../store/AppCanvasStore';
+import { openApp } from '../../../store/AppProcessesStore';
 import Grid from '@material-ui/core/Grid';
 
 const styles = require('./App.scss');
@@ -124,7 +124,7 @@ class App extends React.Component {
     render() {
         return (
             <Grid item xs={3} sm={2} md={2} lg={2} ref={(elem) => this.wrapperElem = elem}>
-                <AppUninstallDialog app={this.props.app} onRequestClose={this.handleDialogClose} isOpen={this.state.showUninstsallDialog} />
+                {/* <AppUninstallDialog app={this.props.app} onRequestClose={this.handleDialogClose} isOpen={this.state.showUninstsallDialog} /> */}
                 <div ref={(tappable) => { this.tappableElem = tappable; }} className={styles['App']} component="div" onClick={this.handleAppClick}>
                     <div className={styles['App-Icon']}>
                         <img alt={this.props.app.title} src={this.getAppIcon()} />
@@ -132,7 +132,7 @@ class App extends React.Component {
                     <span className={styles['App-Title']}>
                         <Typography noWrap variant="body1">{this.props.app.title}</Typography>
                     </span>
-                    <Popover
+                    {/* <Popover
                         open={this.state.showPopover}
                         anchorEl={this.state.popoverAnchorElem}
                         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
@@ -143,7 +143,7 @@ class App extends React.Component {
                         <Menu>
                             <MenuItem primaryText="Uninstall" onTouchTap={this.handleUninstallClick} />
                         </Menu>
-                    </Popover>
+                    </Popover> */}
                 </div>
             </Grid>
             // <div className="col-3-sm" onTouchEnd={this.handleTouchEnd} onContextMenu={this.handleContextMenuRequest} ref={(elem) => { this.wrapperElem = elem; }}>

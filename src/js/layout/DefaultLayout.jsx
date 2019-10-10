@@ -28,8 +28,6 @@ class DefaultLayout extends React.Component {
             [styles.defaultLayoutBackgroundDefault]: !wallpaper,
         });
 
-        console.log('[] styles -> ', styles);
-
         return (
             <MuiThemeProvider>
                 <div className={styles.defaultLayout}>

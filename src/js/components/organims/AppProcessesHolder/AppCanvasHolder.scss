@@ -1,0 +1,9 @@
+@import '../../../../scss/variables';
+
+.processHolder {
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    top: $header-height;
+    pointer-events: none;
+}
