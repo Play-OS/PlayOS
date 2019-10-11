@@ -47,4 +47,6 @@ $appbar-height: 35px;
     width: 100%;
     height: 100%;
     border: none;
+    border-bottom-left-radius: $window-border-radius;
+    border-bottom-right-radius: $window-border-radius;
 }

@@ -41,7 +41,6 @@ function AppWindow(props: Props) {
     }
 
     function handleWindowMouseDown() {
-        console.log('[] props.appProcessesState.heighestZIndex, windowZIndex -> ', props.appProcessesState.heighestZIndex, windowZIndex);
         if (windowZIndex < props.appProcessesState.heighestZIndex) {
             const newHeighestZIndex = props.appProcessesState.heighestZIndex + 1;
 
@@ -76,10 +75,10 @@ function AppWindow(props: Props) {
                     <span>{props.process.app.title}</span>
                 </header>
                 <div className={styles.appBody}>
-                    My new app
-                    {/* <iframe src={props.process.app.main} className={styles.iframe}>
+                    {/* My new app */}
+                    <iframe src={props.process.app.main} className={styles.iframe}>
                         Content could not be loaded
-                    </iframe> */}
+                    </iframe>
                 </div>
             </div>
         </Rnd>

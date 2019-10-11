@@ -15,38 +15,6 @@ class RutileProvider implements IProvider {
             chainId,
             name: 'rutile',
         });
-        // this.web3Loaded = new Promise((resolve) => {
-        //     window.addEventListener("load", async () => {
-        //         // @ts-ignore
-        //         const windowEthereum = window.ethereum;
-        //         // @ts-ignore
-        //         const windowWeb3 = window.web3;
-
-        //         // Modern dapp browsers...
-        //         if (windowEthereum) {
-        //             this.web3 = new Web3(windowEthereum);
-
-        //             try {
-        //                 // Request account access if needed
-        //                 await windowEthereum.enable();
-        //                 resolve();
-        //             } catch (error) {
-        //                 // User denied account access...
-        //             }
-        //         }
-        //         // Legacy dapp browsers...
-        //         else if (windowWeb3) {
-        //             this.web3 = new Web3(windowWeb3.currentProvider);
-        //             resolve();
-        //         }
-        //         // Non-dapp browsers...
-        //         else {
-        //             console.log(
-        //                 "Non-Ethereum browser detected. You should consider trying MetaMask!"
-        //             );
-        //         }
-        //     });
-        // });
     }
 
     setupWeb3WithKeys(privateKey: PrivateKey) {
@@ -164,7 +132,7 @@ class RutileProvider implements IProvider {
         for (let index = 0; index < 97; index++) {
             const newApp = JSON.parse(JSON.stringify(app));
             newApp.id = Math.random().toString();
-            newApp.main = `https://example.com/?token=${this.getPrivateKeyForApp(newApp.id, 0, key).privateKey}`,
+            newApp.main = `https://airhorner.com/?token=${this.getPrivateKeyForApp(newApp.id, 0, key).privateKey}`,
             newApp.icon = newApp.icon +=
                 "?cachecBuster=" + Math.random().toString();
             arr.push(newApp);
@@ -184,6 +152,14 @@ class RutileProvider implements IProvider {
             privateKey: wallet.privateKey,
             mnemonic: wallet.mnemonic,
         };
+    }
+
+    async storageSet(key: string, value: string) {
+
+    }
+
+    async storageGet(key: string) {
+        return '';
     }
 }
 

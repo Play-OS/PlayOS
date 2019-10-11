@@ -28,4 +28,6 @@ export default interface IProvider {
     decrypt(content: Buffer): Promise<Buffer>;
     isLoggedIn(): Promise<boolean>;
     getPrivateKeyForApp(appId: string, nonce: number, userKeys: PrivateKey): PrivateKey;
+    storageSet(key: string, value: string): Promise<void>;
+    storageGet(key: string): Promise<string>;
 }

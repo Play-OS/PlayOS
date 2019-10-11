@@ -12,6 +12,7 @@ const config = {
         host: DEV_HOST,
         homeUrl: DEV_HOST + 'home/',
         provider: new RutileProvider('http://localhost:8545/', 101),
+        coreAddress: '0x776269e69e8fbee4746895ac4fb929139db828c7',
     },
     production: {
         appName: 'Authentication',
@@ -21,6 +22,7 @@ const config = {
         host: '/',
         homeUrl: '#/home',
         provider: new RutileProvider('http://localhost:8545/', 101),
+        coreAddress: '0x776269e69e8fbee4746895ac4fb929139db828c7',
     },
 };
 
