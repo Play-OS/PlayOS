@@ -1,0 +1,22 @@
+@import '../../../../scss/variables';
+
+$appbar-height: 35px;
+$window-border-radius: 5px;
+
+.appBar {
+    width: 100%;
+    height: $appbar-height;
+    background: #f6f6f6;
+    color: #3c3c3c;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: $desktop-breakpoint) {
+    .appBar {
+        border-top-left-radius: $window-border-radius;
+        border-top-right-radius: $window-border-radius;
+    }
+}
+

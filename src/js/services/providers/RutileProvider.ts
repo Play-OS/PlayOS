@@ -112,11 +112,23 @@ class RutileProvider implements IProvider {
     async getInstalledApplications(key: PrivateKey): Promise<Application[]> {
         const app: Application = {
             id: "AppId",
-            title: "Application",
+            name: "Airhorner",
+            short_name: "Airhorner",
+            display: 'standalone',
+            background_color: '#2196F3',
+            theme_color: '#2196F3',
+            icons: [
+                {
+                    sizes: '512x512',
+                    src: '/images/touch/android-launchericon-512-512.png',
+                    type: 'image/png',
+                },
+            ],
+            scope: '/',
+            start_url: '/?homescreen=1',
+            manifest_url: 'https://airhorner.com/manifest.json',
             apps: [],
-            icon: "https://picsum.photos/512",
             isFolder: false,
-            main: `https://example.com/?token=${this.getPrivateKeyForApp('AppId', 0, key).privateKey}`,
             properties: {
                 background_color: "",
                 openInNewWindow: true
@@ -125,16 +137,14 @@ class RutileProvider implements IProvider {
             supportedDeviceTypes: []
         };
 
-
-
         const arr: Application[] = [];
 
         for (let index = 0; index < 97; index++) {
-            const newApp = JSON.parse(JSON.stringify(app));
+            const newApp: Application = JSON.parse(JSON.stringify(app));
+
             newApp.id = Math.random().toString();
-            newApp.main = `https://airhorner.com/?token=${this.getPrivateKeyForApp(newApp.id, 0, key).privateKey}`,
-            newApp.icon = newApp.icon +=
-                "?cachecBuster=" + Math.random().toString();
+            newApp.start_url = `${newApp.start_url}&token=${this.getPrivateKeyForApp(newApp.id, 0, key).privateKey}`,
+
             arr.push(newApp);
         }
 

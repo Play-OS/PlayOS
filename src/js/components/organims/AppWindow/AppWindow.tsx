@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Process, AppProcessesState, setHeighestZIndex } from '../../../store/AppProcessesStore';
 import { Rnd } from 'react-rnd';
+import useMedia from '../../../services/hooks/useMedia';
+import AppTitleBar from './AppTitleBar';
+import resolveUrl from '../../../services/micro/resolveUrl';
 const styles = require('./AppWindow.scss');
+const titleBarStyles = require('./AppTitleBar.scss');
 
 interface Props {
     process: Process;
@@ -17,7 +21,9 @@ function AppWindow(props: Props) {
         full: false,
     });
 
+    const isDesktop = useMedia('(min-width: 960px)');
     const [windowZIndex, setWindowZIndex] = React.useState(0);
+    const [isDragging, setIsDragging] = React.useState(false);
 
     function handleOnDrag(event: MouseEvent, data: any) {
         // We are dragging the window so we have to make sure we are almost touching the edges
@@ -40,7 +46,16 @@ function AppWindow(props: Props) {
         }
     }
 
-    function handleWindowMouseDown() {
+    function handleDragStart() {
+        handleWindowClick();
+        setIsDragging(true);
+    }
+
+    function handleDragStop() {
+        setIsDragging(false);
+    }
+
+    function handleWindowClick() {
         if (windowZIndex < props.appProcessesState.heighestZIndex) {
             const newHeighestZIndex = props.appProcessesState.heighestZIndex + 1;
 
@@ -54,6 +69,16 @@ function AppWindow(props: Props) {
         [styles.fullSnapped]: snapState.full,
     });
 
+    const rndClassNames = classnames(styles.rnd, {
+        [styles.rndMobile]: !isDesktop,
+    });
+
+    const appBodyClassNames = classnames(styles.appBody, {
+        [styles.dragging]: isDragging,
+    });
+
+    const mainUrl = resolveUrl(props.process.app.manifest_url, props.process.app.start_url);
+
     return (
         <Rnd
             default={{
@@ -64,19 +89,29 @@ function AppWindow(props: Props) {
             }}
             minWidth={300}
             minHeight={300}
-            dragHandleClassName={styles.appBar}
+            dragHandleClassName={titleBarStyles.appBar}
             bounds='parent'
-            className={styles.rnd}
+            className={rndClassNames}
             style={{ zIndex: windowZIndex }}
-            onDragStart={handleWindowMouseDown}
+            onDragStart={handleDragStart}
+            onDragStop={handleDragStop}
+            disableDragging={!isDesktop}
+            enableResizing={{
+                bottom: isDesktop,
+                bottomLeft: isDesktop,
+                bottomRight: isDesktop,
+                left: isDesktop,
+                right: isDesktop,
+                top: isDesktop,
+                topLeft: isDesktop,
+                topRight: isDesktop,
+            }}
         >
-            <div className={windowClassNames} onClick={handleWindowMouseDown}>
-                <header className={styles.appBar}>
-                    <span>{props.process.app.title}</span>
-                </header>
-                <div className={styles.appBody}>
+            <div className={windowClassNames} onClick={handleWindowClick}>
+                <AppTitleBar process={props.process} />
+                <div className={appBodyClassNames}>
                     {/* My new app */}
-                    <iframe src={props.process.app.main} className={styles.iframe}>
+                    <iframe src={mainUrl} className={styles.iframe} onFocus={() => console.log('Iframe')}>
                         Content could not be loaded
                     </iframe>
                 </div>

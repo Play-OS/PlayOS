@@ -14,11 +14,24 @@ export enum ApplicationStatus {
     STANDARD = 'STANDARD',
 }
 
+interface ApplicationIcon {
+    src: string;
+    type: string;
+    sizes: string;
+}
+
 interface Application {
     id: string,
-    title: string,
-    main: string,
-    icon: string,
+    name: string,
+    short_name: string;
+    icons: ApplicationIcon[];
+    start_url: string;
+    scope: string;
+    display: string;
+    background_color: string;
+    theme_color: string;
+    manifest_url: string;
+
     properties?: ApplicationProperties,
     status: ApplicationStatus,
     isFolder?: boolean,

@@ -37,7 +37,7 @@ class Time extends React.Component {
         const className = this.props.className ? this.props.className : styles.Time;
 
         return (
-            <div className={className}>
+            <div className={className} style={this.props.style}>
                 {this.state.timeString}
             </div>
         );

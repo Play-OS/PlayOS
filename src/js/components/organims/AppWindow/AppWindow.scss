@@ -7,6 +7,12 @@ $appbar-height: 35px;
     pointer-events: all;
 }
 
+.rndMobile {
+    width: 100%!important;
+    height: 100%!important;
+    transform: translate(0, 0)!important;
+}
+
 .window {
     width: 100%;
     height: 100%;
@@ -41,6 +47,10 @@ $appbar-height: 35px;
 
 .appBody {
     height: calc(100% - #{$appbar-height});
+
+    &.dragging {
+        pointer-events: none;
+    }
 }
 
 .iframe {

@@ -75,13 +75,13 @@ function AppProcessesStore(state = defaultState, action: Action): AppProcessesSt
         const processIndex = state.processes.findIndex(process => process.id === processId);
         const openProcessIndex = state.openProcesses.findIndex(process => process.processId === processId);
 
-        const processes = state.processes.splice(processIndex, 1);
-        const openProcesses = state.openProcesses.splice(openProcessIndex, 1);
+        state.processes.splice(processIndex, 1);
+        state.openProcesses.splice(openProcessIndex, 1);
 
         return {
             ...state,
-            processes,
-            openProcesses
+            processes: state.processes,
+            openProcesses: state.openProcesses,
         };
     } else if (action.type === ActionTypes.CLOSE_APP) {
         const processId: number = action.payload;
@@ -123,7 +123,7 @@ export function closeApp(processId: number) {
     };
 }
 
-export function closeProcess(processId: number) {
+export function killProcess(processId: number) {
     return {
         type: ActionTypes.KILL_PROCESS,
         payload: processId,
