@@ -9,6 +9,7 @@ import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import { setOpenSideBarNavigationState } from '../../../store/SideBarNavigationStore';
 import UserService from '../../../services/UserService';
+import AppInstallDialog from './AppInstallDialog';
 const styles = require('./SideNavigation.scss');
 
 interface Props {
@@ -17,6 +18,8 @@ interface Props {
 }
 
 function SideNavigation(props: Props) {
+    const [isAppInstallDialogOpen, setAppInstallDialogOpen] = React.useState(false);
+
     function handleDrawerOnClose() {
         props.dispatch(setOpenSideBarNavigationState(false));
     }
@@ -26,23 +29,35 @@ function SideNavigation(props: Props) {
         location.reload();
     }
 
+    async function handleInstallAppClick() {
+        handleDrawerOnClose();
+        setAppInstallDialogOpen(true);
+    }
+
+    async function handleInstallAppDialogClose() {
+        setAppInstallDialogOpen(false);
+    }
+
     return (
-        <Drawer className={styles.drawer} anchor="right" open={props.isOpen} onClose={handleDrawerOnClose}>
-            <List className={styles.drawerList}>
-                <ListItem button>
-                    <ListItemIcon>
-                        <GetAppIcon />
-                    </ListItemIcon>
-                    <ListItemText>Install App</ListItemText>
-                </ListItem>
-                <ListItem button onClick={handleLogoutClick}>
-                    <ListItemIcon>
-                        <PowerSettingsNewIcon />
-                    </ListItemIcon>
-                    <ListItemText>Logout</ListItemText>
-                </ListItem>
-            </List>
-        </Drawer>
+        <>
+            <Drawer className={styles.drawer} anchor="right" open={props.isOpen} onClose={handleDrawerOnClose}>
+                <List className={styles.drawerList}>
+                    <ListItem button onClick={handleInstallAppClick}>
+                        <ListItemIcon>
+                            <GetAppIcon />
+                        </ListItemIcon>
+                        <ListItemText>Install App</ListItemText>
+                    </ListItem>
+                    <ListItem button onClick={handleLogoutClick}>
+                        <ListItemIcon>
+                            <PowerSettingsNewIcon />
+                        </ListItemIcon>
+                        <ListItemText>Logout</ListItemText>
+                    </ListItem>
+                </List>
+            </Drawer>
+            <AppInstallDialog open={isAppInstallDialogOpen} onClose={handleInstallAppDialogClose} />
+        </>
     );
 }
 

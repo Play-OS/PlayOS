@@ -30,4 +30,5 @@ export default interface IProvider {
     getPrivateKeyForApp(appId: string, nonce: number, userKeys: PrivateKey): PrivateKey;
     storageSet(key: string, value: string): Promise<void>;
     storageGet(key: string): Promise<string>;
+    addApplicationToStore(app: Application): Promise<void>;
 }

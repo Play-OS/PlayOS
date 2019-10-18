@@ -2,6 +2,7 @@ import * as ethers from "ethers";
 import IProvider, { PrivateKey, Account } from "./IProvider";
 import Application, { ApplicationStatus } from "../../models/Application";
 import Configuration from "../../Configuration";
+import RutileContract from "./RutileContract";
 const Web3 = require("web3");
 
 class RutileProvider implements IProvider {
@@ -9,12 +10,31 @@ class RutileProvider implements IProvider {
     private web3Loaded: Promise<void>;
     private provider: ethers.providers.JsonRpcProvider;
     private privateKey: PrivateKey;
+    private rutileContract: RutileContract;
+    private coreAddress: string;
 
-    constructor(host: string, chainId: number) {
+    constructor(host: string, chainId: number, coreAddress: string) {
         this.provider = new ethers.providers.JsonRpcProvider(host, {
             chainId,
             name: 'rutile',
         });
+
+        this.coreAddress = coreAddress;
+
+        if (this.getWallet()) {
+            this.rutileContract = new RutileContract(coreAddress, this.provider, this.getWallet());
+        }
+    }
+
+    private getWallet(): ethers.Wallet {
+        const keys = this.keysFromStorage();
+
+        if (!keys) {
+            return null;
+        }
+
+        const wallet = new ethers.Wallet(keys.privateKey, this.provider);
+        return wallet;
     }
 
     setupWeb3WithKeys(privateKey: PrivateKey) {
@@ -43,6 +63,8 @@ class RutileProvider implements IProvider {
     async login(): Promise<Account> {
         const keys = this.keysFromStorage();
         const wallet = ethers.Wallet.fromMnemonic(keys.mnemonic);
+
+        this.rutileContract = new RutileContract(this.coreAddress, this.provider, this.getWallet());
 
         return this.getAccountInfo(wallet.address);
     }
@@ -127,26 +149,18 @@ class RutileProvider implements IProvider {
             scope: '/',
             start_url: '/?homescreen=1',
             manifest_url: 'https://airhorner.com/manifest.json',
-            apps: [],
-            isFolder: false,
-            properties: {
-                background_color: "",
-                openInNewWindow: true
-            },
-            status: ApplicationStatus.STANDARD,
-            supportedDeviceTypes: []
         };
 
         const arr: Application[] = [];
 
-        for (let index = 0; index < 97; index++) {
-            const newApp: Application = JSON.parse(JSON.stringify(app));
+        // for (let index = 0; index < 97; index++) {
+        //     const newApp: Application = JSON.parse(JSON.stringify(app));
 
-            newApp.id = Math.random().toString();
-            newApp.start_url = `${newApp.start_url}&token=${this.getPrivateKeyForApp(newApp.id, 0, key).privateKey}`,
+        //     newApp.id = Math.random().toString();
+        //     newApp.start_url = `${newApp.start_url}&token=${this.getPrivateKeyForApp(newApp.id, 0, key).privateKey}`,
 
-            arr.push(newApp);
-        }
+        //     arr.push(newApp);
+        // }
 
         return arr;
     }
@@ -162,6 +176,29 @@ class RutileProvider implements IProvider {
             privateKey: wallet.privateKey,
             mnemonic: wallet.mnemonic,
         };
+    }
+
+    async addApplicationToStore(app: Application) {
+        try {
+            const wallet = this.getWallet();
+            const nonce = await wallet.getTransactionCount();
+            const coreAddress = Configuration.get('coreAddress');
+
+            this.rutileContract.addApplicationToStore(app);
+
+            console.log('[] nonce -> ', nonce);
+            // const tx = await wallet.sendTransaction({
+            //     to: coreAddress,
+            //     data: '0x10000001',
+            //     gasLimit: 8000000,
+            //     gasPrice: 1,
+            //     nonce,
+            // });
+
+            // console.log('[] tx -> ', tx);
+        } catch (error) {
+            console.log('[] error -> ', error);
+        }
     }
 
     async storageSet(key: string, value: string) {

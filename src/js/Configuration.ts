@@ -11,8 +11,8 @@ const config = {
         domain: DEV_HOST + 'authentication/',
         host: DEV_HOST,
         homeUrl: DEV_HOST + 'home/',
-        provider: new RutileProvider('http://localhost:8545/', 101),
-        coreAddress: '0x776269e69e8fbee4746895ac4fb929139db828c7',
+        provider: new RutileProvider('http://localhost:8545/', 866, '0x00c7109eb8c03ad5f4383ed0ccbc4035f167aacc'),
+        coreAddress: '0xb8e0baafd907f3289dbdc0a5174ba786f4b78cf2',
     },
     production: {
         appName: 'Authentication',
@@ -21,8 +21,8 @@ const config = {
         domain: '/',
         host: '/',
         homeUrl: '#/home',
-        provider: new RutileProvider('http://localhost:8545/', 101),
-        coreAddress: '0x776269e69e8fbee4746895ac4fb929139db828c7',
+        provider: new RutileProvider('http://localhost:8545/', 866, '0x00c7109eb8c03ad5f4383ed0ccbc4035f167aacc'),
+        coreAddress: '0xb8e0baafd907f3289dbdc0a5174ba786f4b78cf2',
     },
 };
 

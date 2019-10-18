@@ -37,8 +37,8 @@ function AppSection(props: Props) {
             <div className={styles.AppSection}>
                 <div className={styles.wrapper}>
                     <SwipeableViews enableMouseEvents resistance onChangeIndex={handleChangeIndex} index={viewIndex}>
-                        {appGrids.map((appGrid, index) => {
-                            return <AppGrid grid={appGrid} key={index} />
+                        {appGrids.map((appGrid) => {
+                            return <AppGrid grid={appGrid} key={appGrid.id} />
                         })}
                     </SwipeableViews>
                     <BulletNavigation amount={appGrids.length} activeIndex={viewIndex} onClick={handleChangeIndex} />
@@ -50,6 +50,7 @@ function AppSection(props: Props) {
 
 const mapStateToProps = (store: any) => {
     return {
+        ApplicationStore: store.ApplicationStore,
         apps: store.ApplicationStore.apps,
     };
 };

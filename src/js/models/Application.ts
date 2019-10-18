@@ -32,16 +32,16 @@ interface Application {
     theme_color: string;
     manifest_url: string;
 
-    properties?: ApplicationProperties,
-    status: ApplicationStatus,
-    isFolder?: boolean,
+    // properties?: ApplicationProperties,
+    // status: ApplicationStatus,
+    // isFolder?: boolean,
     // isRemoteFolder?: boolean,
-    apps?: Application[],
+    // apps?: Application[],
     // businessInfo: {
     //     name: string,
     //     id: string,
     // },
-    supportedDeviceTypes: string[],
+    // supportedDeviceTypes: string[],
 }
 
 export default Application;

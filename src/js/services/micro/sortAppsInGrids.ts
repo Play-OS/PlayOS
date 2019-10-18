@@ -1,6 +1,7 @@
 import Application from "../../models/Application";
 
 export interface AppGrid {
+    id: string;
     apps: Application[];
 }
 
@@ -15,6 +16,7 @@ export interface AppGrid {
 export default function sortAppsInGrids(apps: Application[], amountPerGrid: number): AppGrid[] {
     const result: AppGrid[] = [];
     let gridItem: AppGrid = {
+        id: Math.random().toString(),
         apps: [],
     };
 
@@ -25,7 +27,10 @@ export default function sortAppsInGrids(apps: Application[], amountPerGrid: numb
             result.push(gridItem);
 
             // Rest the grid
-            gridItem = { apps: [] };
+            gridItem = {
+                id: Math.random().toString(),
+                apps: []
+            };
         }
     });
 

@@ -18,6 +18,7 @@ export enum ApplicationStoreActions {
     APPLICATION_STORE_FULFILLED = 'APPLICATION_STORE_FULFILLED',
     APPLICATION_STORE_PENDING = 'APPLICATION_STORE_PENDING',
     APPLICATION_STORE_REJECTED = 'APPLICATION_STORE_REJECTED',
+    ADD_SINGLE_APPLICATION = 'ADD_SINGLE_APPLICATION',
 }
 
 function ApplicationStore(state = defaultState, action: any): ApplicationStoreState {
@@ -40,6 +41,15 @@ function ApplicationStore(state = defaultState, action: any): ApplicationStoreSt
             ...state,
             loading: false,
             errors: action.payload,
+        }
+    } else if (action.type === ApplicationStoreActions.ADD_SINGLE_APPLICATION) {
+        const apps = state.apps;
+
+        apps.push(action.payload);
+
+        return {
+            ...state,
+            apps,
         }
     }
 
@@ -81,6 +91,13 @@ export function loadApps() {
             });
         }
     }
+}
+
+export function addSingleApplication(app: Application) {
+    return {
+        type: ApplicationStoreActions.ADD_SINGLE_APPLICATION,
+        payload: app,
+    };
 }
 
 export default ApplicationStore;
