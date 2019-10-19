@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { routerReducer } from 'react-router-redux';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { createHashHistory } from 'history';
 import thunk from 'redux-thunk';
 
 // Stores
@@ -11,14 +12,15 @@ import SideBarNavigationStore from './SideBarNavigationStore';
 import ApplicationStore from './ApplicationStore';
 import MultitaskStore from './MultitaskStore';
 
-// Enhance our redux store with redux dev tools.
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const middleware = composeEnhancers(applyMiddleware(thunk));
+export const history = createHashHistory();
 
-// Lastly combine all reducers
-const reducers = combineReducers({
+// Enhance our redux store with redux dev tools.
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const createRootReducers = (history: any) => combineReducers({
     ExampleStore,
-    routing: routerReducer,
+    router: connectRouter(history),
     SnackBarMessageStore,
     UserInfoStore,
     AppProcessesStore,
@@ -27,7 +29,27 @@ const reducers = combineReducers({
     MultitaskStore,
 });
 
+// Lastly combine all reducers
+// const reducers = combineReducers({
+//     ExampleStore,
+//     routing: routerReducer,
+//     SnackBarMessageStore,
+//     UserInfoStore,
+//     AppProcessesStore,
+//     SideBarNavigationStore,
+//     ApplicationStore,
+//     MultitaskStore,
+// });
+
 // And create our store
-const store = createStore(reducers, middleware);
+const store = createStore(
+    createRootReducers(history),
+    composeEnhancers(
+        applyMiddleware(
+            thunk,
+            routerMiddleware(history),
+        ),
+    ),
+);
 
 export default store;

@@ -127,7 +127,7 @@ class RutileProvider implements IProvider {
             fullName: "Franklin Waller",
             address,
             profilePic: "",
-            wallpaper: "./res/img/background.jpg"
+            wallpaper: "https://playos.io/wp-content/uploads/2019/10/background.jpg?id=4353"
         };
     }
 

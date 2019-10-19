@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 import 'babel-polyfill';
 // import injectTapEventPlugin from 'react-tap-event-plugin';
-import App from './src/js/App.jsx';
+import App from './src/js/App';
 import './src/scss/index.scss';
 // import Sdk from '../SDK';
 import InstanceBag from './src/js/InstanceBag';

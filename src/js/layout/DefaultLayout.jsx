@@ -1,26 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router';
 import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
 import SnackBarMessage from '../components/SnackBarMessage';
 import styles from './DefaultLayout.scss';
 import classnames from 'classnames';
+import logo from '../../../res/img/PlayOSLogoSide_black.svg';
+import ChoosePage from '../pages/ChoosePage';
+import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../pages/RegisterPage';
+import HomePage from '../pages/HomePage/HomePage';
+
+function getRoutes() {
+    return (
+        <>
+            <Route path="/choose" component={ChoosePage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisterPage} />
+            <Route path="/home" component={HomePage} />
+        </>
+    )
+}
 
 class DefaultLayout extends React.Component {
-    static propTypes = {
-        dispatch: PropTypes.func.isRequired,
-        children: PropTypes.oneOfType([
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.node,
-        ]).isRequired,
-        location: PropTypes.shape({
-            query: PropTypes.shape({
-                redirectUri: PropTypes.string,
-            }),
-        }).isRequired,
-    }
-
     render() {
         const wallpaper = this.props.user.info.wallpaper;
         const backgroundImage = wallpaper ? `url(${wallpaper})` : null;
@@ -44,11 +48,11 @@ class DefaultLayout extends React.Component {
                             <Paper zDepth={5} className={styles.defaultLayoutPanelPaper}>
                                 <div className={styles.defaultLayoutPanelMessage}>
                                     <span className={styles.defaultLayoutPanelMessageLogo}>
-                                        <img src="./res/img/PlayOSLogoSide_black.svg" alt="Logo" />
+                                        <img src={logo} alt="Logo" />
                                     </span>
                                 </div>
                                 <div className={styles.defaultLayoutPanelContent}>
-                                    {this.props.children}
+                                    {getRoutes()}
                                 </div>
                             </Paper>
                         </section>
@@ -56,20 +60,22 @@ class DefaultLayout extends React.Component {
 
                     {this.props.currentPathName === '/home' &&
                         <div className={styles.childrenWrapper}>
-                            {this.props.children}
+                            {getRoutes()}
                         </div>
                     }
-                    <SnackBarMessage />
+                    {/* <SnackBarMessage /> */}
                 </div>
             </MuiThemeProvider>
         );
     }
 }
 
-const mapStateToProps = store => ({
-    SnackBarMessageStore: store.SnackBarMessageStore,
-    user: store.UserInfoStore,
-    currentPathName: store.routing.locationBeforeTransitions ? store.routing.locationBeforeTransitions.pathname : '',
-});
+const mapStateToProps = store => {
+    return ({
+        SnackBarMessageStore: store.SnackBarMessageStore,
+        user: store.UserInfoStore,
+        currentPathName: store.router.location ? store.router.location.pathname : '',
+    })
+};
 
 export default connect(mapStateToProps)(DefaultLayout);

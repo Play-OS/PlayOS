@@ -6,7 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import { confirm } from 'material-ui-dialogs';
 import Configuration from '../../../Configuration';
-import AppUninstallDialog from '../../molecules/AppUninstallDialog';
+// import AppUninstallDialog from '../../molecules/AppUninstallDialog';
 import AppService from '../../../services/AppService';
 import { openApp } from '../../../store/AppProcessesStore';
 import Grid from '@material-ui/core/Grid';

@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { UserInfo } from '../../../store/UserInfoStore';
+import logo from '../../../../../res/img/PlayOSLogoSide_black.svg';
 const styles = require('./LoginLoadingScreen.scss');
 
 interface Props {
@@ -26,7 +27,7 @@ class LoginLoadingScreen extends React.Component<Props, State> {
                 <Paper elevation={5} className={styles.defaultLayoutPanelPaper}>
                     <div className={styles.defaultLayoutPanelMessage}>
                         <span className={styles.defaultLayoutPanelMessageLogo}>
-                            <img src="./res/img/PlayOSLogoSide_black.svg" alt="Logo" />
+                            <img src={logo} alt="Logo" />
                         </span>
                     </div>
                     <div className={styles.defaultLayoutPanelContent}>

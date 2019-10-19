@@ -1,7 +1,6 @@
 import * as React from 'react';
-import * as Loadable from 'react-loadable';
+import Loadable from 'react-loadable';
 // import ProgressBar from '../../../components/molecules/ProgressBar/index';
-
 
 function Loading() {
     return (

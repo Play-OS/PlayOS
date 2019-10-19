@@ -46,10 +46,10 @@ export function loadUserInfo() {
         const user = await AuthService.login();
 
         // Make sure we preload the background image to get a nice effect
-        const response = await fetch(user.wallpaper);
-        const blob = await response.blob();
-        const blobUrl = window.URL.createObjectURL(blob);
-        user.wallpaper = blobUrl;
+        // const response = await fetch(user.wallpaper);
+        // const blob = await response.blob();
+        // const blobUrl = window.URL.createObjectURL(blob);
+        // user.wallpaper = blobUrl;
 
         dispatch(setUserInfo(user));
     }
