@@ -10,7 +10,6 @@ import Time from '../../atoms/Time';
 const styles = require('./AppTitleBar.scss');
 
 interface Props {
-    title: string;
     process: Process;
     dispatch: Function;
 }
@@ -22,10 +21,10 @@ function AppTitleBar(props: Props) {
         props.dispatch(killProcess(props.process.id));
     }
 
-    const textColor = getIdealTextColor(props.process.app.background_color);
+    const textColor = getIdealTextColor(props.process.app.theme_color);
 
     return (
-        <header className={styles.appBar} style={{ backgroundColor: props.process.app.background_color }}>
+        <header className={styles.appBar} style={{ backgroundColor: props.process.app.theme_color }}>
             <IconButton aria-label="Back" style={{ color: textColor }}>
                 <ArrowBackIcon />
             </IconButton>

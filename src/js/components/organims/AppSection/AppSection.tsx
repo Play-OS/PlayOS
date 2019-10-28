@@ -8,6 +8,7 @@ import sortAppsInGrids from '../../../services/micro/sortAppsInGrids';
 import AppGrid from '../../molecules/AppGrid';
 import useMedia from '../../../services/hooks/useMedia';
 import BulletNavigation from '../../atoms/BulletNavigation';
+import AppTerminal from '../AppTerminal/index';
 // import Folder from '../Folder';
 const styles = require('./AppSection.styles.scss');
 const SwipeableViews = bindKeyboard(SwipeableViewsRaw)

@@ -6,6 +6,7 @@ import { Rnd } from 'react-rnd';
 import useMedia from '../../../services/hooks/useMedia';
 import AppTitleBar from './AppTitleBar';
 import resolveUrl from '../../../services/micro/resolveUrl';
+import AppTerminal from '../AppTerminal';
 const styles = require('./AppWindow.scss');
 const titleBarStyles = require('./AppTitleBar.scss');
 
@@ -16,6 +17,7 @@ interface Props {
 }
 
 function AppWindow(props: Props) {
+    const { process } = props;
     const [snapState, setSnapState] = React.useState({
         half: false,
         full: false,
@@ -107,13 +109,22 @@ function AppWindow(props: Props) {
                 topRight: isDesktop,
             }}
         >
-            <div className={windowClassNames} onClick={handleWindowClick}>
+            <div className={windowClassNames} onClick={handleWindowClick} style={{ backgroundColor: props.process.app.background_color }}>
                 <AppTitleBar process={props.process} />
                 <div className={appBodyClassNames}>
-                    {/* My new app */}
-                    <iframe src={mainUrl} className={styles.iframe} onFocus={() => console.log('Iframe')}>
-                        Content could not be loaded
-                    </iframe>
+                    {process.app.playos.isWasm &&
+                        <>
+                            <AppTerminal />
+                        </>
+                    }
+
+                    {!process.app.playos.isWasm &&
+                        <>
+                            <iframe src={mainUrl} className={styles.iframe} onFocus={() => console.log('Iframe')}>
+                                Content could not be loaded
+                            </iframe>
+                        </>
+                    }
                 </div>
             </div>
         </Rnd>

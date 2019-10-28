@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { Route } from 'react-router';
+import { Route, Redirect } from 'react-router';
 import { HashRouter } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 
@@ -10,6 +10,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import DefaultLayout from './layout/DefaultLayout';
 
 import store, { history } from './store';
+import LoadableStoreApp from './apps/Store';
 
 export default class App {
     domId: string;
@@ -23,7 +24,9 @@ export default class App {
             <Provider store={store}>
                 <ConnectedRouter history={history}>
                     <HashRouter>
-                        <Route path="/" component={DefaultLayout} />
+                        {/* <Redirect from="/" to="/os/choose" /> */}
+                        <Route path="/store" component={LoadableStoreApp} />
+                        <Route path="/os" component={DefaultLayout} />
                     </HashRouter>
                 </ConnectedRouter>
             </Provider>,

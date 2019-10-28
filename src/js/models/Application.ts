@@ -20,6 +20,11 @@ interface ApplicationIcon {
     sizes: string;
 }
 
+interface PlayOSProperties {
+    isWasm: boolean;
+    showTerminal: boolean;
+}
+
 interface Application {
     id: string,
     name: string,
@@ -31,6 +36,9 @@ interface Application {
     background_color: string;
     theme_color: string;
     manifest_url: string;
+
+    // PlayOS specific features
+    playos?: PlayOSProperties;
 
     // properties?: ApplicationProperties,
     // status: ApplicationStatus,

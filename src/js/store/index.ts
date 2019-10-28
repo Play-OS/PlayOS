@@ -4,7 +4,6 @@ import { createHashHistory } from 'history';
 import thunk from 'redux-thunk';
 
 // Stores
-import ExampleStore from './ExampleStore';
 import SnackBarMessageStore from './SnackBarMessageStore';
 import UserInfoStore from './UserInfoStore';
 import AppProcessesStore from './AppProcessesStore';
@@ -19,7 +18,6 @@ export const history = createHashHistory();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const createRootReducers = (history: any) => combineReducers({
-    ExampleStore,
     router: connectRouter(history),
     SnackBarMessageStore,
     UserInfoStore,

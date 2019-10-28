@@ -22,11 +22,7 @@ class IndexPage extends React.Component {
         this.code = null;
 
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
-        this.handleRegisterClick = this.handleRegisterClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
-
-        const key = KeyService.createRadomPrivateKey();
-        console.log('[] key -> ', key);
     }
 
     state = {
@@ -82,16 +78,6 @@ class IndexPage extends React.Component {
         });
     }
 
-    handleRegisterClick() {
-        const redirectUri = decodeURIComponent(this.props.location.query.redirectUri);
-
-        if (redirectUri && redirectUri !== 'undefined') {
-            window.location.href = `#/register?redirectUri=${encodeURIComponent(redirectUri)}`;
-        } else {
-            window.location.href = `#/register`;
-        }
-    }
-
     render() {
         return (
             <div className="IndexPage">
@@ -101,7 +87,7 @@ class IndexPage extends React.Component {
                         {/* <input type="email" multiline required placeholder="Recovery phrase" ref={(elem) => { this.emailInput = elem; }} className="IndexPage-Form-Input" /> */}
                         <Button type="submit" color="primary" variant="contained" fullWidth className={styles.button}>Login</Button>
                     </form>
-                    <a className={styles.link} onClick={this.handleRegisterClick}>Don't have an account? Create one!</a>
+                    <a className={styles.link} href="#/os/register">Don't have an account? Create one!</a>
                 </React.Fragment>
             </div>
         );

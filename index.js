@@ -7,7 +7,6 @@ import './src/scss/index.scss';
 import InstanceBag from './src/js/InstanceBag';
 import Configuration from './src/js/Configuration';
 import packageJson from './package.json';
-import web3 from 'web3';
 
 // injectTapEventPlugin();
 

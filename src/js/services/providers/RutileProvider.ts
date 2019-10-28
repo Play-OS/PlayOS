@@ -132,35 +132,74 @@ class RutileProvider implements IProvider {
     }
 
     async getInstalledApplications(key: PrivateKey): Promise<Application[]> {
-        const app: Application = {
-            id: "AppId",
-            name: "Airhorner",
-            short_name: "Airhorner",
-            display: 'standalone',
-            background_color: '#2196F3',
-            theme_color: '#2196F3',
-            icons: [
-                {
-                    sizes: '512x512',
-                    src: '/images/touch/android-launchericon-512-512.png',
-                    type: 'image/png',
-                },
-            ],
-            scope: '/',
-            start_url: '/?homescreen=1',
-            manifest_url: 'https://airhorner.com/manifest.json',
-        };
-
-        const arr: Application[] = [];
-
-        // for (let index = 0; index < 97; index++) {
-        //     const newApp: Application = JSON.parse(JSON.stringify(app));
-
-        //     newApp.id = Math.random().toString();
-        //     newApp.start_url = `${newApp.start_url}&token=${this.getPrivateKeyForApp(newApp.id, 0, key).privateKey}`,
-
-        //     arr.push(newApp);
-        // }
+        const arr: Application[] = [
+            {
+                id: "AppId",
+                name: "Airhorner",
+                short_name: "Airhorner",
+                display: 'standalone',
+                background_color: '#2196F3',
+                theme_color: '#2196F3',
+                icons: [
+                    {
+                        sizes: '512x512',
+                        src: '/images/touch/android-launchericon-512-512.png',
+                        type: 'image/png',
+                    },
+                ],
+                scope: '/',
+                start_url: '/?homescreen=1',
+                manifest_url: 'https://airhorner.com/manifest.json',
+                playos: {
+                    isWasm: false,
+                    showTerminal: false,
+                }
+            },
+            {
+                id: "AppId2",
+                name: "Store",
+                short_name: "Store",
+                display: "standalone",
+                background_color: "#2196F3",
+                theme_color: "#2196F3",
+                icons: [
+                    {
+                        sizes: '512x512',
+                        src: '/images/touch/android-launchericon-512-512.png',
+                        type: 'image/png',
+                    },
+                ],
+                scope: '/',
+                start_url: 'http://localhost:1234/#/store',
+                manifest_url: 'https://airhorner.com/manifest.json',
+                playos: {
+                    isWasm: false,
+                    showTerminal: false,
+                }
+            },
+            {
+                id: 'AppId3',
+                name: 'Terminal',
+                short_name: 'Terminal',
+                display: 'standalone',
+                background_color: "#000",
+                theme_color: "#9E9E9E",
+                icons: [
+                    {
+                        sizes: '512x512',
+                        src: 'https://media.idownloadblog.com/wp-content/uploads/2016/02/terminal-app-icon-OS-X.png',
+                        type: 'image/png',
+                    },
+                ],
+                scope: '/',
+                start_url: '#',
+                manifest_url: 'https://airhorner.com/manifest.json',
+                playos: {
+                    isWasm: true,
+                    showTerminal: true,
+                }
+            }
+        ];
 
         return arr;
     }

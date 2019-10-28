@@ -1,0 +1,17 @@
+.menuButton {
+    color: white !important;
+}
+
+.appBar {
+    width: calc(100% - 240px) !important;
+    float: right;
+}
+
+.drawer {
+
+    :global {
+        .MuiPaper-root {
+            width: 240px;
+        }
+    }
+}

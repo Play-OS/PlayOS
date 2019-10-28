@@ -16,10 +16,10 @@ import HomePage from '../pages/HomePage/HomePage';
 function getRoutes() {
     return (
         <>
-            <Route path="/choose" component={ChoosePage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/register" component={RegisterPage} />
-            <Route path="/home" component={HomePage} />
+            <Route path="/os/choose" component={ChoosePage} />
+            <Route path="/os/login" component={LoginPage} />
+            <Route path="/os/register" component={RegisterPage} />
+            <Route path="/os/home" component={HomePage} />
         </>
     )
 }
@@ -43,7 +43,7 @@ class DefaultLayout extends React.Component {
                         }}
                     />
 
-                    {this.props.currentPathName !== '/home' &&
+                    {this.props.currentPathName !== '/os/home' &&
                         <section className={styles.defaultLayoutPanel}>
                             <Paper zDepth={5} className={styles.defaultLayoutPanelPaper}>
                                 <div className={styles.defaultLayoutPanelMessage}>
@@ -58,7 +58,7 @@ class DefaultLayout extends React.Component {
                         </section>
                     }
 
-                    {this.props.currentPathName === '/home' &&
+                    {this.props.currentPathName === '/os/home' &&
                         <div className={styles.childrenWrapper}>
                             {getRoutes()}
                         </div>
