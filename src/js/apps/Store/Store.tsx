@@ -16,7 +16,9 @@ function StoreApp() {
                         </ListItem>
                     </List>
                 }
-            />
+            >
+                Hello
+            </AppHeader>
         </div>
     );
 }

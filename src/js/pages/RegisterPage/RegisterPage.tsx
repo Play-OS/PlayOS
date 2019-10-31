@@ -55,7 +55,7 @@ export default function RegisterPage() {
                         <b>Please save the following words securely. They are the only way to recover your account.</b>
                     </Typography>
                     <TextField className={styles.textField} multiline InputProps={{ readOnly: true }} value={keys} fullWidth />
-                    <Button href="#home" color="primary" variant="contained" fullWidth>I saved my keys</Button>
+                    <Button href="#/os/home" color="primary" variant="contained" fullWidth>I saved my keys</Button>
                 </>}
             </div>
         </div>

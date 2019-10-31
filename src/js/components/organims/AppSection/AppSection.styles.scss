@@ -2,6 +2,9 @@
 
 .AppSection {
     height: 100%;
+    width: 100%;
+    // position: absolute;
+    // top: 0;
 }
 
 .wrapper {
@@ -11,5 +14,13 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-
+    width: 100%;
 }
+
+// @media screen and (min-width: $desktop-breakpoint) {
+//     .AppSection {
+//         height: calc(100% - #{$header-height});
+//         margin-top: $header-height;
+//         top: $header-height;
+//     }
+// }

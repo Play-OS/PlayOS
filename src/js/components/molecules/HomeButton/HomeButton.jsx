@@ -22,7 +22,7 @@ class HomeButton extends React.Component {
     }
 
     componentDidMount() {
-        this.sdk = InstanceBag.get('manager');
+        // this.sdk = InstanceBag.get('manager');
 
         // this.sdk.on('Message:os.connect', this.onAppConnected.bind(this));
     }

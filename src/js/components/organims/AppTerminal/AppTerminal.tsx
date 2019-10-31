@@ -1,10 +1,9 @@
 import * as React from 'react';
 // @ts-ignore
-import WasmTerminal, { fetchCommandFromWAPM } from "@wasmer/wasm-terminal/dist/unoptimized/wasm-terminal.esm";
-// @ts-ignore
-import { lowerI64Imports } from "@wasmer/wasm-transformer/dist/unoptimized/wasm-transformer.esm";
-
-import '@wasmer/wasm-terminal/dist/xterm/xterm.css';
+import WasmTerminal from "@wasmer/wasm-terminal/lib/unoptimized/wasm-terminal.esm";
+// import '@wasmer/wasm-terminal/dist/xterm/xterm.css';
+import TerminalService from '../../../services/TerminalService';
+import InstanceBag from '../../../InstanceBag';
 
 const styles = require('./AppTerminal.scss');
 
@@ -16,36 +15,31 @@ function AppTerminal(props: Props) {
     const terminalRef = React.useRef(null);
 
     React.useEffect(() => {
-        const fetchCommandHandler = async (commandName: string) => {
-            if (commandName === "callback-command") {
-                const callbackCommand = async (args: string[], stdin: string) => {
-                  return `Callback Command Working! Args: ${args}, stdin: ${stdin}`;
-                };
+        let wasmTerminal: any = null;
 
-                return callbackCommand;
-            }
+        async function setup() {
+            const fs = InstanceBag.get<any>('fs');
+            const terminalService = new TerminalService(fs);
 
-            const wasmBinary = await fetchCommandFromWAPM(commandName);
+            terminalService.setupEnv();
 
-            return await lowerI64Imports(wasmBinary);
+            wasmTerminal = new WasmTerminal({
+                fetchCommand: terminalService.handleCommand,
+                wasmFs: fs,
+            });
+
+            wasmTerminal.xterm.setOption('cursorBlink', true);
+
+            wasmTerminal.open(terminalRef.current);
+            wasmTerminal.print("PlayOS Terminal [Version 1.0.0]");
+            wasmTerminal.print("Powered by Wasmer.io \n");
         }
 
-        const wasmTerminal = new WasmTerminal({
-            fetchCommand: fetchCommandHandler,
-        });
-
-        wasmTerminal.xterm.setOption('cursorBlink', true);
-
-        wasmTerminal.open(terminalRef.current);
-        wasmTerminal.print("PlayOS Terminal [Version 1.0.0]");
-        wasmTerminal.print("Powered by Wasmer.io \n");
-
-        console.log('[] wasmTerminal -> ', wasmTerminal);
+        setup();
 
         const intervalId = setInterval(() => {
             wasmTerminal.fit();
         }, 500);
-
 
         return () => {
             clearInterval(intervalId);

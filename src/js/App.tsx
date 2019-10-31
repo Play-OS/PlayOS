@@ -24,7 +24,9 @@ export default class App {
             <Provider store={store}>
                 <ConnectedRouter history={history}>
                     <HashRouter>
-                        {/* <Redirect from="/" to="/os/choose" /> */}
+                        <Route exact path="/">
+                            <Redirect exact from="/" to="/os/choose" />
+                        </Route>
                         <Route path="/store" component={LoadableStoreApp} />
                         <Route path="/os" component={DefaultLayout} />
                     </HashRouter>

@@ -119,12 +119,13 @@ class RutileProvider implements IProvider {
     }
 
     async getAccountInfo(address: string): Promise<Account> {
-        const balance = await this.provider.getBalance(address);
+        // const balance = await this.provider.getBalance(address);
 
         return {
             currencyTicker: "RUT",
-            balance: ethers.utils.formatEther(balance),
-            fullName: "Franklin Waller",
+            balance: '0',
+            // balance: ethers.utils.formatEther(balance),
+            fullName: "Test account",
             address,
             profilePic: "",
             wallpaper: "https://playos.io/wp-content/uploads/2019/10/background.jpg?id=4353"
@@ -197,6 +198,27 @@ class RutileProvider implements IProvider {
                 playos: {
                     isWasm: true,
                     showTerminal: true,
+                }
+            }, {
+                id: 'FileExplorer',
+                name: 'Files',
+                short_name: 'Files',
+                display: 'standalone',
+                background_color: "#fff",
+                theme_color: "#2196F3",
+                icons: [
+                    {
+                        sizes: '512x512',
+                        src: 'http://icons.iconarchive.com/icons/dtafalonso/yosemite-flat/512/Folder-icon.png',
+                        type: 'image/png',
+                    },
+                ],
+                scope: '/',
+                start_url: '#',
+                manifest_url: 'https://airhorner.com/manifest.json',
+                playos: {
+                    isWasm: true,
+                    showTerminal: false,
                 }
             }
         ];

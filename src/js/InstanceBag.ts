@@ -5,7 +5,7 @@ class InstanceBag {
         store[key] = value;
     }
 
-    static get(key: string) {
+    static get<T>(key: string): T {
         return store[key];
     }
 }

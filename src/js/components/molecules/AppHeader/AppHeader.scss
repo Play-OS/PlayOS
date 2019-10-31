@@ -1,17 +1,47 @@
+$drawer-width: 240px;
+
+.root {
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+}
+
 .menuButton {
     color: white !important;
 }
 
 .appBar {
-    width: calc(100% - 240px) !important;
-    float: right;
+    position: absolute;
+    background: linear-gradient(-135deg, #17EAD9 0%, #6078EA 100%);
+    color: white;
+    z-index: 9999;
+    // width: calc(100% - #{drawer-width}) !important;
+    // float: right;
+}
+
+.paper {
+    width: $drawer-width;
+    background: white;
+    margin-top: 64px;
+    height: calc(100% - 99px);
+    position: relative;
 }
 
 .drawer {
 
     :global {
         .MuiPaper-root {
-            width: 240px;
+            width: $drawer-width;
         }
     }
+}
+
+.content {
+    flex-grow: 1;
+    background-color: #fafafa;
+    padding: 8px;
+    width: calc(100% - 16px);
+    height: calc(100% - 80px);
+    overflow-y: scroll;
+    margin-top: 64px;
 }

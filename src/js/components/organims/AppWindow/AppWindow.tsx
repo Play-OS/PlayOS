@@ -7,6 +7,7 @@ import useMedia from '../../../services/hooks/useMedia';
 import AppTitleBar from './AppTitleBar';
 import resolveUrl from '../../../services/micro/resolveUrl';
 import AppTerminal from '../AppTerminal';
+import Explorer from '../../../apps/Explorer';
 const styles = require('./AppWindow.scss');
 const titleBarStyles = require('./AppTitleBar.scss');
 
@@ -86,8 +87,8 @@ function AppWindow(props: Props) {
             default={{
                 x: 0,
                 y: 50,
-                width: 320,
-                height: 200,
+                width: 900,
+                height: 600,
             }}
             minWidth={300}
             minHeight={300}
@@ -112,7 +113,11 @@ function AppWindow(props: Props) {
             <div className={windowClassNames} onClick={handleWindowClick} style={{ backgroundColor: props.process.app.background_color }}>
                 <AppTitleBar process={props.process} />
                 <div className={appBodyClassNames}>
-                    {process.app.playos.isWasm &&
+                    {process.app.id === 'FileExplorer' &&
+                        <Explorer />
+                    }
+
+                    {process.app.playos.isWasm && process.app.playos.showTerminal &&
                         <>
                             <AppTerminal />
                         </>

@@ -7,6 +7,7 @@ import Header from '../../components/molecules/Header';
 import AppSection from '../../components/organims/AppSection';
 import { loadApps } from '../../store/ApplicationStore';
 import AppProcessesHolder from '../../components/organims/AppProcessesHolder';
+import { bootup } from '../../services/BootService';
 const styles = require('./HomePage.scss');
 
 interface Props {
@@ -25,6 +26,7 @@ class HomePage extends React.Component<Props, State> {
 
     componentDidMount() {
         const keys = KeyService.keysFromStorage();
+        bootup();
 
         if (!this.props.user.info.fullName && keys) {
             this.props.dispatch(loadUserInfo());
