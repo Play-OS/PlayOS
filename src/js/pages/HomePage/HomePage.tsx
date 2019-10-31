@@ -24,9 +24,9 @@ class HomePage extends React.Component<Props, State> {
         isLoaded: false,
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const keys = KeyService.keysFromStorage();
-        bootup();
+        await bootup();
 
         if (!this.props.user.info.fullName && keys) {
             this.props.dispatch(loadUserInfo());

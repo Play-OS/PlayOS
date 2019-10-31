@@ -25,9 +25,10 @@ function AppTitleBar(props: Props) {
 
     return (
         <header className={styles.appBar} style={{ backgroundColor: props.process.app.theme_color }}>
-            <IconButton aria-label="Back" style={{ color: textColor }}>
+            <div></div>
+            {/* <IconButton aria-label="Back" style={{ color: textColor }}>
                 <ArrowBackIcon />
-            </IconButton>
+            </IconButton> */}
             {isDesktop && <span style={{ color: textColor }}>{props.process.app.short_name}</span>}
             {!isDesktop && <Time style={{ color: textColor }} />}
             <IconButton aria-label="Close" onClick={handleCloseClick} style={{ color: textColor }}>

@@ -11,6 +11,7 @@ const styles = require('./AppHeader.scss');
 interface Props {
     title: string;
     menu: React.ReactElement;
+    toolbar?: React.ReactNode;
     children: React.ReactNode;
     headerBackground?: string;
     headerTextColor?: string;
@@ -27,9 +28,12 @@ function AppHeader(props: Props) {
                     {/* <IconButton edge="start" aria-label="open drawer" className={styles.menuButton}>
                         <MenuIcon />
                     </IconButton> */}
-                    <Typography variant="h6" noWrap style={{ color: headerTextColor }}>
+                    <Typography variant="h6" noWrap style={{ color: headerTextColor }} className={styles.title}>
                         {props.title}
                     </Typography>
+                    <div>
+                        {props.toolbar}
+                    </div>
                 </Toolbar>
             </AppBar>
 

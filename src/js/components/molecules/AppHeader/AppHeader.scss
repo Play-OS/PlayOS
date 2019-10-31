@@ -6,6 +6,10 @@ $drawer-width: 240px;
     height: 100%;
 }
 
+.title {
+    flex-grow: 1;
+}
+
 .menuButton {
     color: white !important;
 }
