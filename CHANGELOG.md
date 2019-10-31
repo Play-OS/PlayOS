@@ -1,6 +1,21 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## 1.8.0 (2019-10-31)
+
+
+### Features
+
+* **app:** Add application installation ([479bd31](https://github.com/Rutile-io/PlayOS/commit/479bd3168f28b4f885ab624c21b7ce0bd2bdc475))
+* **app:** Add support for WASI enabled WASM apps ([81cff64](https://github.com/Rutile-io/PlayOS/commit/81cff64ff568a0af7c579ca420f5b15d30e3ed40))
+* **build:** Moved to parcel ([b3e2db8](https://github.com/Rutile-io/PlayOS/commit/b3e2db882249a10556e5063765f369bfad2da10e))
+* **dashboard:** Add support for applications ([4a4bafd](https://github.com/Rutile-io/PlayOS/commit/4a4bafdbfa45e3fd60a59b3b82b0d99c31c42f51))
+* **dashboard:** Add Terminal and Wallet ([e22fccb](https://github.com/Rutile-io/PlayOS/commit/e22fccbecccebb59bb3965a9e33099653cdd05eb))
+* **explorer:** Added support for file exploring ([96ec755](https://github.com/Rutile-io/PlayOS/commit/96ec75538af3e46541155b0a9be2f9a8a841aa11))
+* **main:** Add window management and process management ([3482a24](https://github.com/Rutile-io/PlayOS/commit/3482a24baddb5bf61c04efe8ca6202b6f51f52a3))
+* **terminal:** Add support for running applications inside the filesystem ([f6e8fef](https://github.com/Rutile-io/PlayOS/commit/f6e8fefc25a9c693a560d7b61afd69698a7db3ac))
+* **WindowManager:** Add ability to theme the app window with manifest.json ([25f252b](https://github.com/Rutile-io/PlayOS/commit/25f252b0e5826d817882759fca4f7af114140d2e))
 
 <a name="1.7.0"></a>
 # [1.7.0](https://bitbucket.org/Franklin_Waller/playos-authentication/compare/v1.6.0...v1.7.0) (2018-09-28)

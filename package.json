@@ -1,13 +1,13 @@
 {
   "name": "playos",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "PlayOS, blockchain agnostic portal",
   "main": "index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=development webpack --config ./webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production webpack --config ./webpack.config.js",
     "docs": "documentation build ./src > ./docs/codebase.md --shallow false --format md --sort-order alpha",
-    "release": "standard-version",
+    "release": "standard-version && npm run build:prod",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config ./webpack.config.js --open true --port 3000 --inline",
     "test": "jest",
     "lint": "eslint ./src/ --cache --ignore-pattern .gitignore"
