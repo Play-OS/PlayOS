@@ -19,6 +19,7 @@ $drawer-width: 240px;
     background: linear-gradient(-135deg, #17EAD9 0%, #6078EA 100%);
     color: white;
     z-index: 9999;
+    box-shadow: none !important;
     // width: calc(100% - #{drawer-width}) !important;
     // float: right;
 }
