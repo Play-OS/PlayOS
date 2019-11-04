@@ -1,0 +1,20 @@
+.title {
+    padding-bottom: 0 !important;
+
+    h2 {
+        display: flex;
+
+        span {
+            padding-left: 20px;
+        }
+    }
+}
+
+.content {
+    padding-top: 0 !important;
+}
+
+.version {
+    text-align: right;
+    margin-bottom: 30px !important;
+}

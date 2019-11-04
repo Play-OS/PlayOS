@@ -8,12 +8,12 @@ PlayOS can be integrated with any blockchain that supports some sort of programm
 
 We are still porting code over to a decentralised manner, any help is greatly appreciated.
 
-## Running PlayOS
+## ⚙️ Running PlayOS
 ```npm i && npm start```
 
 PlayOS will be available at `http://localhost:3000/`
 
-## Contributing to PlayOS
+## 📝 Contributing to PlayOS
 
 We accept contributions to the repository. Feel free to fork and send in a PR. You can check the issues for any known tasks (or add your own).
 

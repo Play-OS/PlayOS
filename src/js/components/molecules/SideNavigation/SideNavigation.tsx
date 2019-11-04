@@ -7,9 +7,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import GetAppIcon from '@material-ui/icons/GetApp';
+import InfoIcon from '@material-ui/icons/Info';
 import { setOpenSideBarNavigationState } from '../../../store/SideBarNavigationStore';
 import UserService from '../../../services/UserService';
 import AppInstallDialog from './AppInstallDialog';
+import AboutDialog from './AboutDialog';
 const styles = require('./SideNavigation.scss');
 
 interface Props {
@@ -19,6 +21,7 @@ interface Props {
 
 function SideNavigation(props: Props) {
     const [isAppInstallDialogOpen, setAppInstallDialogOpen] = React.useState(false);
+    const [isAboutDialogOpen, setAboutDialogOpen] = React.useState(false);
 
     function handleDrawerOnClose() {
         props.dispatch(setOpenSideBarNavigationState(false));
@@ -38,6 +41,11 @@ function SideNavigation(props: Props) {
         setAppInstallDialogOpen(false);
     }
 
+    function handleAboutClick() {
+        handleDrawerOnClose();
+        setAboutDialogOpen(true);
+    }
+
     return (
         <>
             <Drawer className={styles.drawer} anchor="right" open={props.isOpen} onClose={handleDrawerOnClose}>
@@ -48,6 +56,12 @@ function SideNavigation(props: Props) {
                         </ListItemIcon>
                         <ListItemText>Install App</ListItemText>
                     </ListItem>
+                    <ListItem button onClick={handleAboutClick}>
+                        <ListItemIcon>
+                            <InfoIcon />
+                        </ListItemIcon>
+                        <ListItemText>About PlayOS</ListItemText>
+                    </ListItem>
                     <ListItem button onClick={handleLogoutClick}>
                         <ListItemIcon>
                             <PowerSettingsNewIcon />
@@ -57,6 +71,7 @@ function SideNavigation(props: Props) {
                 </List>
             </Drawer>
             <AppInstallDialog open={isAppInstallDialogOpen} onClose={handleInstallAppDialogClose} />
+            <AboutDialog open={isAboutDialogOpen} onClose={() => setAboutDialogOpen(false)} />
         </>
     );
 }
