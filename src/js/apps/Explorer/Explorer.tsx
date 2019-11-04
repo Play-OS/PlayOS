@@ -16,17 +16,17 @@ import WasmFs from "@wasmer/wasmfs";
 import Folder from './components/Folder';
 import File from './components/File';
 import Dirent from 'memfs/lib/Dirent';
+import { useDropzone } from 'react-dropzone'
 const styles = require('./Explorer.scss');
 
 export default function Explorer() {
     const [isLocationsOpen, setLocationsOpen] = React.useState(true);
     const [files, setFiles] = React.useState<Dirent[]>([]);
-    const [path, setPath] = React.useState('');
+    const [path, setPath] = React.useState('/');
 
     React.useEffect(() => {
         const wasmFs = InstanceBag.get<WasmFs>('fs');
-        const newPath = path === '' ? '/' : path;
-        const filesAndDirectories: any = wasmFs.fs.readdirSync(newPath, {
+        const filesAndDirectories: any = wasmFs.fs.readdirSync(path, {
             encoding: "utf8",
             withFileTypes: true,
         });
@@ -37,7 +37,16 @@ export default function Explorer() {
     function handleFileClick(file: Dirent) {
         // Directories should just navigate to the next page
         if (file.isDirectory()) {
-            setPath(`${path}/${file.name}`);
+            // We have to make the path pretty so we filter out all the empty spaces
+            const splittedPath = path.split('/').filter(p => p);
+            let newPath = `/${splittedPath.join('/')}/${file.name}`;
+
+            // Double // are ugly so we remove them
+            if (newPath.startsWith('//')) {
+                newPath = newPath.slice(1);
+            }
+
+            setPath(newPath);
         }
     }
 
@@ -45,16 +54,19 @@ export default function Explorer() {
         const splittedPath = path.split('/');
         splittedPath.pop();
 
-        const newPath = splittedPath.join('/');
+        let newPath = splittedPath.join('/');
+
+        // Prettify the title bar
+        if (newPath === '') {
+            newPath = '/';
+        }
+
         setPath(newPath);
     }
 
-    const currentPathFolder = path.split('/').pop();
-    const appHeaderTitle = currentPathFolder === '' ? 'Files' : currentPathFolder;
-
     return (
         <>
-            <AppHeader title={appHeaderTitle} toolbar={
+            <AppHeader title={path} toolbar={
                 <>
                     <IconButton>
                         <CreateNewFolderOutlinedIcon className={styles.toolbarButton} />
