@@ -16,7 +16,7 @@ import WasmFs from "@wasmer/wasmfs";
 import Folder from './components/Folder';
 import File from './components/File';
 import Dirent from 'memfs/lib/Dirent';
-import { useDropzone } from 'react-dropzone'
+import Dropzone from '../../components/molecules/Dropzone';
 const styles = require('./Explorer.scss');
 
 export default function Explorer() {
@@ -93,7 +93,7 @@ export default function Explorer() {
                     </Collapse>
                 </List>
             }>
-                <div className={styles.files}>
+                <Dropzone currentPath={path} className={styles.files}>
                     {files.map((file) => {
                         if (file.isDirectory()) {
                             return <Folder key={file.name.toString()} folder={file} onClick={handleFileClick} />
@@ -101,7 +101,7 @@ export default function Explorer() {
                             return <File key={file.name.toString()} file={file} onClick={handleFileClick} />
                         }
                     })}
-                </div>
+                </Dropzone>
             </AppHeader>
         </>
     );
