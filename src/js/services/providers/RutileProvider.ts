@@ -157,28 +157,6 @@ class RutileProvider implements IProvider {
                 }
             },
             {
-                id: "AppId2",
-                name: "Store",
-                short_name: "Store",
-                display: "standalone",
-                background_color: "#2196F3",
-                theme_color: "#2196F3",
-                icons: [
-                    {
-                        sizes: '512x512',
-                        src: '/images/touch/android-launchericon-512-512.png',
-                        type: 'image/png',
-                    },
-                ],
-                scope: '/',
-                start_url: 'http://localhost:1234/#/store',
-                manifest_url: 'https://airhorner.com/manifest.json',
-                playos: {
-                    isWasm: false,
-                    showTerminal: false,
-                }
-            },
-            {
                 id: 'AppId3',
                 name: 'Terminal',
                 short_name: 'Terminal',
@@ -210,6 +188,27 @@ class RutileProvider implements IProvider {
                     {
                         sizes: '512x512',
                         src: 'http://icons.iconarchive.com/icons/dtafalonso/yosemite-flat/512/Folder-icon.png',
+                        type: 'image/png',
+                    },
+                ],
+                scope: '/',
+                start_url: '#',
+                manifest_url: 'https://airhorner.com/manifest.json',
+                playos: {
+                    isWasm: true,
+                    showTerminal: false,
+                }
+            }, {
+                id: 'PlayOSStore',
+                name: 'Store',
+                short_name: 'Store',
+                display: 'standalone',
+                background_color: "#fff",
+                theme_color: "#6AE894",
+                icons: [
+                    {
+                        sizes: '512x512',
+                        src: 'https://playos.io/wp-content/uploads/2019/11/Store-Icon.png',
                         type: 'image/png',
                     },
                 ],

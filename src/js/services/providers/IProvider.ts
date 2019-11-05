@@ -31,4 +31,5 @@ export default interface IProvider {
     storageSet(key: string, value: string): Promise<void>;
     storageGet(key: string): Promise<string>;
     addApplicationToStore(app: Application): Promise<void>;
+    getApplicationsByCategory(category: string): Promise<Application[]>;
 }

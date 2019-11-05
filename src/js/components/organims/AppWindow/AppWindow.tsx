@@ -8,6 +8,7 @@ import AppTitleBar from './AppTitleBar';
 import resolveUrl from '../../../services/micro/resolveUrl';
 import AppTerminal from '../AppTerminal';
 import Explorer from '../../../apps/Explorer';
+import Store from '../../../apps/Store';
 const styles = require('./AppWindow.scss');
 const titleBarStyles = require('./AppTitleBar.scss');
 
@@ -115,6 +116,10 @@ function AppWindow(props: Props) {
                 <div className={appBodyClassNames}>
                     {process.app.id === 'FileExplorer' &&
                         <Explorer />
+                    }
+
+                    {process.app.id === 'PlayOSStore' &&
+                        <Store />
                     }
 
                     {process.app.playos.isWasm && process.app.playos.showTerminal &&
