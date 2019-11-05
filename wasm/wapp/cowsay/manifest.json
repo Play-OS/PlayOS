@@ -1,0 +1,17 @@
+{
+    "name": "Cowsay",
+    "short_name": "Cowsay",
+    "description": "A cow that says anyhting you want",
+    "icons": [
+        {
+            "src": "./icon.jpg",
+            "type": "image/jpeg",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "./main.wasm",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#2196F3",
+    "theme_color": "#2196F3"
+}
