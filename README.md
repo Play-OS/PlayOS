@@ -13,6 +13,12 @@ We are still porting code over to a decentralised manner, any help is greatly ap
 
 PlayOS will be available at `http://localhost:3000/`
 
+## 🔌 Providers
+
+PlayOS is based on providers. It allows you to switch backends where needed. This way you can couple PlayOS to Dropbox, Amazon, Azure or even a decentralized solution such as Ethereum. We want you to be able to choose where to use PlayOS.
+
+All execution is done on the client. Providers should only provide basic functionality such as file storage. Our default provider is based on Rutile which can be forked and be privatly used.
+
 ## 📝 Contributing to PlayOS
 
 We accept contributions to the repository. Feel free to fork and send in a PR. You can check the issues for any known tasks (or add your own).
