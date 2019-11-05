@@ -10,6 +10,7 @@ export async function createFs() {
     const wasmFs: WasmFsType = new WasmFs();
 
     const wasm = await (await fetch('/wasm/cowsay.wasm')).arrayBuffer();
+    const wapp = await (await fetch('/wasm/wapp/cowsay/cowsay.wapp')).arrayBuffer();
 
     wasmFs.fs.mkdirSync('/Applications/');
     wasmFs.fs.mkdirSync('/Library/');
@@ -19,6 +20,7 @@ export async function createFs() {
     });
 
     wasmFs.fs.writeFileSync('/Applications/cowsay.wasm', new Uint8Array(wasm));
+    wasmFs.fs.writeFileSync('/Applications/cowsay.wapp', new Uint8Array(wapp));
     wasmFs.fs.writeFileSync('/dev/null', envContents);
     // wasmFs.fs.writeFileSync('.env', envContents);
     wasmFs.fs.writeFileSync('/Users/.env', envContents);
@@ -37,4 +39,16 @@ export function readFileAsync(fs: IFs, id: TFileId, options?: string | IReadFile
             }
         })
     });
+}
+
+/**
+ * Gets the file extension
+ *
+ * @export
+ * @param {string} fileName
+ * @returns {string}
+ */
+export function getFileExtension(fileName: string): string {
+    const fileNameSplitted = fileName.toString().split('.');
+    return fileNameSplitted.pop();
 }

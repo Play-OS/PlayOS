@@ -2,6 +2,7 @@ import * as React from 'react';
 import Dirent from 'memfs/lib/Dirent';
 import InsertDriveFileOutlinedIcon from '@material-ui/icons/InsertDriveFileOutlined';
 import WebIcon from '@material-ui/icons/Web';
+import { getFileExtension } from '../../../../services/FileSystemService';
 const styles = require('./File.scss');
 
 interface Props {
@@ -10,8 +11,8 @@ interface Props {
 }
 
 function getFileIcon(file: Dirent): any {
-    const fileNameSplitted = file.name.toString().split('.');
-    const fileExtension = fileNameSplitted.pop();
+    const fileName: any = file.name;
+    const fileExtension = getFileExtension(fileName);
 
     switch(fileExtension) {
         case 'wasm':
@@ -22,10 +23,25 @@ function getFileIcon(file: Dirent): any {
 }
 
 export default function File(props: Props) {
+    const [icon, setIcon] = React.useState('');
+
+    React.useEffect(() => {
+        async function processFile() {
+            const fileName: any = props.file.name;
+            const fileExtension = getFileExtension(fileName);
+
+            if (fileExtension === 'wapp') {
+                // We should read the wapp for an icon
+            }
+        }
+
+        processFile();
+    }, []);
+
     return (
         <div className={styles.file}>
             <div className={styles.iconWrapper} onClick={() => props.onClick(props.file)}>
-                {getFileIcon(props.file)}
+                {icon === '' && getFileIcon(props.file)}
             </div>
             <span>{props.file.name}</span>
         </div>
