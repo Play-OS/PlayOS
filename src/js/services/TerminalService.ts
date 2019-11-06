@@ -6,6 +6,7 @@ import { fetchCommandFromWAPM } from "@wasmer/wasm-terminal/lib/unoptimized/wasm
 // @ts-ignore
 import { lowerI64Imports } from "@wasmer/wasm-transformer/lib/unoptimized/wasm-transformer.esm";
 import { readFileAsync } from "./FileSystemService";
+import { getApplicationFromWapp } from "./WappService";
 
 export default class TerminalService {
     wasmFs: WasmFs;
@@ -30,6 +31,14 @@ export default class TerminalService {
         if (commandName.endsWith('.wasm')) {
             // Fetch the binary from the file system and return it
             return readFileAsync(this.wasmFs.fs, commandName);
+        } else if (commandName.endsWith('.wapp')) {
+            const appInfo = await getApplicationFromWapp(commandName);
+
+            if (appInfo.isWasm) {
+                return appInfo.wasm;
+            }
+
+            return 'TODO: Support PWAs';
         }
 
         // if (commandName === "pwd") {

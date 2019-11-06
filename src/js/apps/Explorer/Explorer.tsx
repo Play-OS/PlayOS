@@ -96,7 +96,7 @@ export default function Explorer() {
                 <Dropzone currentPath={path} className={styles.files}>
                     {files.map((file) => {
                         if (file.isDirectory()) {
-                            return <Folder key={file.name.toString()} folder={file} onClick={handleFileClick} />
+                            return <Folder path={path} key={file.name.toString()} folder={file} onClick={handleFileClick} />
                         } else if (file.isFile()) {
                             return <File path={path} key={file.name.toString()} file={file} onClick={handleFileClick} />
                         }

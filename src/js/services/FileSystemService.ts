@@ -10,7 +10,8 @@ export async function createFs() {
     const wasmFs: WasmFsType = new WasmFs();
 
     const wasm = await (await fetch('/wasm/cowsay.wasm')).arrayBuffer();
-    const wapp = await (await fetch('/wasm/wapp/cowsay/cowsay.wapp')).arrayBuffer();
+    const cowsayIcon = await (await fetch('/wasm/wapp/cowsay/icon.jpg')).arrayBuffer();
+    const manifest = await (await fetch('/wasm/wapp/cowsay/manifest.json')).arrayBuffer();
 
     wasmFs.fs.mkdirSync('/Applications/');
     wasmFs.fs.mkdirSync('/Library/');
@@ -19,8 +20,18 @@ export async function createFs() {
         recursive: true,
     });
 
+    wasmFs.fs.mkdirSync('/Applications/Cowsay.wapp/Resources/', {
+        recursive: true,
+    });
+    wasmFs.fs.mkdirSync('/Applications/Cowsay.wapp/Contents/', {
+        recursive: true,
+    });
+
+    wasmFs.fs.writeFileSync('/Applications/Cowsay.wapp/Resources/icon.jpg', new Uint8Array(cowsayIcon));
+    wasmFs.fs.writeFileSync('/Applications/Cowsay.wapp/manifest.json', new Uint8Array(manifest));
+    wasmFs.fs.writeFileSync('/Applications/Cowsay.wapp/Contents/main.wasm', new Uint8Array(wasm));
+
     wasmFs.fs.writeFileSync('/Applications/cowsay.wasm', new Uint8Array(wasm));
-    wasmFs.fs.writeFileSync('/Applications/cowsay.wapp', new Uint8Array(wapp));
     wasmFs.fs.writeFileSync('/dev/null', envContents);
     // wasmFs.fs.writeFileSync('.env', envContents);
     wasmFs.fs.writeFileSync('/Users/.env', envContents);
