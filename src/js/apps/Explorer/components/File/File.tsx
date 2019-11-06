@@ -35,16 +35,8 @@ export default function File(props: Props) {
             const fileName: any = props.file.name;
             const fileExtension = getFileExtension(fileName);
 
-            if (fileExtension === 'wapp') {
-                // We should read the wapp for an icon
-                const wasmFs = InstanceBag.get<WasmFs>('fs');
-                const file: any = await readFileAsync(wasmFs.fs, `${props.path}/${props.file.name}`);
-                const info = await getWappInformation(file);
+            if (fileExtension === 'jpg') {
 
-                if (info !== null) {
-                    setIcon(info.icon);
-                    setName(info.app.short_name);
-                }
             }
         }
 
