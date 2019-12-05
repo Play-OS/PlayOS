@@ -7,7 +7,9 @@ import Header from '../../components/molecules/Header';
 import AppSection from '../../components/organims/AppSection';
 import { loadApps } from '../../store/ApplicationStore';
 import AppProcessesHolder from '../../components/organims/AppProcessesHolder';
-import { bootup } from '../../services/BootService';
+import Kernel, { RutileProvider } from '../../kernel';
+import InstanceBag from '../../InstanceBag';
+import Configuration from '../../Configuration';
 const styles = require('./HomePage.scss');
 
 interface Props {
@@ -22,11 +24,20 @@ interface State {
 class HomePage extends React.Component<Props, State> {
     state: State = {
         isLoaded: false,
-    }
+    };
 
     async componentDidMount() {
         const keys = KeyService.keysFromStorage();
-        await bootup();
+        const rutileConfig = Configuration.get('providerDetails');
+        const kernel = new Kernel(keys.privateKey, new RutileProvider(rutileConfig.httpHost, rutileConfig.chainId, rutileConfig.coreAddress));
+        await kernel.boot();
+
+        if (sessionStorage.getItem('username')) {
+            await kernel.registry.set('username', sessionStorage.getItem('username'), false);
+            sessionStorage.removeItem('username');
+        }
+
+        InstanceBag.set('kernel', kernel);
 
         if (!this.props.user.info.fullName && keys) {
             this.props.dispatch(loadUserInfo());
@@ -39,7 +50,7 @@ class HomePage extends React.Component<Props, State> {
             return {
                 ...state,
                 isLoaded: true,
-            }
+            };
         }
 
         return state;

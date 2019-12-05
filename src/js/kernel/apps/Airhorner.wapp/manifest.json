@@ -1,0 +1,23 @@
+{
+    "id": "AppId",
+    "name": "Airhorner",
+    "short_name": "Airhorner",
+    "display": "standalone",
+    "background_color": "#2196F3",
+    "theme_color": "#2196F3",
+    "icons": [
+        {
+            "sizes": "512x512",
+            "src": "/images/touch/android-launchericon-512-512.png",
+            "type": "image/png"
+        }
+    ],
+    "scope": "/",
+    "start_url": "/?homescreen=1",
+    "manifest_url": "https://airhorner.com/manifest.json",
+    "playos": {
+        "isPwa": true,
+        "isWasm": false,
+        "showTerminal": false
+    }
+}

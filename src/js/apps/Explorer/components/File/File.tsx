@@ -2,10 +2,8 @@ import * as React from 'react';
 import Dirent from 'memfs/lib/Dirent';
 import InsertDriveFileOutlinedIcon from '@material-ui/icons/InsertDriveFileOutlined';
 import WebIcon from '@material-ui/icons/Web';
-import { getFileExtension, readFileAsync } from '../../../../services/FileSystemService';
-import InstanceBag from '../../../../InstanceBag';
-import { WasmFs } from '@wasmer/wasmfs';
-import { getWappInformation } from '../../../../services/WappService';
+import getFileExtension from '../../../../services/micro/getFileExtension';
+
 const styles = require('./File.scss');
 
 interface Props {
@@ -18,11 +16,11 @@ function getFileIcon(file: Dirent): any {
     const fileName: any = file.name;
     const fileExtension = getFileExtension(fileName);
 
-    switch(fileExtension) {
-        case 'wasm':
-            return <WebIcon className={styles.icon}/>
-        default:
-            return <InsertDriveFileOutlinedIcon className={styles.icon}/>
+    switch (fileExtension) {
+    case 'wasm':
+        return <WebIcon className={styles.icon}/>
+    default:
+        return <InsertDriveFileOutlinedIcon className={styles.icon}/>
     }
 }
 

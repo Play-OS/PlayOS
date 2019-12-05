@@ -12,11 +12,11 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import InstanceBag from '../../InstanceBag';
-import WasmFs from "@wasmer/wasmfs";
 import Folder from './components/Folder';
 import File from './components/File';
 import Dirent from 'memfs/lib/Dirent';
 import Dropzone from '../../components/molecules/Dropzone';
+import Kernel from '../../kernel';
 const styles = require('./Explorer.scss');
 
 export default function Explorer() {
@@ -25,9 +25,11 @@ export default function Explorer() {
     const [path, setPath] = React.useState('/');
 
     React.useEffect(() => {
-        const wasmFs = InstanceBag.get<WasmFs>('fs');
+        const kernel = InstanceBag.get<Kernel>('kernel');
+        const { wasmFs } = kernel.fs;
+
         const filesAndDirectories: any = wasmFs.fs.readdirSync(path, {
-            encoding: "utf8",
+            encoding: 'utf8',
             withFileTypes: true,
         });
 

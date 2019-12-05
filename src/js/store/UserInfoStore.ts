@@ -1,5 +1,7 @@
 import { PrivateKey } from "../services/providers/IProvider";
 import AuthService from "../services/AuthService";
+import InstanceBag from "../InstanceBag";
+import Kernel from "../kernel";
 
 export interface UserInfo {
     info: {
@@ -43,7 +45,8 @@ function UserInfoStore(state = defaultState, action: any) {
 
 export function loadUserInfo() {
     return async (dispatch: any) => {
-        const user = await AuthService.login();
+        const kernel = InstanceBag.get<Kernel>('kernel');
+        const username = await kernel.registry.get<string>('username');
 
         // Make sure we preload the background image to get a nice effect
         // const response = await fetch(user.wallpaper);
@@ -51,7 +54,14 @@ export function loadUserInfo() {
         // const blobUrl = window.URL.createObjectURL(blob);
         // user.wallpaper = blobUrl;
 
-        dispatch(setUserInfo(user));
+        dispatch(setUserInfo({
+            fullName: username,
+            address: '',
+            profilePic: '',
+            wallpaper: '',
+            currencyTicker: '',
+            balance: '',
+        }));
     }
 }
 

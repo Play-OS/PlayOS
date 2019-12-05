@@ -3,10 +3,13 @@ import IProvider, { PrivateKey, Account } from "./IProvider";
 import Application, { ApplicationStatus } from "../../models/Application";
 import Configuration from "../../Configuration";
 import RutileContract from "./RutileContract";
+import { executeRutileRpcCall } from "./RutileRpcService";
+import RutileMethods from "./RutileMethods";
 const Web3 = require("web3");
 
 class RutileProvider implements IProvider {
     web3: any;
+    private host: string;
     private web3Loaded: Promise<void>;
     private provider: ethers.providers.JsonRpcProvider;
     private privateKey: PrivateKey;
@@ -20,6 +23,7 @@ class RutileProvider implements IProvider {
         });
 
         this.coreAddress = coreAddress;
+        this.host = host;
 
         if (this.getWallet()) {
             this.rutileContract = new RutileContract(coreAddress, this.provider, this.getWallet());
@@ -263,11 +267,67 @@ class RutileProvider implements IProvider {
     }
 
     async storageSet(key: string, value: string) {
+        const valueBytes = ethers.utils.toUtf8Bytes(value);
+        const valueHex = ethers.utils.hexlify(valueBytes);
+        const wallet = this.getWallet();
+        const nonce = await wallet.getTransactionCount();
 
+        const txParams = {
+            // chainId: config.chainId,
+            // Datasync set
+            data: ethers.utils.RLP.encode([
+                RutileMethods.STORAGE_SET,
+                key,
+                valueHex,
+            ]),
+            // Datasync get
+            // data: '0x000000026fd014d4a0c005f49869f2e9431322ce745722d9f88311fef41fad61b0098621',
+            gasLimit: 8000000,
+            gasPrice: 1,
+            nonce,
+            to: this.coreAddress,
+            value: 0,
+        };
+
+        try {
+            await wallet.sendTransaction(txParams);
+        } catch (error) {
+            console.error('error -> ', error);
+        }
     }
 
     async storageGet(key: string) {
-        return '';
+        const response = await executeRutileRpcCall(this.provider.connection.url, {
+            data: ethers.utils.RLP.encode([
+                RutileMethods.STORAGE_GET,
+                key,
+            ]),
+            from: this.getWallet().address,
+            gas: '0xffffff',
+            gasPrice: '0x1',
+            to: this.coreAddress,
+            // value: 0,
+        });
+
+        return ethers.utils.toUtf8String(Buffer.from(response.result.replace('0x', ''), 'hex'));
+    }
+
+    async uploadFile(file: Buffer): Promise<string> {
+        const response = await fetch(`${this.host}files/upload`, {
+            method: 'POST',
+            body: file,
+        });
+
+        const data = await response.json();
+        return data[0].path;
+    }
+
+    async fetchFile(id: string): Promise<Buffer> {
+        const response = await fetch(`${this.host}files/get?id=${id}`, {
+            method: 'POST',
+        });
+
+        return Buffer.from(await response.arrayBuffer());
     }
 }
 

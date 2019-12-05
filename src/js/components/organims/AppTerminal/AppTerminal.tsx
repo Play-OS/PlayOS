@@ -4,6 +4,7 @@ import WasmTerminal from "@wasmer/wasm-terminal/lib/unoptimized/wasm-terminal.es
 // import '@wasmer/wasm-terminal/dist/xterm/xterm.css';
 import TerminalService from '../../../services/TerminalService';
 import InstanceBag from '../../../InstanceBag';
+import Kernel from '../../../kernel';
 
 const styles = require('./AppTerminal.scss');
 
@@ -18,21 +19,19 @@ function AppTerminal(props: Props) {
         let wasmTerminal: any = null;
 
         async function setup() {
-            const fs = InstanceBag.get<any>('fs');
-            const terminalService = new TerminalService(fs);
-
-            terminalService.setupEnv();
+            const kernel = InstanceBag.get<Kernel>('kernel');
+            const terminalService = new TerminalService(kernel.fs);
 
             wasmTerminal = new WasmTerminal({
                 fetchCommand: terminalService.handleCommand,
-                wasmFs: fs,
+                wasmFs: kernel.fs.wasmFs,
             });
 
             wasmTerminal.xterm.setOption('cursorBlink', true);
 
             wasmTerminal.open(terminalRef.current);
-            wasmTerminal.print("PlayOS Terminal [Version 1.0.0]");
-            wasmTerminal.print("Powered by Wasmer.io \n");
+            wasmTerminal.print('PlayOS Terminal [Version 1.0.0]');
+            wasmTerminal.print('Powered by Wasmer.io \n');
         }
 
         setup();
@@ -43,7 +42,7 @@ function AppTerminal(props: Props) {
 
         return () => {
             clearInterval(intervalId);
-        }
+        };
     }, []);
 
     return (

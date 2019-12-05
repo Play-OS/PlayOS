@@ -17,6 +17,10 @@
         "react/jsx-indent-props": [
             "error",
             4
+        ],
+        "react/jsx-filename-extension": [
+            1,
+            { "extensions": [".jsx", ".tsx"] }
         ]
     },
     "globals": {

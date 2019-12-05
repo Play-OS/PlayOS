@@ -11,7 +11,12 @@ const config = {
         domain: DEV_HOST + 'authentication/',
         host: DEV_HOST,
         homeUrl: DEV_HOST + 'home/',
-        provider: new RutileProvider('http://localhost:8545/', 866, '0x00c7109eb8c03ad5f4383ed0ccbc4035f167aacc'),
+        providerDetails: {
+            httpHost: 'http://localhost:8545/',
+            chainId: 929,
+            coreAddress: '0xc660ac9d984c1a65ab499c93e5749bdb0b4518f5',
+        },
+        provider: new RutileProvider('http://localhost:8545/', 929, '0xc660ac9d984c1a65ab499c93e5749bdb0b4518f5'),
         coreAddress: '0xb8e0baafd907f3289dbdc0a5174ba786f4b78cf2',
     },
     production: {
@@ -21,7 +26,12 @@ const config = {
         domain: '/',
         host: '/',
         homeUrl: '#/home',
-        provider: new RutileProvider('http://localhost:8545/', 866, '0x00c7109eb8c03ad5f4383ed0ccbc4035f167aacc'),
+        providerDetails: {
+            httpHost: 'http://localhost:8545/',
+            chainId: 929,
+            coreAddress: '0xc660ac9d984c1a65ab499c93e5749bdb0b4518f5',
+        },
+        provider: new RutileProvider('http://localhost:8545/', 929, '0xc660ac9d984c1a65ab499c93e5749bdb0b4518f5'),
         coreAddress: '0xb8e0baafd907f3289dbdc0a5174ba786f4b78cf2',
     },
 };

@@ -1,18 +1,26 @@
 import * as path from 'path';
-import { WasmFs } from '@wasmer/wasmfs';
 import InstanceBag from '../InstanceBag';
 import Application from '../models/Application';
-import { readFileAsync } from './FileSystemService';
+import Kernel from '../kernel';
 
 export async function getWappInformation(wappFolderPath: string) {
     try {
-        const wasmFs = InstanceBag.get<WasmFs>('fs');
-        const manifestRaw = await readFileAsync(wasmFs.fs, `${wappFolderPath}/manifest.json`);
+        const kernel = InstanceBag.get<Kernel>('kernel');
+        const manifestRaw = await kernel.fs.readFile(`${wappFolderPath}/manifest.json`);
         const manifest: Application = JSON.parse(manifestRaw.toString());
 
-        const iconPath = path.resolve(wappFolderPath, manifest.icons[0].src);
-        const iconRaw: any = await readFileAsync(wasmFs.fs, iconPath);
-        const iconBlob = new Blob([iconRaw], { type: 'image/jpeg' });
+        let iconBlob: Blob = null;
+
+        if (!manifest.playos.isPwa) {
+            const iconPath = path.resolve(wappFolderPath, manifest.icons[0].src);
+            const iconRaw: any = await kernel.fs.readFile(iconPath);
+            iconBlob = new Blob([iconRaw], { type: 'image/jpeg' });
+        } else {
+            // The manifest is a PWA, we should fetch the files using the manifest url
+            const iconPath = new URL(manifest.icons[0].src, manifest.manifest_url);
+            const iconResponse = await fetch(iconPath.href);
+            iconBlob = await iconResponse.blob();
+        }
 
         return {
             icon: URL.createObjectURL(iconBlob),
@@ -20,7 +28,6 @@ export async function getWappInformation(wappFolderPath: string) {
         };
     } catch (error) {
         console.error(error);
-
         return null;
     }
 }
@@ -34,8 +41,8 @@ export async function getWappInformation(wappFolderPath: string) {
  */
 export async function getApplicationFromWapp(wappFolderPath: string) {
     try {
-        const wasmFs = InstanceBag.get<WasmFs>('fs');
-        const manifestRaw = await readFileAsync(wasmFs.fs, `${wappFolderPath}/manifest.json`);
+        const kernal = InstanceBag.get<Kernel>('kernel');
+        const manifestRaw = await kernal.fs.readFile(`${wappFolderPath}/manifest.json`);
         const manifest: Application = JSON.parse(manifestRaw.toString());
 
         let isWasm = false;
@@ -43,7 +50,7 @@ export async function getApplicationFromWapp(wappFolderPath: string) {
 
         if (manifest.start_url.endsWith('.wasm')) {
             const wasmPath = path.resolve(wappFolderPath, manifest.start_url);
-            const wasmBin: any = await readFileAsync(wasmFs.fs, wasmPath);
+            const wasmBin: any = await kernal.fs.readFile(wasmPath);
 
             wasm = wasmBin;
             isWasm = true;
@@ -53,7 +60,7 @@ export async function getApplicationFromWapp(wappFolderPath: string) {
             wasm,
             isWasm,
             app: manifest,
-        }
+        };
     } catch (error) {
         console.error(error);
 

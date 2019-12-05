@@ -25,7 +25,7 @@ function AppTitleBar(props: Props) {
 
     return (
         <header className={styles.appBar} style={{ backgroundColor: props.process.app.theme_color }}>
-            <div></div>
+            <div className={styles.placeholder}></div>
             {/* <IconButton aria-label="Back" style={{ color: textColor }}>
                 <ArrowBackIcon />
             </IconButton> */}

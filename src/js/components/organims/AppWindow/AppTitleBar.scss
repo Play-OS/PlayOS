@@ -16,6 +16,11 @@ $window-border-radius: 5px;
     z-index: 9999;
 }
 
+.placeholder {
+    width: 48px;
+    height: 48px;
+}
+
 @media screen and (min-width: $desktop-breakpoint) {
     .appBar {
         border-top-left-radius: $window-border-radius;

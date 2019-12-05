@@ -7,6 +7,7 @@ class RutileContract {
     constructor(address: string, provider: ethers.providers.JsonRpcProvider, wallet: ethers.Wallet) {
         const abi: string[] = [
             'function addApplicationToStore(string app)',
+            'function storageStore(string key, string value)',
         ];
 
         this.contract = new ethers.Contract(address, abi, wallet);

@@ -27,6 +27,8 @@ export default function RegisterPage() {
         const privateKey = KeyService.createRadomPrivateKey();
         KeyService.saveKeys(privateKey);
 
+        sessionStorage.setItem('username', values.username);
+
         setKeys(privateKey.mnemonic);
     }
 

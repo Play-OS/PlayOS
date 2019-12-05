@@ -21,6 +21,7 @@ interface ApplicationIcon {
 }
 
 interface PlayOSProperties {
+    isPwa?: boolean;
     isWasm: boolean;
     showTerminal: boolean;
 }

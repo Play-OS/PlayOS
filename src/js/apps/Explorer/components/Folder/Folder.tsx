@@ -1,16 +1,15 @@
 import * as React from 'react';
 import Dirent from 'memfs/lib/Dirent';
 import FolderIcon from '@material-ui/icons/Folder';
-import { getFileExtension, readFileAsync } from '../../../../services/FileSystemService';
-import InstanceBag from '../../../../InstanceBag';
-import { WasmFs } from '@wasmer/wasmfs';
+import getFileExtension from '../../../../services/micro/getFileExtension';
 import { getWappInformation } from '../../../../services/WappService';
+
 const styles = require('./Folder.scss');
 
 const WAPP_EXTENSION = 'wapp';
 
 interface Props {
-    folder: Dirent
+    folder: Dirent;
     path: string;
     onClick?: (folder: Dirent) => void;
 }
