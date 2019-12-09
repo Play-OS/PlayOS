@@ -3,6 +3,7 @@ import FileSystem from './core/FileSystem';
 import IKernelProvider from './interfaces/IKernelProvider';
 import VirtualMachine from './core/VirtualMachine';
 import Encryption from './core/Encryption';
+import WasmParser from './core/WasmParser';
 
 class Kernel {
     registry: Registry;
@@ -16,6 +17,8 @@ class Kernel {
     privateSeed: string;
 
     provider: IKernelProvider;
+
+    wasmParser: WasmParser;
 
     constructor(privateSeed: string, provider: IKernelProvider) {
         this.privateSeed = privateSeed;
@@ -34,6 +37,7 @@ class Kernel {
         this.provider.setKeys(this.encryption.createKey('provider'));
 
         this.fs = await FileSystem.create(this.registry, this.provider);
+        this.wasmParser = new WasmParser(this.fs);
         this.vm = new VirtualMachine();
     }
 }

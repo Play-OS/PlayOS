@@ -17,6 +17,7 @@ import File from './components/File';
 import Dirent from 'memfs/lib/Dirent';
 import Dropzone from '../../components/molecules/Dropzone';
 import Kernel from '../../kernel';
+import BackgroundTerminal from '../../background/BackgroundTerminal';
 const styles = require('./Explorer.scss');
 
 export default function Explorer() {
@@ -25,15 +26,18 @@ export default function Explorer() {
     const [path, setPath] = React.useState('/');
 
     React.useEffect(() => {
-        const kernel = InstanceBag.get<Kernel>('kernel');
-        const { wasmFs } = kernel.fs;
+        async function setup() {
+            const kernel = InstanceBag.get<Kernel>('kernel');
+            const filesAndDirectories: any = await kernel.fs.readDir(path, {
+                encoding: 'utf8',
+                withFileTypes: true,
+                ignoreDotFiles: true,
+            });
 
-        const filesAndDirectories: any = wasmFs.fs.readdirSync(path, {
-            encoding: 'utf8',
-            withFileTypes: true,
-        });
+            setFiles(filesAndDirectories);
+        }
 
-        setFiles(filesAndDirectories);
+        setup();
     }, [path]);
 
     function handleFileClick(file: Dirent) {
@@ -46,6 +50,12 @@ export default function Explorer() {
             // Double // are ugly so we remove them
             if (newPath.startsWith('//')) {
                 newPath = newPath.slice(1);
+            }
+
+            if (newPath.endsWith('.wapp')) {
+                const terminal = InstanceBag.get<BackgroundTerminal>('terminal');
+                terminal.runCommand(`open ${newPath}`);
+                return;
             }
 
             setPath(newPath);

@@ -13,7 +13,7 @@ export default function AppGrid(props: Props) {
     return (
         <div className={styles.AppGrid}>
             {props.grid.apps.map((app) => {
-                return <App key={app.id} app={app} />
+                return <App key={app.manifest.id} app={app} />
             })}
         </div>
     );

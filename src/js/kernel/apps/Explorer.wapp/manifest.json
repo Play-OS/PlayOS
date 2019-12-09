@@ -1,10 +1,10 @@
 {
-    "id": "AppId3",
-    "name": "Terminal",
-    "short_name": "Terminal",
+    "id": "FileExplorer",
+    "name": "Files",
+    "short_name": "Files",
     "display": "standalone",
-    "background_color": "#000",
-    "theme_color": "#9E9E9E",
+    "background_color": "#fff",
+    "theme_color": "#2196F3",
     "icons": [
         {
             "sizes": "512x512",
@@ -16,8 +16,7 @@
     "start_url": "#",
     "manifest_url": "https://airhorner.com/manifest.json",
     "playos": {
-        "isPwa": false,
         "isWasm": true,
-        "showTerminal": true
+        "showTerminal": false
     }
 }

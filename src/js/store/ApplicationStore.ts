@@ -77,8 +77,7 @@ export function loadApps() {
                 type: ApplicationStoreActions.APPLICATION_STORE_PENDING,
             });
 
-            const privateKey = KeyService.keysFromStorage();
-            const apps = await UserService.getInstalled(privateKey);
+            const apps = await UserService.getInstalled();
 
             dispatch({
                 type: ApplicationStoreActions.APPLICATION_STORE_FULFILLED,

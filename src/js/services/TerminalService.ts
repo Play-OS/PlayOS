@@ -1,12 +1,13 @@
-
-import WasmFs from "@wasmer/wasmfs";
-
 // @ts-ignore
 import { fetchCommandFromWAPM } from "@wasmer/wasm-terminal/lib/unoptimized/wasm-terminal.esm";
 // @ts-ignore
 import { lowerI64Imports } from "@wasmer/wasm-transformer/lib/unoptimized/wasm-transformer.esm";
 import { getApplicationFromWapp } from "./WappService";
 import FileSystem from "../kernel/core/FileSystem";
+import store from "../store";
+import InstanceBag from "../InstanceBag";
+import Kernel from "../kernel";
+import { openApp } from "../store/AppProcessesStore";
 
 export default class TerminalService {
     fs: FileSystem;
@@ -31,6 +32,15 @@ export default class TerminalService {
             }
 
             return 'TODO: Support PWAs';
+        }
+
+        if (commandName === 'open') {
+            return async () => {
+                const kernel = InstanceBag.get<Kernel>('kernel');
+                const application = await kernel.wasmParser.parseDirectory(args[0]);
+
+                store.dispatch(openApp(application.manifest));
+            };
         }
 
         const wasmBinary = await fetchCommandFromWAPM(commandName, [], [['PATH', '/']]);

@@ -9,12 +9,13 @@ import AppGrid from '../../molecules/AppGrid';
 import useMedia from '../../../services/hooks/useMedia';
 import BulletNavigation from '../../atoms/BulletNavigation';
 import AppTerminal from '../AppTerminal/index';
+import { ParsedApplicationInfo } from '../../../kernel';
 // import Folder from '../Folder';
 const styles = require('./AppSection.styles.scss');
 const SwipeableViews = bindKeyboard(SwipeableViewsRaw)
 
 interface Props {
-    apps: Application[];
+    apps: ParsedApplicationInfo[];
 }
 
 function AppSection(props: Props) {

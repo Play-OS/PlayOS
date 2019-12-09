@@ -2,11 +2,18 @@
 import WasmFs from '@wasmer/wasmfs/lib/index.esm';
 import WasmFsType from '@wasmer/wasmfs';
 import { TFileId, IReadFileOptions, TData, TFilePath, TMode, IMkdirOptions } from 'memfs/lib/volume';
-import { TDataOut } from 'memfs/lib/encoding';
+import { TDataOut, TEncodingExtended } from 'memfs/lib/encoding';
 import stringToBytes from '../services/stringToBytes';
 import Registry from './Registry';
 import IKernelProvider from '../interfaces/IKernelProvider';
-import WasmApplication from './WasmApplication';
+import WasmParser from './WasmParser';
+import Dirent from 'memfs/lib/Dirent';
+
+interface FileSystemDirOptions {
+    encoding?: TEncodingExtended;
+    withFileTypes?: boolean;
+    ignoreDotFiles?: boolean;
+}
 
 class FileSystem {
     private registry: Registry;
@@ -49,7 +56,7 @@ class FileSystem {
             this.wasmFs.fromJSON(fileMap);
         }
 
-        await WasmApplication.createDefaultApps(this);
+        await WasmParser.createDefaultApps(this);
     }
 
     /**
@@ -108,6 +115,41 @@ class FileSystem {
                     resolve();
                 }
             });
+        });
+    }
+
+    /**
+     * Reads a directory
+     *
+     * @param {TFilePath} path
+     * @returns {(Promise<TDataOut[] | Dirent[]>)}
+     * @memberof FileSystem
+     */
+    readDir(path: TFilePath, options?: FileSystemDirOptions): Promise<TDataOut[] | Dirent[]> {
+        return new Promise((resolve, reject) => {
+            this.wasmFs.fs.readdir(path, {
+                encoding: options.encoding,
+                withFileTypes: options.withFileTypes,
+            }, (error, data) => {
+                let result = data;
+
+                if (error) {
+                    return reject(error);
+                }
+
+                if (options && options.ignoreDotFiles) {
+                    if (options.withFileTypes) {
+                        // @ts-ignore
+                        result = result.filter((folder: Dirent) => !folder.name.toString().startsWith('.'));
+                    } else {
+                        // @ts-ignore
+                        result = result.filter(folder => !folder.startsWith('.'));
+                    }
+                }
+
+                // @ts-ignore
+                resolve(result);
+            })
         });
     }
 

@@ -1,8 +1,9 @@
 import Application from "../../models/Application";
+import { ParsedApplicationInfo } from "../../kernel";
 
 export interface AppGrid {
     id: string;
-    apps: Application[];
+    apps: ParsedApplicationInfo[];
 }
 
 /**
@@ -13,7 +14,7 @@ export interface AppGrid {
  * @param {number} amountPerGrid
  * @returns {AppGrid[]}
  */
-export default function sortAppsInGrids(apps: Application[], amountPerGrid: number): AppGrid[] {
+export default function sortAppsInGrids(apps: ParsedApplicationInfo[], amountPerGrid: number): AppGrid[] {
     const result: AppGrid[] = [];
     let gridItem: AppGrid = {
         id: Math.random().toString(),
@@ -29,7 +30,7 @@ export default function sortAppsInGrids(apps: Application[], amountPerGrid: numb
             // Rest the grid
             gridItem = {
                 id: Math.random().toString(),
-                apps: []
+                apps: [],
             };
         }
     });
