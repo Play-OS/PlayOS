@@ -3,10 +3,10 @@ import { fetchCommandFromWAPM } from "@wasmer/wasm-terminal/lib/unoptimized/wasm
 // @ts-ignore
 import { lowerI64Imports } from "@wasmer/wasm-transformer/lib/unoptimized/wasm-transformer.esm";
 import { getApplicationFromWapp } from "./WappService";
-import FileSystem from "../kernel/core/FileSystem";
+import { FileSystem } from "@playos/kernel";
 import store from "../store";
 import InstanceBag from "../InstanceBag";
-import Kernel from "../kernel";
+import Kernel from "@playos/kernel";
 import { openApp } from "../store/AppProcessesStore";
 
 export default class TerminalService {

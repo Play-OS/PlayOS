@@ -7,7 +7,7 @@ import Header from '../../components/molecules/Header';
 import AppSection from '../../components/organims/AppSection';
 import { loadApps } from '../../store/ApplicationStore';
 import AppProcessesHolder from '../../components/organims/AppProcessesHolder';
-import Kernel, { RutileProvider, BrowserProvider } from '../../kernel';
+import Kernel, { RutileProvider, BrowserProvider } from '@playos/kernel';
 import InstanceBag from '../../InstanceBag';
 import Configuration from '../../Configuration';
 import bootSystem from '../../services/bootSystem';

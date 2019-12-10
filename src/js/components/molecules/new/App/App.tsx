@@ -6,7 +6,7 @@ import { openApp } from '../../../../store/AppProcessesStore';
 import resolveUrl from '../../../../services/micro/resolveUrl';
 import InstanceBag from '../../../../InstanceBag';
 import BackgroundTerminal from '../../../../background/BackgroundTerminal';
-import { ParsedApplicationInfo } from '../../../../kernel';
+import { ParsedApplicationInfo } from '@playos/kernel';
 const styles = require('./App.scss');
 
 interface Props {

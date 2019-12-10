@@ -1,6 +1,6 @@
 // @ts-ignore
 import WasmTerminal from '@wasmer/wasm-terminal/lib/unoptimized/wasm-terminal.esm';
-import Kernel from '../kernel';
+import Kernel from '@playos/kernel';
 import TerminalService from '../services/TerminalService';
 
 class BackgroundTerminal {

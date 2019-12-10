@@ -16,7 +16,7 @@ import Folder from './components/Folder';
 import File from './components/File';
 import Dirent from 'memfs/lib/Dirent';
 import Dropzone from '../../components/molecules/Dropzone';
-import Kernel from '../../kernel';
+import Kernel from '@playos/kernel';
 import BackgroundTerminal from '../../background/BackgroundTerminal';
 const styles = require('./Explorer.scss');
 

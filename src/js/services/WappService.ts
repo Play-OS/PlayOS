@@ -1,7 +1,7 @@
 import * as path from 'path';
 import InstanceBag from '../InstanceBag';
 import Application from '../models/Application';
-import Kernel from '../kernel';
+import Kernel from '@playos/kernel';
 
 export async function getWappInformation(wappFolderPath: string) {
     try {

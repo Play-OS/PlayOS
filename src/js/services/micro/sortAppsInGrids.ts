@@ -1,5 +1,5 @@
 import Application from "../../models/Application";
-import { ParsedApplicationInfo } from "../../kernel";
+import { ParsedApplicationInfo } from "@playos/kernel";
 
 export interface AppGrid {
     id: string;

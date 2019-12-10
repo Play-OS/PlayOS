@@ -1,4 +1,4 @@
-import Kernel, { BrowserProvider } from '../kernel';
+import Kernel, { BrowserProvider } from '@playos/kernel';
 import { PrivateKey } from './providers/IProvider';
 import Configuration from '../Configuration';
 import InstanceBag from '../InstanceBag';
