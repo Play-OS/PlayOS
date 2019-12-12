@@ -17,6 +17,17 @@
     </head>
     <body>
         <div id="app"></div>
-        <script src="build/index.js" charset="utf-8"></script>
+        <script>
+            if (process.env.NODE_ENV === 'development') {
+                const script = document.createElement('script');
+                script.src = 'http://localhost:3000/build/index.js';
+                document.head.appendChild(script);
+            } else {
+                const script = document.createElement('script');
+                script.src = 'build/index.js';
+                document.head.appendChild(script);
+            }
+        </script>
+        <!-- <script src="build/index.js" charset="utf-8"></script> -->
     </body>
 </html>

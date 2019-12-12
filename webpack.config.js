@@ -11,10 +11,10 @@ module.exports = {
         index: ['./index.js'],
     },
     output: {
-        path: path.resolve(__dirname, './build/'),
+        path: path.resolve(__dirname, './www/build/'),
         libraryTarget: 'umd',
         filename: '[name].js',
-        publicPath: '/build/',
+        publicPath: 'build/',
     },
     module: {
         rules: [
