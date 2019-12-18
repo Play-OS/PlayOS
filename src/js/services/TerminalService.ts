@@ -19,7 +19,7 @@ export default class TerminalService {
         this.currentPath = currentPath;
     }
 
-    async handleCommand(commandName: string, args: string[], envEntriest: any[]) {
+    async handleCommand(commandName: string, args: string[], envEntriest: any) {
         if (commandName.endsWith('.wasm')) {
             return this.fs.readFile(commandName);
         }
@@ -43,7 +43,16 @@ export default class TerminalService {
             };
         }
 
+        const kernel = InstanceBag.get<Kernel>('kernel');
         const wasmBinary = await fetchCommandFromWAPM(commandName, [], [['PATH', '/']]);
-        return lowerI64Imports(wasmBinary);
+        const preparedBin = await kernel.vm.prepareBin(wasmBinary);
+
+        return preparedBin;
+        // args.unshift(commandName);
+        // const vmOutput = await kernel.spawnProcess(preparedBin, args, {
+        //     env: envEntriest,
+        // });
+
+        // return () => vmOutput;
     }
 }

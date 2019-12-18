@@ -20,7 +20,7 @@ export default function RegisterPage() {
                 ...values,
                 [name]: event.target.value,
             });
-        }
+        };
     }
 
     function createAccount() {

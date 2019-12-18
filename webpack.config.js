@@ -1,4 +1,5 @@
 const path = require('path');
+const WorkerPlugin = require('worker-plugin');
 
 const exclude = '/node_modules';
 
@@ -16,6 +17,11 @@ module.exports = {
         filename: '[name].js',
         publicPath: 'build/',
     },
+    plugins: [
+        new WorkerPlugin({
+            globalObject: 'self',
+        }),
+    ],
     module: {
         rules: [
             {

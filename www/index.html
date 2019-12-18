@@ -18,9 +18,13 @@
     <body>
         <div id="app"></div>
         <script>
-            if (process.env.NODE_ENV === 'development') {
+            if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
                 const script = document.createElement('script');
+                const base = document.createElement('base');
+                base.href = 'http://localhost:3000/';
+
                 script.src = 'http://localhost:3000/build/index.js';
+                document.head.appendChild(base);
                 document.head.appendChild(script);
             } else {
                 const script = document.createElement('script');
