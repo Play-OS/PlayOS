@@ -2,8 +2,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 // @ts-ignore
-import { white } from 'material-ui/styles/colors';
-// @ts-ignore
 import NavigationMenuIcon from 'material-ui/svg-icons/navigation/menu';
 // @ts-ignore
 import ArrowLeftIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
@@ -14,6 +12,8 @@ import { setOpenSideBarNavigationState } from '../../../store/SideBarNavigationS
 import { UserInfo } from '../../../store/UserInfoStore';
 import { OpenProcess } from '../../../store/AppProcessesStore';
 const styles = require('./Profile.scss');
+
+const black = '#ffffff';
 
 interface Props {
     user: UserInfo;
@@ -37,11 +37,11 @@ function Profile(props: Props) {
         <div className={styles.profile}>
             <div className={styles.mobileProfile}>
                 {/* <MultiTaskButton className={styles.mobileCloseButton} /> */}
-                { !isAppOpen && <NavigationMenuIcon className={styles.hamburgerIcon} color={white} onClick={handleProfileClick} /> }
+                { !isAppOpen && <NavigationMenuIcon className={styles.hamburgerIcon} color={black} onClick={handleProfileClick} /> }
                 {/* { isAppOpen && <CloseAppButton className={styles.mobileCloseButton} /> } */}
             </div>
             <div className={styles.desktopProfile}>
-                <ArrowLeftIcon onClick={handleProfileClick} className={arrowLeftStyles} color={white} />
+                <ArrowLeftIcon onClick={handleProfileClick} className={arrowLeftStyles} color={black} />
                 <span className={styles.name} onClick={handleProfileClick}>{props.user.info.fullName}</span>
                 {/* <MultiTaskButton /> */}
                 {/* <CloseAppButton /> */}

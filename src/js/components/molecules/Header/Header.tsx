@@ -29,7 +29,7 @@ interface Props {
 
 function Header() {
     return (
-        <React.Fragment>
+        <>
             <div className={styles.Header}>
                 <div className={styles['Header-Item']}>
                     <div className={styles['Header-Controls']}>
@@ -45,7 +45,7 @@ function Header() {
                 </div>
             </div>
             <SideNavigation />
-        </React.Fragment>
+        </>
     );
 }
 

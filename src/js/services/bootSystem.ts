@@ -19,6 +19,11 @@ export default async function bootSystem(keys: PrivateKey) {
 
     await kernel.boot();
 
+    if (!(await kernel.fs.exists('/etc/environment'))) {
+        // We need to create some defaults
+        await kernel.fs.writeFile('/etc/environment', '$PATH=/usr/sbin:/usr/bin:/sbin:/bin');
+    }
+
     if (sessionStorage.getItem('username')) {
         await kernel.registry.set('username', sessionStorage.getItem('username'), false);
         sessionStorage.removeItem('username');

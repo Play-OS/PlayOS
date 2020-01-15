@@ -1,13 +1,13 @@
 // @ts-ignore
-import { fetchCommandFromWAPM } from "@wasmer/wasm-terminal/lib/unoptimized/wasm-terminal.esm";
+import { fetchCommandFromWAPM } from '@wasmer/wasm-terminal/lib/unoptimized/wasm-terminal.esm';
 // @ts-ignore
-import { lowerI64Imports } from "@wasmer/wasm-transformer/lib/unoptimized/wasm-transformer.esm";
-import { getApplicationFromWapp } from "./WappService";
-import { FileSystem } from "@playos/kernel";
-import store from "../store";
-import InstanceBag from "../InstanceBag";
-import Kernel from "@playos/kernel";
-import { openApp } from "../store/AppProcessesStore";
+import { lowerI64Imports } from '@wasmer/wasm-transformer/lib/unoptimized/wasm-transformer.esm';
+import Kernel, { FileSystem } from '@playos/kernel';
+import { getApplicationFromWapp } from './WappService';
+import store from '../store';
+import InstanceBag from '../InstanceBag';
+
+import { openApp } from '../store/AppProcessesStore';
 
 export default class TerminalService {
     fs: FileSystem;
@@ -19,7 +19,7 @@ export default class TerminalService {
         this.currentPath = currentPath;
     }
 
-    async handleCommand(commandName: string, args: string[], envEntriest: any) {
+    async handleCommand(commandName: string, args: string[], env: any) {
         if (commandName.endsWith('.wasm')) {
             return this.fs.readFile(commandName);
         }
@@ -47,12 +47,19 @@ export default class TerminalService {
         const wasmBinary = await fetchCommandFromWAPM(commandName, [], [['PATH', '/']]);
         const preparedBin = await kernel.vm.prepareBin(wasmBinary);
 
-        return preparedBin;
-        // args.unshift(commandName);
-        // const vmOutput = await kernel.spawnProcess(preparedBin, args, {
-        //     env: envEntriest,
-        // });
+        // env['$PWD'] = '/';
 
-        // return () => vmOutput;
+        console.log('[] envEntriest -> ', env);
+
+        // return preparedBin;
+        args.unshift(commandName);
+        const vmOutput = await kernel.spawnProcess(preparedBin, args, {
+            env: {
+                '$PWD': '/',
+                'PWD': '/',
+            },
+        });
+
+        return () => vmOutput;
     }
 }
