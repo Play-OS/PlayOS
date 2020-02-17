@@ -23,9 +23,12 @@ function AppTerminal(props: Props) {
             const terminalService = new TerminalService(kernel.fs);
 
             wasmTerminal = new WasmTerminal({
-                fetchCommand: terminalService.handleCommand,
+                // @ts-ignore
+                fetchCommand: (...args: any[]) => terminalService.handleCommand(...args),
                 wasmFs: kernel.fs.wasmFs,
             });
+
+            terminalService.setTerminal(wasmTerminal);
 
             wasmTerminal.xterm.setOption('cursorBlink', true);
 

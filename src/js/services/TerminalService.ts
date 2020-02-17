@@ -14,9 +14,15 @@ export default class TerminalService {
 
     currentPath: string;
 
+    terminal: any;
+
     constructor(fs: FileSystem, currentPath = '/') {
         this.fs = fs;
         this.currentPath = currentPath;
+    }
+
+    setTerminal(terminal: any) {
+        this.terminal = terminal;
     }
 
     async handleCommand(commandName: string, args: string[], env: any) {
@@ -49,17 +55,26 @@ export default class TerminalService {
 
         // env['$PWD'] = '/';
 
-        console.log('[] envEntriest -> ', env);
-
         // return preparedBin;
         args.unshift(commandName);
-        const vmOutput = await kernel.spawnProcess(preparedBin, args, {
+        const process = await kernel.spawnProcess(preparedBin, args, {
             env: {
                 '$PWD': '/',
                 'PWD': '/',
             },
         });
 
-        return () => vmOutput;
+        let terminalResult = '';
+
+        process.on('message', (msg: string) => {
+            this.terminal.print(msg);
+            terminalResult += msg;
+        });
+
+        await process.spawn();
+
+        return () => {
+            return terminalResult;
+        };
     }
 }

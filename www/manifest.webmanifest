@@ -1,11 +1,11 @@
 {
     "name": "PlayOS",
     "short_name": "PlayOS",
-    "theme_color": "#ff22ff",
+    "theme_color": "#3c3c3c",
     "background_color": "#2196f3",
     "display": "standalone",
     "scope": "/",
-    "start_url": "/",
+    "start_url": "/index.html",
     "icons": [
       {
         "src": "res/img/icons/icon-72x72.png",

@@ -3,15 +3,14 @@ import { connect } from 'react-redux';
 import SwipeableViewsRaw from 'react-swipeable-views';
 // @ts-ignore
 import { bindKeyboard } from 'react-swipeable-views-utils';
-import Application from '../../../models/Application';
+import { ParsedApplicationInfo } from '@playos/kernel';
 import sortAppsInGrids from '../../../services/micro/sortAppsInGrids';
 import AppGrid from '../../molecules/AppGrid';
 import useMedia from '../../../services/hooks/useMedia';
 import BulletNavigation from '../../atoms/BulletNavigation';
-import AppTerminal from '../AppTerminal/index';
-import { ParsedApplicationInfo } from '@playos/kernel';
 // import Folder from '../Folder';
 const styles = require('./AppSection.styles.scss');
+
 const SwipeableViews = bindKeyboard(SwipeableViewsRaw);
 
 interface Props {
@@ -35,27 +34,23 @@ function AppSection(props: Props) {
     }
 
     return (
-        <React.Fragment>
+        <>
             <div className={styles.AppSection}>
                 <div className={styles.wrapper}>
                     <SwipeableViews enableMouseEvents resistance onChangeIndex={handleChangeIndex} index={viewIndex}>
-                        {appGrids.map((appGrid) => {
-                            return <AppGrid grid={appGrid} key={appGrid.id} />
-                        })}
+                        {appGrids.map((appGrid) => <AppGrid grid={appGrid} key={appGrid.id} />)}
                     </SwipeableViews>
                     <BulletNavigation amount={appGrids.length} activeIndex={viewIndex} onClick={handleChangeIndex} />
                 </div>
             </div>
-        </React.Fragment>
+        </>
     );
 }
 
-const mapStateToProps = (store: any) => {
-    return {
-        ApplicationStore: store.ApplicationStore,
-        apps: store.ApplicationStore.apps,
-    };
-};
+const mapStateToProps = (store: any) => ({
+    ApplicationStore: store.ApplicationStore,
+    apps: store.ApplicationStore.apps,
+});
 
 // @ts-ignore
 export default connect(mapStateToProps)(AppSection);

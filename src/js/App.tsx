@@ -1,21 +1,21 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { Provider } from "react-redux";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
-import { Route, Redirect } from "react-router";
-import { HashRouter } from "react-router-dom";
-import { ConnectedRouter } from "connected-react-router";
+import { Route, Redirect } from 'react-router';
+import { HashRouter } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 
 // Layouts
-import DefaultLayout from "./layout/DefaultLayout";
+import DefaultLayout from './layout/DefaultLayout';
 
-import store, { history } from "./store";
-import LoadableStoreApp from "./apps/Store";
+import store, { history } from './store';
+import LoadableStoreApp from './apps/Store';
 
 export default class App {
     domId: string;
 
-    constructor(id: string = "app") {
+    constructor(id: string = 'app') {
         this.domId = id;
     }
 
@@ -40,7 +40,7 @@ export default class App {
                     </HashRouter>
                 </ConnectedRouter>
             </Provider>,
-            document.getElementById(this.domId)
+            document.getElementById(this.domId),
         );
     }
 }

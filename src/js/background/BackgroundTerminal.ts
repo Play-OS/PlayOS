@@ -14,9 +14,12 @@ class BackgroundTerminal {
         const terminalElement = document.createElement('div');
 
         this.wasmTerminal = new WasmTerminal({
-            fetchCommand: terminalService.handleCommand,
+            // @ts-ignore
+            fetchCommand: (...args: any[]) => terminalService.handleCommand(...args),
             wasmFs: this.kernel.fs.wasmFs,
         });
+
+        terminalService.setTerminal(this.wasmTerminal);
 
         this.wasmTerminal.open(terminalElement);
     }
