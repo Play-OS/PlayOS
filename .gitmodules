@@ -1,0 +1,3 @@
+[submodule "src/vendor/kernel"]
+	path = src/vendor/kernel
+	url = git@github.com:Play-OS/Kernel.git
