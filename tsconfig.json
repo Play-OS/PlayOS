@@ -1,20 +1,33 @@
 {
-    "compilerOptions": {
-      "outDir": "./build/",
-      "noImplicitAny": true,
-      "allowSyntheticDefaultImports" :true,
-      "module": "commonjs",
-      "sourceMap": true,
-      "target": "esnext",
-      "jsx": "react",
-      "allowJs": true,
-      "experimentalDecorators": true,
-      "suppressImplicitAnyIndexErrors": true,
-      "lib": [
-          "es2015",
-          "es2016",
-          "dom",
-          "scripthost"
-      ]
-    }
-  }
+  "compilerOptions": {
+    "outDir": "./build/",
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "esnext",
+    "sourceMap": true,
+    "target": "esnext",
+    "jsx": "react",
+    "allowJs": true,
+    "experimentalDecorators": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "lib": [
+      "es2015",
+      "es2016",
+      "dom",
+      "scripthost"
+    ],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
+  },
+  "include": [
+    "src",
+    "node_modules",
+    "@playos/kernel"
+  ]
+}

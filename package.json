@@ -4,19 +4,33 @@
   "description": "PlayOS, blockchain agnostic portal",
   "main": "index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=development webpack --config ./webpack.config.js && cap copy",
-    "build:prod": "cross-env NODE_ENV=production webpack --config ./webpack.config.js",
     "docs": "documentation build ./src > ./docs/codebase.md --shallow false --format md --sort-order alpha",
     "release": "standard-version && npm run build:prod",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --content-base www/ --config ./webpack.config.js --open true --port 3000 --inline",
-    "test": "jest",
-    "lint": "eslint ./src/ --cache --ignore-pattern .gitignore"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "keywords": [
     "meister",
     "demo",
     "page"
   ],
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "author": "PlayOS",
   "license": "ISC",
   "dependencies": {
@@ -31,7 +45,6 @@
     "@wasmer/wasm-terminal": "^0.6.0",
     "@wasmer/wasm-transformer": "^0.6.0",
     "@wasmer/wasmfs": "^0.6.0",
-    "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.6.1",
     "cross-env": "^6.0.3",
@@ -55,28 +68,19 @@
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-router-redux": "^4.0.8",
+    "react-scripts": "^3.4.0",
     "react-swipeable-views": "0.13.3",
     "react-swipeable-views-utils": "^0.13.4",
     "react-tap-event-plugin": "^3.0.3",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "sass-loader": "^8.0.2",
-    "style-loader": "^1.1.3",
     "terminal-in-react": "^4.3.1",
-    "ts-loader": "^6.2.1",
     "use-resize-observer": "^6.0.0",
     "web3": "^1.2.4",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.1",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.3",
-    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
-    "@babel/preset-env": "7.8.3",
-    "@babel/preset-react": "7.8.3",
     "@types/classnames": "^2.2.9",
     "@types/jszip": "^3.1.7",
     "@types/react": "^16.9.17",
@@ -86,22 +90,10 @@
     "@types/react-router-redux": "^5.0.18",
     "@types/react-swipeable-views": "^0.13.0",
     "@types/web3": "^1.2.2",
-    "babel-eslint": "10.0.3",
-    "babel-loader": "^8.0.6",
     "documentation": "12.1.4",
-    "eslint": "6.8.0",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-loader": "^3.0.3",
-    "eslint-plugin-babel": "5.3.0",
-    "eslint-plugin-import": "^2.20.0",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.18.0",
-    "eslint-summary": "^1.0.0",
-    "jest": "^24.9.0",
     "node-sass": "^4.13.1",
-    "standard-version": "^7.0.1",
+    "standard-version": "^7.1.0",
     "typescript": "^3.7.5",
-    "url-loader": "^2.2.0",
     "worker-plugin": "^3.2.0"
   }
 }

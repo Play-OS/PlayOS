@@ -7,7 +7,7 @@ import Paper from 'material-ui/Paper';
 import SnackBarMessage from '../components/SnackBarMessage';
 import styles from './DefaultLayout.scss';
 import classnames from 'classnames';
-import logo from '../../../www/res/img/PlayOSLogoSide_black.svg';
+import logo from '../../img/PlayOSLogoSide_black.svg';
 import ChoosePage from '../pages/ChoosePage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';

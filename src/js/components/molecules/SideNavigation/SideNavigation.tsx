@@ -29,7 +29,7 @@ function SideNavigation(props: Props) {
 
     async function handleLogoutClick() {
         await UserService.logout();
-        location.reload();
+        window.location.reload();
     }
 
     async function handleInstallAppClick() {

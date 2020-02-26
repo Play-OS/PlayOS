@@ -8,7 +8,7 @@ interface Props {
     grid: AppGrid;
 }
 
-export default function AppGrid(props: Props) {
+export default function ApplicationGrid(props: Props) {
 
     return (
         <div className={styles.AppGrid}>
