@@ -59,8 +59,8 @@ export default class TerminalService {
         args.unshift(commandName);
         const process = await kernel.spawnProcess(preparedBin, args, {
             env: {
-                '$PWD': '/',
-                'PWD': '/',
+                $PWD: '/',
+                PWD: '/',
             },
         });
 
@@ -73,8 +73,6 @@ export default class TerminalService {
 
         await process.spawn();
 
-        return () => {
-            return terminalResult;
-        };
+        return () => terminalResult;
     }
 }

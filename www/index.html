@@ -13,10 +13,18 @@
         <link rel="manifest" href="./manifest.webmanifest">
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
         <link rel="stylesheet" type="text/css" href="./res/css/xterm.css" media="screen" />
+        <style>
+            .CanvasYo {
+                background: red;
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                width: 20%;
+            }
+        </style>
     </head>
     <body>
         <div id="app"></div>
-        <canvas id="windowCanvas" width="1920" height="1080" style="background:red; position: absolute; top:10px; left: 10px; width: 20%;"></canvas>
         <script>
             if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
                 const script = document.createElement('script');
