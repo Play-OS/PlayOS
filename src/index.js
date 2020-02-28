@@ -1,5 +1,4 @@
 import 'whatwg-fetch';
-// import injectTapEventPlugin from 'react-tap-event-plugin';
 import App from './js/App';
 import './scss/index.scss';
 // import Sdk from '../SDK';

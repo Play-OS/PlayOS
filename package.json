@@ -62,7 +62,6 @@
     "react-scripts": "^3.4.0",
     "react-swipeable-views": "0.13.3",
     "react-swipeable-views-utils": "^0.13.4",
-    "react-tap-event-plugin": "^3.0.3",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
@@ -88,6 +87,6 @@
     "node-sass": "^4.13.1",
     "standard-version": "^7.1.0",
     "typescript": "^3.8.2",
-    "worker-plugin": "^3.2.0"
+    "workerize-loader": "^1.1.0"
   }
 }
