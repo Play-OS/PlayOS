@@ -10,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import { UserInfo } from '../../../store/UserInfoStore';
-const styles = require('./Wallet.scss');
+const styles = require('./Wallet.module.scss');
 
 
 interface Props {

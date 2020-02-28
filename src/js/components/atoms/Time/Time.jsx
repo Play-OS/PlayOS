@@ -1,6 +1,6 @@
 import React from 'react';
 
-const styles = require('./Time.scss');
+const styles = require('./Time.module.scss');
 
 class Time extends React.Component {
     constructor(props) {

@@ -4,9 +4,9 @@ import WasmTerminal from "@wasmer/wasm-terminal/lib/unoptimized/wasm-terminal.es
 // import '@wasmer/wasm-terminal/dist/xterm/xterm.css';
 import TerminalService from '../../../services/TerminalService';
 import InstanceBag from '../../../InstanceBag';
-import Kernel from '@playos/kernel';
+import Kernel from '../../../../vendor/kernel';
 
-const styles = require('./AppTerminal.scss');
+const styles = require('./AppTerminal.module.scss');
 
 interface Props {
 

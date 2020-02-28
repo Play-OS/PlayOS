@@ -24,8 +24,6 @@ export default interface IProvider {
     getInstalledApplications(key: PrivateKey): Promise<Application[]>;
     login(): Promise<Account>;
     logout(): Promise<void>;
-    encrypt(content: Buffer): Promise<Buffer>;
-    decrypt(content: Buffer): Promise<Buffer>;
     isLoggedIn(): Promise<boolean>;
     getPrivateKeyForApp(appId: string, nonce: number, userKeys: PrivateKey): PrivateKey;
     storageSet(key: string, value: string): Promise<void>;

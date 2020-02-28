@@ -1,6 +1,6 @@
 import * as React from 'react';
 import classnames from 'classnames';
-const styles = require('./BulletNavigation.scss');
+const styles = require('./BulletNavigation.module.scss');
 
 interface Props {
     amount: number;

@@ -11,7 +11,7 @@ import AppService from '../../../services/AppService';
 import { openApp } from '../../../store/AppProcessesStore';
 import Grid from '@material-ui/core/Grid';
 
-const styles = require('./App.scss');
+const styles = require('./App.module.scss');
 
 const popoverStyle = {
     textAlign: 'center',

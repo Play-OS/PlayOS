@@ -1,7 +1,7 @@
 import * as path from 'path';
 import InstanceBag from '../InstanceBag';
 import Application from '../models/Application';
-import Kernel from '@playos/kernel';
+import Kernel from '../../vendor/kernel';
 
 export async function getWappInformation(wappFolderPath: string) {
     try {
@@ -9,9 +9,9 @@ export async function getWappInformation(wappFolderPath: string) {
         const manifestRaw = await kernel.fs.readFile(`${wappFolderPath}/manifest.json`);
         const manifest: Application = JSON.parse(manifestRaw.toString());
 
-        let iconBlob: Blob = null;
+        let iconBlob: Blob;
 
-        if (!manifest.playos.isPwa) {
+        if (!manifest.playos || !manifest.playos.isPwa) {
             const iconPath = path.resolve(wappFolderPath, manifest.icons[0].src);
             const iconRaw: any = await kernel.fs.readFile(iconPath);
             iconBlob = new Blob([iconRaw], { type: 'image/jpeg' });
@@ -46,7 +46,7 @@ export async function getApplicationFromWapp(wappFolderPath: string) {
         const manifest: Application = JSON.parse(manifestRaw.toString());
 
         let isWasm = false;
-        let wasm: Uint8Array = null;
+        let wasm: Uint8Array = new Uint8Array();
 
         if (manifest.start_url.endsWith('.wasm')) {
             const wasmPath = path.resolve(wappFolderPath, manifest.start_url);

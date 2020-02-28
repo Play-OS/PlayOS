@@ -1,8 +1,7 @@
 import * as React from 'react';
-import Grid from '@material-ui/core/Grid';
 import { AppGrid } from '../../../services/micro/sortAppsInGrids';
 import App from '../new/App';
-const styles = require('./AppGrid.scss');
+const styles = require('./AppGrid.module.scss');
 
 interface Props {
     grid: AppGrid;

@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { UserInfo } from '../../../store/UserInfoStore';
-const styles = require('./LoginLoadingScreen.scss');
+const styles = require('./LoginLoadingScreen.module.scss');
 
 interface Props {
     user: UserInfo,

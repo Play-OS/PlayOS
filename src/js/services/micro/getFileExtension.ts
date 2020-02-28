@@ -7,5 +7,11 @@
  */
 export default function getFileExtension(fileName: string): string {
     const fileNameSplitted = fileName.toString().split('.');
-    return fileNameSplitted.pop();
+    const extension = fileNameSplitted.pop();
+
+    if (!extension) {
+        return '';
+    }
+
+    return extension;
 }

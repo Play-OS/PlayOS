@@ -16,7 +16,7 @@ export function readFileAsArrayBuffer(file: File): Promise<ProcessedFile> {
             resolve({
                 name: file.name,
                 size: file.size,
-                bin: <ArrayBuffer>fileReader.result,
+                bin: fileReader.result as ArrayBuffer,
             });
         }
 

@@ -6,13 +6,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import GetAppIcon from '@material-ui/icons/GetApp';
 import InfoIcon from '@material-ui/icons/Info';
 import { setOpenSideBarNavigationState } from '../../../store/SideBarNavigationStore';
-import UserService from '../../../services/UserService';
-import AppInstallDialog from './AppInstallDialog';
+import AuthService from '../../../services/AuthService';
 import AboutDialog from './AboutDialog';
-const styles = require('./SideNavigation.scss');
+const styles = require('./SideNavigation.module.scss');
 
 interface Props {
     isOpen: boolean;
@@ -20,7 +18,6 @@ interface Props {
 }
 
 function SideNavigation(props: Props) {
-    const [isAppInstallDialogOpen, setAppInstallDialogOpen] = React.useState(false);
     const [isAboutDialogOpen, setAboutDialogOpen] = React.useState(false);
 
     function handleDrawerOnClose() {
@@ -28,17 +25,8 @@ function SideNavigation(props: Props) {
     }
 
     async function handleLogoutClick() {
-        await UserService.logout();
+        await AuthService.logout();
         window.location.reload();
-    }
-
-    async function handleInstallAppClick() {
-        handleDrawerOnClose();
-        setAppInstallDialogOpen(true);
-    }
-
-    async function handleInstallAppDialogClose() {
-        setAppInstallDialogOpen(false);
     }
 
     function handleAboutClick() {
@@ -50,12 +38,6 @@ function SideNavigation(props: Props) {
         <>
             <Drawer className={styles.drawer} anchor="right" open={props.isOpen} onClose={handleDrawerOnClose}>
                 <List className={styles.drawerList}>
-                    <ListItem button onClick={handleInstallAppClick}>
-                        <ListItemIcon>
-                            <GetAppIcon />
-                        </ListItemIcon>
-                        <ListItemText>Install App</ListItemText>
-                    </ListItem>
                     <ListItem button onClick={handleAboutClick}>
                         <ListItemIcon>
                             <InfoIcon />
@@ -70,7 +52,6 @@ function SideNavigation(props: Props) {
                     </ListItem>
                 </List>
             </Drawer>
-            <AppInstallDialog open={isAppInstallDialogOpen} onClose={handleInstallAppDialogClose} />
             <AboutDialog open={isAboutDialogOpen} onClose={() => setAboutDialogOpen(false)} />
         </>
     );

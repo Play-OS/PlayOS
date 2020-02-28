@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
-import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
-import SnackBarMessage from '../components/SnackBarMessage';
-import styles from './DefaultLayout.scss';
+import styles from './DefaultLayout.module.scss';
 import classnames from 'classnames';
 import logo from '../../img/PlayOSLogoSide_black.svg';
 import ChoosePage from '../pages/ChoosePage';

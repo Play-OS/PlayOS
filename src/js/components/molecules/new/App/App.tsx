@@ -1,13 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
-import Application from '../../../../models/Application';
-import { openApp } from '../../../../store/AppProcessesStore';
-import resolveUrl from '../../../../services/micro/resolveUrl';
 import InstanceBag from '../../../../InstanceBag';
 import BackgroundTerminal from '../../../../background/BackgroundTerminal';
-import { ParsedApplicationInfo } from '@playos/kernel';
-const styles = require('./App.scss');
+import { ParsedApplicationInfo } from '../../../../../vendor/kernel/core/WasmParser';
+const styles = require('./App.module.scss');
 
 interface Props {
     app: ParsedApplicationInfo;
@@ -26,7 +23,7 @@ function App(props: Props) {
 
     return (
         <button className={styles.App} onClick={handleAppClick}>
-            <img src={icon} className={styles.icon} />
+            <img alt={app.manifest.name} src={icon} className={styles.icon} />
             <Typography noWrap variant="body1" className={styles.title}>{app.manifest.short_name}</Typography>
         </button>
     );

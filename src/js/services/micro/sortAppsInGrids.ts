@@ -1,5 +1,4 @@
-import Application from "../../models/Application";
-import { ParsedApplicationInfo } from "@playos/kernel";
+import { ParsedApplicationInfo } from "../../../vendor/kernel/core/WasmParser";
 
 export interface AppGrid {
     id: string;

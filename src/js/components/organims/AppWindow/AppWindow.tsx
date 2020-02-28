@@ -8,8 +8,8 @@ import AppTitleBar from './AppTitleBar';
 import resolveUrl from '../../../services/micro/resolveUrl';
 import AppTerminal from '../AppTerminal';
 import Explorer from '../../../apps/Explorer';
-const styles = require('./AppWindow.scss');
-const titleBarStyles = require('./AppTitleBar.scss');
+const styles = require('./AppWindow.module.scss');
+const titleBarStyles = require('./AppTitleBar.module.scss');
 
 interface Props {
     process: Process;
@@ -19,7 +19,7 @@ interface Props {
 
 function AppWindow(props: Props) {
     const { process } = props;
-    const [snapState, setSnapState] = React.useState({
+    const [snapState] = React.useState({
         half: false,
         full: false,
     });
@@ -28,26 +28,26 @@ function AppWindow(props: Props) {
     const [windowZIndex, setWindowZIndex] = React.useState(0);
     const [isDragging, setIsDragging] = React.useState(false);
 
-    function handleOnDrag(event: MouseEvent, data: any) {
-        // We are dragging the window so we have to make sure we are almost touching the edges
-        // First check the right side if we are touching the bounds
-        if (event.clientX > window.outerWidth) {
-            setSnapState({
-                full: false,
-                half: true,
-            });
-        } else if (event.clientX < 0) {
-            setSnapState({
-                full: false,
-                half: true,
-            });
-        } else if (event.clientY < 0) {
-            setSnapState({
-                full: true,
-                half: false,
-            });
-        }
-    }
+    // function handleOnDrag(event: MouseEvent, data: any) {
+    //     // We are dragging the window so we have to make sure we are almost touching the edges
+    //     // First check the right side if we are touching the bounds
+    //     if (event.clientX > window.outerWidth) {
+    //         setSnapState({
+    //             full: false,
+    //             half: true,
+    //         });
+    //     } else if (event.clientX < 0) {
+    //         setSnapState({
+    //             full: false,
+    //             half: true,
+    //         });
+    //     } else if (event.clientY < 0) {
+    //         setSnapState({
+    //             full: true,
+    //             half: false,
+    //         });
+    //     }
+    // }
 
     function handleDragStart() {
         handleWindowClick();
@@ -117,19 +117,24 @@ function AppWindow(props: Props) {
                         <Explorer />
                     }
 
-                    {process.app.playos.isWasm && process.app.playos.showTerminal &&
+                    {process.app.playos &&
                         <>
-                            <AppTerminal />
+                            {process.app.playos.isWasm && process.app.playos.showTerminal &&
+                                <>
+                                    <AppTerminal />
+                                </>
+                            }
+
+                            {!process.app.playos.isWasm &&
+                                <>
+                                    <iframe title={process.app.name} src={mainUrl} className={styles.iframe} onFocus={() => console.log('Iframe')}>
+                                        Content could not be loaded
+                                    </iframe>
+                                </>
+                            }
                         </>
                     }
 
-                    {!process.app.playos.isWasm &&
-                        <>
-                            <iframe src={mainUrl} className={styles.iframe} onFocus={() => console.log('Iframe')}>
-                                Content could not be loaded
-                            </iframe>
-                        </>
-                    }
                 </div>
             </div>
         </Rnd>

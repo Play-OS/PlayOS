@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CloseIcon from 'material-ui/svg-icons/navigation/close';
-import styles from './CloseAppButton.styles.scss';
+import styles from './CloseAppButton.module.scss';
 import classnames from 'classnames';
 import { closeApp } from '../../../store/AppProcessesStore';
 

@@ -14,6 +14,7 @@ import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import styles from './SideNavigation.scss';
 import ProfilePic from './ProfilePicture.jsx';
 import UserService from '../../../services/UserService';
+import AuthService from '../../../services/AuthService';
 import { setOpenSideBarNavigationState } from '../../../store/SideBarNavigationStore';
 import { openApp } from '../../../store/AppProcessesStore';
 
@@ -39,7 +40,7 @@ class SideNavigation extends React.Component {
     }
 
     async handleLogoutClick() {
-        await UserService.logout();
+        await AuthService.logout();
         window.location.reload();
     }
 

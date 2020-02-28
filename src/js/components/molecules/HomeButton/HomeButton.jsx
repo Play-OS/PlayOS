@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // import { white } from 'material-ui/styles/colors';
 import { closeApp } from '../../../store/AppProcessesStore';
 import InstanceBag from '../../../InstanceBag';
-const styles = require('./HomeButton.scss');
+const styles = require('./HomeButton.module.scss');
 
 class HomeButton extends React.Component {
     constructor(props) {

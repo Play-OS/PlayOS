@@ -1,6 +1,5 @@
 import Application from "../models/Application";
 import UserService from "../services/UserService";
-import KeyService from "../services/KeyService";
 
 export interface ApplicationStoreState {
     apps: Application[];

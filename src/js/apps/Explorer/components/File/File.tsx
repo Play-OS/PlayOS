@@ -4,12 +4,12 @@ import InsertDriveFileOutlinedIcon from '@material-ui/icons/InsertDriveFileOutli
 import WebIcon from '@material-ui/icons/Web';
 import getFileExtension from '../../../../services/micro/getFileExtension';
 
-const styles = require('./File.scss');
+const styles = require('./File.module.scss');
 
 interface Props {
     file: Dirent;
     path: string;
-    onClick?: (folder: Dirent) => void;
+    onClick: (folder: Dirent) => void;
 }
 
 function getFileIcon(file: Dirent): any {
@@ -25,8 +25,8 @@ function getFileIcon(file: Dirent): any {
 }
 
 export default function File(props: Props) {
-    const [icon, setIcon] = React.useState('');
-    const [name, setName] = React.useState(props.file.name);
+    const [icon] = React.useState('');
+    const [name] = React.useState(props.file.name);
 
     React.useEffect(() => {
         async function processFile() {
@@ -39,13 +39,13 @@ export default function File(props: Props) {
         }
 
         processFile();
-    }, []);
+    });
 
     return (
         <div className={styles.file}>
             <div className={styles.iconWrapper} onClick={() => props.onClick(props.file)}>
                 {icon === '' && getFileIcon(props.file)}
-                {icon !== '' && <img className={styles.appIcon} src={icon} />}
+                {icon !== '' && <img alt={name.toString()} className={styles.appIcon} src={icon} />}
             </div>
             <span>{name}</span>
         </div>

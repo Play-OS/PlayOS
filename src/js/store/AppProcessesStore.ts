@@ -38,8 +38,6 @@ const defaultState: AppProcessesState = {
 };
 
 function AppProcessesStore(state = defaultState, action: Action): AppProcessesState {
-    let newState = false;
-
     if (action.type === ActionTypes.OPEN_APP) {
         const app: Application = action.payload;
         // For the MVP we do not allow multiple processes of the same app.

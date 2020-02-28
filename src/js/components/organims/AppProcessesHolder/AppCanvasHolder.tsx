@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux'
 import { AppProcessesState } from '../../../store/AppProcessesStore';
 import AppProcess from '../AppProcess/AppProcess';
-const styles = require('./AppCanvasHolder.scss');
+const styles = require('./AppCanvasHolder.module.scss');
 
 interface Props {
     appProcessesState: AppProcessesState;

@@ -26,8 +26,6 @@
     "noEmit": true
   },
   "include": [
-    "src",
-    "node_modules",
-    "@playos/kernel"
+    "src"
   ]
 }

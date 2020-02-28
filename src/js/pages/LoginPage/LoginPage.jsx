@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import RaisedButton from 'material-ui/RaisedButton';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Configuration from '../../Configuration';
 import KeyService from '../../services/KeyService';
 import { loadUserInfo } from '../../store/UserInfoStore';
 import AuthService from '../../services/AuthService';
-const styles = require('./LoginPage.scss');
+const styles = require('./LoginPage.module.scss');
 
 class IndexPage extends React.Component {
     constructor(props) {

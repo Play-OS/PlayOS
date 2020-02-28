@@ -17,6 +17,7 @@ export default class App {
 
     constructor(id: string = 'app') {
         this.domId = id;
+        console.log('[] id -> ', id);
     }
 
     run() {

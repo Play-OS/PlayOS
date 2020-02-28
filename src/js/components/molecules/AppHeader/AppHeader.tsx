@@ -1,12 +1,10 @@
 import * as React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-const styles = require('./AppHeader.scss');
+const styles = require('./AppHeader.module.scss');
 
 interface Props {
     title: string;

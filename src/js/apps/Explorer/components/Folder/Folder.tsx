@@ -4,14 +4,14 @@ import FolderIcon from '@material-ui/icons/Folder';
 import getFileExtension from '../../../../services/micro/getFileExtension';
 import { getWappInformation } from '../../../../services/WappService';
 
-const styles = require('./Folder.scss');
+const styles = require('./Folder.module.scss');
 
 const WAPP_EXTENSION = 'wapp';
 
 interface Props {
     folder: Dirent;
     path: string;
-    onClick?: (folder: Dirent) => void;
+    onClick: (folder: Dirent) => void;
 }
 
 export default function Folder(props: Props) {
@@ -43,13 +43,13 @@ export default function Folder(props: Props) {
         }
 
         processFile();
-    }, []);
+    });
 
     return (
         <div className={styles.folder}>
             <div className={styles.iconWrapper} onClick={() => props.onClick(props.folder)}>
                 {icon === '' && <FolderIcon className={styles.icon} />}
-                {icon !== '' && <img className={styles.appIcon} src={icon} />}
+                {icon !== '' && <img alt="Folder" className={styles.appIcon} src={icon} />}
             </div>
             <span>{name}</span>
         </div>

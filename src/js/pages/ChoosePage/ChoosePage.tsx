@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 
-const styles = require('./ChoosePage.scss');
+const styles = require('./ChoosePage.module.scss');
 
 function ChoosePage() {
     return (

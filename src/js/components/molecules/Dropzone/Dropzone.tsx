@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Kernel from '@playos/kernel';
+import Kernel from '../../../../vendor/kernel';
 import { useDropzone } from 'react-dropzone';
 import InstanceBag from '../../../InstanceBag';
 import { readFileAsArrayBuffer } from '../../../services/FileReaderService';
@@ -19,7 +19,7 @@ export default function Dropzone(props: Props) {
         const processedFiles = await Promise.all(promises);
 
         processedFiles.forEach((file) => {
-            const path = `${props.currentPath}/${file.name}`;
+            const path = `${currentPath}/${file.name}`;
             // Filter out trailing slashes
             const newPath = path.split('/').filter((p) => p).join('/');
 
@@ -27,7 +27,7 @@ export default function Dropzone(props: Props) {
         });
     }, [currentPath]);
 
-    const { getInputProps, getRootProps, isDragActive } = useDropzone({ onDrop, noClick: true });
+    const { getInputProps, getRootProps } = useDropzone({ onDrop, noClick: true });
 
     return (
         <div className={className} {...getRootProps()}>

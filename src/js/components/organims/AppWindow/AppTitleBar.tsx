@@ -1,13 +1,12 @@
 import * as React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { connect } from 'react-redux';
-import { Process, killProcess, closeApp } from '../../../store/AppProcessesStore';
+import { Process, killProcess } from '../../../store/AppProcessesStore';
 import getIdealTextColor from '../../../services/micro/getIdealTextColor';
 import useMedia from '../../../services/hooks/useMedia';
 import Time from '../../atoms/Time';
-const styles = require('./AppTitleBar.scss');
+const styles = require('./AppTitleBar.module.scss');
 
 interface Props {
     process: Process;

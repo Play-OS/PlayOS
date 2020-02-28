@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import KeyService from '../../services/KeyService';
-const styles = require('./RegisterPage.scss');
+const styles = require('./RegisterPage.module.scss');
 
 export default function RegisterPage() {
     const [values, setValues] = React.useState({

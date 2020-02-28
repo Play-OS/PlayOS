@@ -1,7 +1,5 @@
-import { PrivateKey } from "../services/providers/IProvider";
-import AuthService from "../services/AuthService";
 import InstanceBag from "../InstanceBag";
-import Kernel from "@playos/kernel";
+import Kernel from "../../vendor/kernel";
 
 export interface UserInfo {
     info: {

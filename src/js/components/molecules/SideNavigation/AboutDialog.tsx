@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
 const packageJson = require('../../../../../package.json');
-const styles = require('./AboutDialog.scss');
+const styles = require('./AboutDialog.module.scss');
 
 interface Props {
     open: boolean;

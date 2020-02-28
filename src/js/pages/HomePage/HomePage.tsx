@@ -7,11 +7,8 @@ import Header from '../../components/molecules/Header';
 import AppSection from '../../components/organims/AppSection';
 import { loadApps } from '../../store/ApplicationStore';
 import AppProcessesHolder from '../../components/organims/AppProcessesHolder';
-import Kernel, { RutileProvider, BrowserProvider } from '@playos/kernel';
-import InstanceBag from '../../InstanceBag';
-import Configuration from '../../Configuration';
 import bootSystem from '../../services/bootSystem';
-const styles = require('./HomePage.scss');
+import redirect from '../../services/redirect';
 
 interface Props {
     user: UserInfo;
@@ -29,6 +26,12 @@ class HomePage extends React.Component<Props, State> {
 
     async componentDidMount() {
         const keys = KeyService.keysFromStorage();
+
+        if (!keys) {
+            redirect('/os/choose');
+            return;
+        }
+
         await bootSystem(keys);
 
         if (!this.props.user.info.fullName && keys) {

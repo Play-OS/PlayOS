@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import HomeButton from '../HomeButton';
-import BackButton from '../BackButton';
 import Profile from '../Profile';
 import Application from '../../../models/Application';
 import Time from '../../atoms/Time';
 import SideNavigation from '../SideNavigation';
-const styles = require('./Header.scss');
+const styles = require('./Header.module.scss');
 
 interface Props {
     wallpaperMode?: boolean,

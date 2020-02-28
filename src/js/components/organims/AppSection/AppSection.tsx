@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import SwipeableViewsRaw from 'react-swipeable-views';
 // @ts-ignore
 import { bindKeyboard } from 'react-swipeable-views-utils';
-import { ParsedApplicationInfo } from '@playos/kernel';
+import { ParsedApplicationInfo } from '../../../../vendor/kernel/core/WasmParser';
 import sortAppsInGrids from '../../../services/micro/sortAppsInGrids';
 import AppGrid from '../../molecules/AppGrid';
 import useMedia from '../../../services/hooks/useMedia';
 import BulletNavigation from '../../atoms/BulletNavigation';
 // import Folder from '../Folder';
-const styles = require('./AppSection.styles.scss');
+const styles = require('./AppSection.module.scss');
 
 const SwipeableViews = bindKeyboard(SwipeableViewsRaw);
 

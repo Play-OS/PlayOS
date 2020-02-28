@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './ProfilePicture.scss';
+import styles from './ProfilePicture.module.scss';
 
 function getImage(props) {
     return <img onClick={props.onTouchTap} className={styles.profilePic} alt="" src="http://coolspotters.com/files/photos/12377/guy-berryman-profile.jpg" />;

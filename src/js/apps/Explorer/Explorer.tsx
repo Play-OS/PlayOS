@@ -16,9 +16,9 @@ import Folder from './components/Folder';
 import File from './components/File';
 import Dirent from 'memfs/lib/Dirent';
 import Dropzone from '../../components/molecules/Dropzone';
-import Kernel from '@playos/kernel';
+import Kernel from '../../../vendor/kernel';
 import BackgroundTerminal from '../../background/BackgroundTerminal';
-const styles = require('./Explorer.scss');
+const styles = require('./Explorer.module.scss');
 
 export default function Explorer() {
     const [isLocationsOpen, setLocationsOpen] = React.useState(true);
@@ -28,6 +28,11 @@ export default function Explorer() {
     React.useEffect(() => {
         async function setup() {
             const kernel = InstanceBag.get<Kernel>('kernel');
+
+            if (!kernel.fs) {
+                throw new Error('System was not booted');
+            }
+
             const filesAndDirectories: any = await kernel.fs.readDir(path, {
                 encoding: 'utf8',
                 withFileTypes: true,
@@ -109,9 +114,9 @@ export default function Explorer() {
                     {files.map((file) => {
                         if (file.isDirectory()) {
                             return <Folder path={path} key={file.name.toString()} folder={file} onClick={handleFileClick} />
-                        } else if (file.isFile()) {
-                            return <File path={path} key={file.name.toString()} file={file} onClick={handleFileClick} />
                         }
+
+                        return <File path={path} key={file.name.toString()} file={file} onClick={handleFileClick} />
                     })}
                 </Dropzone>
             </AppHeader>

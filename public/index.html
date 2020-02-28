@@ -17,21 +17,5 @@
     <body>
         <div id="app"></div>
         <canvas id="windowCanvas" width="1920" height="1080" style="background:red; position: absolute; top:10px; left: 10px; width: 20%;"></canvas>
-        <script>
-            if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
-                const script = document.createElement('script');
-                const base = document.createElement('base');
-                base.href = 'http://localhost:3000/';
-
-                script.src = 'http://localhost:3000/build/index.js';
-                document.head.appendChild(base);
-                document.head.appendChild(script);
-            } else {
-                const script = document.createElement('script');
-                script.src = 'build/index.js';
-                document.head.appendChild(script);
-            }
-        </script>
-        <!-- <script src="build/index.js" charset="utf-8"></script> -->
     </body>
 </html>

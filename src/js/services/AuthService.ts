@@ -1,20 +1,41 @@
-import Configuration from "../Configuration";
-import IProvider, { PrivateKey, Account } from "./providers/IProvider";
+import { PrivateKey, Account } from "./providers/IProvider";
+import KeyService from "./KeyService";
 
 class AuthService {
     static async getAccountInfo(privateKey: PrivateKey): Promise<Account> {
-        const provider: IProvider = Configuration.get('provider');
-        return provider.getAccountInfo('');
+        return {
+            currencyTicker: 'RUT',
+            balance: '0',
+            // balance: ethers.utils.formatEther(balance),
+            fullName: 'Test account',
+            address: privateKey.address,
+            profilePic: '',
+            wallpaper: 'https://playos.io/wp-content/uploads/2019/10/background.jpg?id=4353',
+        };
     }
 
     static async login(): Promise<Account> {
-        const provider: IProvider = Configuration.get('provider');
-        return provider.login();
+        const keys = KeyService.keysFromStorage();
+
+        if (!keys) {
+            throw new Error('Login failed, no keys found');
+        }
+
+        return AuthService.getAccountInfo(keys);
+    }
+
+    static async logout(): Promise<void> {
+        KeyService.removeKeys();
     }
 
     static async isLoggedIn(): Promise<boolean> {
-        const provider: IProvider = Configuration.get('provider');
-        return provider.isLoggedIn();
+        const keys = KeyService.keysFromStorage();
+
+        if (!keys) {
+            return false;
+        }
+
+        return true;
     }
 }
 

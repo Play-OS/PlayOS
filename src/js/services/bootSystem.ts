@@ -1,23 +1,19 @@
-import Kernel, { BrowserProvider, DesktopProvider, SyncProvider } from '@playos/kernel';
+import Kernel, { BrowserProvider, DesktopProvider, SyncProvider, bootKernel } from '../../vendor/kernel';
 import { PrivateKey } from './providers/IProvider';
-import Configuration from '../Configuration';
 import InstanceBag from '../InstanceBag';
 import BackgroundTerminal from '../background/BackgroundTerminal';
 import isNodeJs from './isNodeJs';
 
 
-export default async function bootSystem(keys: PrivateKey) {
-    const rutileConfig = Configuration.get('providerDetails');
-    let kernel: Kernel = null;
+export default async function πbootSystem(keys: PrivateKey) {
+    let kernel: Kernel;
 
     if (isNodeJs()) {
         const syncProvider = new SyncProvider(new DesktopProvider(), [new BrowserProvider()]);
-        kernel = new Kernel(keys.privateKey, syncProvider);
+        kernel = await bootKernel(keys.privateKey, syncProvider);
     } else {
-        kernel = new Kernel(keys.privateKey, new BrowserProvider()); //new RutileProvider(rutileConfig.httpHost, rutileConfig.chainId, rutileConfig.coreAddress));
+        kernel = await bootKernel(keys.privateKey, new BrowserProvider()); //new RutileProvider(rutileConfig.httpHost, rutileConfig.chainId, rutileConfig.coreAddress));
     }
-
-    await kernel.boot();
 
     if (!(await kernel.fs.exists('/etc/environment'))) {
         // We need to create some defaults

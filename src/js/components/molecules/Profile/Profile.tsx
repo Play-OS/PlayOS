@@ -6,12 +6,10 @@ import NavigationMenuIcon from 'material-ui/svg-icons/navigation/menu';
 // @ts-ignore
 import ArrowLeftIcon from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
 import ProfilePicture from '../SideNavigation/ProfilePicture';
-import CloseAppButton from './CloseAppButton';
-import MultiTaskButton from './MultiTaskButton';
 import { setOpenSideBarNavigationState } from '../../../store/SideBarNavigationStore';
 import { UserInfo } from '../../../store/UserInfoStore';
 import { OpenProcess } from '../../../store/AppProcessesStore';
-const styles = require('./Profile.scss');
+const styles = require('./Profile.module.scss');
 
 const black = '#ffffff';
 
@@ -36,15 +34,12 @@ function Profile(props: Props) {
     return (
         <div className={styles.profile}>
             <div className={styles.mobileProfile}>
-                {/* <MultiTaskButton className={styles.mobileCloseButton} /> */}
                 { !isAppOpen && <NavigationMenuIcon className={styles.hamburgerIcon} color={black} onClick={handleProfileClick} /> }
                 {/* { isAppOpen && <CloseAppButton className={styles.mobileCloseButton} /> } */}
             </div>
             <div className={styles.desktopProfile}>
                 <ArrowLeftIcon onClick={handleProfileClick} className={arrowLeftStyles} color={black} />
                 <span className={styles.name} onClick={handleProfileClick}>{props.user.info.fullName}</span>
-                {/* <MultiTaskButton /> */}
-                {/* <CloseAppButton /> */}
                 <ProfilePicture className={styles.profilePicture} onClick={handleProfileClick} />
             </div>
         </div>

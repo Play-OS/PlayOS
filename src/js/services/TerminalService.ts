@@ -1,8 +1,6 @@
 // @ts-ignore
 import { fetchCommandFromWAPM } from '@wasmer/wasm-terminal/lib/unoptimized/wasm-terminal.esm';
-// @ts-ignore
-import { lowerI64Imports } from '@wasmer/wasm-transformer/lib/unoptimized/wasm-transformer.esm';
-import Kernel, { FileSystem } from '@playos/kernel';
+import Kernel, { FileSystem } from '../../vendor/kernel';
 import { getApplicationFromWapp } from './WappService';
 import store from '../store';
 import InstanceBag from '../InstanceBag';
@@ -33,7 +31,7 @@ export default class TerminalService {
         if (commandName.endsWith('.wapp')) {
             const appInfo = await getApplicationFromWapp(commandName);
 
-            if (appInfo.isWasm) {
+            if (appInfo && appInfo.isWasm) {
                 return appInfo.wasm;
             }
 
@@ -59,8 +57,10 @@ export default class TerminalService {
         args.unshift(commandName);
         const process = await kernel.spawnProcess(preparedBin, args, {
             env: {
-                '$PWD': '/',
-                'PWD': '/',
+                $PWD: '/',
+                PWD: '/',
+                NODE_ENV: 'production',
+                PUBLIC_URL: '/',
             },
         });
 
