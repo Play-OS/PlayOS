@@ -5,7 +5,7 @@ import { UserInfo, loadUserInfo } from '../../store/UserInfoStore';
 import KeyService from '../../services/KeyService';
 import Header from '../../components/molecules/Header';
 import AppSection from '../../components/organims/AppSection';
-import { loadApps } from '../../store/ApplicationStore';
+import { loadApps } from '../../store/applications/applicationsActions';
 import AppProcessesHolder from '../../components/organims/AppProcessesHolder';
 import bootSystem from '../../services/bootSystem';
 import redirect from '../../services/redirect';
@@ -53,18 +53,18 @@ class HomePage extends React.Component<Props, State> {
 
     render() {
         return (
-            <React.Fragment>
-                {!this.state.isLoaded &&
-                    <LoginLoadingScreen />
-                }
-                {this.state.isLoaded &&
-                    <>
-                        <Header />
-                        <AppSection />
-                        <AppProcessesHolder />
-                    </>
-                }
-            </React.Fragment>
+            <>
+                {!this.state.isLoaded
+                    && <LoginLoadingScreen />}
+                {this.state.isLoaded
+                    && (
+                        <>
+                            <Header />
+                            <AppSection />
+                            <AppProcessesHolder />
+                        </>
+                    )}
+            </>
         );
     }
 }
@@ -73,5 +73,5 @@ const mapStateToProps = (store: any) => ({
     user: store.UserInfoStore,
 });
 
-//@ts-ignore
+// @ts-ignore
 export default connect(mapStateToProps)(HomePage);

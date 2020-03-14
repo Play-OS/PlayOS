@@ -8,7 +8,7 @@ import sortAppsInGrids from '../../../services/micro/sortAppsInGrids';
 import AppGrid from '../../molecules/AppGrid';
 import useMedia from '../../../services/hooks/useMedia';
 import BulletNavigation from '../../atoms/BulletNavigation';
-// import Folder from '../Folder';
+
 const styles = require('./AppSection.module.scss');
 
 const SwipeableViews = bindKeyboard(SwipeableViewsRaw);
@@ -18,6 +18,10 @@ interface Props {
 }
 
 function AppSection(props: Props) {
+    const {
+        apps,
+    } = props;
+
     const isDesktop = useMedia('(min-width: 960px)');
     const [viewIndex, setViewIndex] = React.useState(0);
 
@@ -27,7 +31,7 @@ function AppSection(props: Props) {
         amountPerGrid = 28;
     }
 
-    const appGrids = sortAppsInGrids(props.apps, amountPerGrid);
+    const appGrids = sortAppsInGrids(apps, amountPerGrid);
 
     function handleChangeIndex(index: number) {
         setViewIndex(index);
@@ -48,7 +52,6 @@ function AppSection(props: Props) {
 }
 
 const mapStateToProps = (store: any) => ({
-    ApplicationStore: store.ApplicationStore,
     apps: store.ApplicationStore.apps,
 });
 

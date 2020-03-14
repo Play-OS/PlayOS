@@ -3,16 +3,17 @@ import Dirent from 'memfs/lib/Dirent';
 import InsertDriveFileOutlinedIcon from '@material-ui/icons/InsertDriveFileOutlined';
 import WebIcon from '@material-ui/icons/Web';
 import getFileExtension from '../../../../services/micro/getFileExtension';
+import { Listing } from '../../../../services/FileService';
 
 const styles = require('./File.module.scss');
 
 interface Props {
-    file: Dirent;
+    file: Listing;
     path: string;
-    onClick: (folder: Dirent) => void;
+    onClick: (folder: Listing) => void;
 }
 
-function getFileIcon(file: Dirent): any {
+function getFileIcon(file: Listing): any {
     const fileName: any = file.name;
     const fileExtension = getFileExtension(fileName);
 

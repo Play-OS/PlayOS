@@ -1,17 +1,17 @@
 import * as React from 'react';
-import Dirent from 'memfs/lib/Dirent';
 import FolderIcon from '@material-ui/icons/Folder';
 import getFileExtension from '../../../../services/micro/getFileExtension';
 import { getWappInformation } from '../../../../services/WappService';
+import { Listing } from '../../../../services/FileService';
 
 const styles = require('./Folder.module.scss');
 
 const WAPP_EXTENSION = 'wapp';
 
 interface Props {
-    folder: Dirent;
+    folder: Listing;
     path: string;
-    onClick: (folder: Dirent) => void;
+    onClick: (folder: Listing) => void;
 }
 
 export default function Folder(props: Props) {
@@ -43,7 +43,7 @@ export default function Folder(props: Props) {
         }
 
         processFile();
-    });
+    }, []);
 
     return (
         <div className={styles.folder}>

@@ -4,7 +4,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import UserService from '../../../services/UserService';
 import SnackBarMessageActions from '../../../actions/SnackBarMessageActions';
-import { setApps } from '../../../store/ApplicationStore';
+import { setApps } from '../../../store/applications/applicationStore';
 
 class AppUninstallDialog extends React.Component {
     constructor(props) {

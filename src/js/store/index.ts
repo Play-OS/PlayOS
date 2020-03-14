@@ -8,7 +8,7 @@ import SnackBarMessageStore from './SnackBarMessageStore';
 import UserInfoStore from './UserInfoStore';
 import AppProcessesStore from './AppProcessesStore';
 import SideBarNavigationStore from './SideBarNavigationStore';
-import ApplicationStore from './ApplicationStore';
+import ApplicationStore from './applications/applicationStore';
 import MultitaskStore from './MultitaskStore';
 
 export const history = createHashHistory();

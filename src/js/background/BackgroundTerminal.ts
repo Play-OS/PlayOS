@@ -1,5 +1,4 @@
-// @ts-ignore
-import WasmTerminal from '@wasmer/wasm-terminal/lib/unoptimized/wasm-terminal.esm';
+import WasmTerminal from '@wasmer/wasm-terminal';
 import Kernel from '../../vendor/kernel';
 import TerminalService from '../services/TerminalService';
 
@@ -14,8 +13,7 @@ class BackgroundTerminal {
         const terminalElement = document.createElement('div');
 
         this.wasmTerminal = new WasmTerminal({
-            // @ts-ignore
-            fetchCommand: (...args: any[]) => terminalService.handleCommand(...args),
+            fetchCommand: (options: any) => terminalService.handleCommand(options.args, options.env),
             wasmFs: this.kernel.fs.wasmFs,
         });
 

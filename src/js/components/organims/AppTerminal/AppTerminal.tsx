@@ -1,6 +1,5 @@
 import * as React from 'react';
-// @ts-ignore
-import WasmTerminal from "@wasmer/wasm-terminal/lib/unoptimized/wasm-terminal.esm";
+import WasmTerminal from '@wasmer/wasm-terminal';
 // import '@wasmer/wasm-terminal/dist/xterm/xterm.css';
 import TerminalService from '../../../services/TerminalService';
 import InstanceBag from '../../../InstanceBag';
@@ -23,8 +22,7 @@ function AppTerminal(props: Props) {
             const terminalService = new TerminalService(kernel.fs);
 
             wasmTerminal = new WasmTerminal({
-                // @ts-ignore
-                fetchCommand: (...args: any[]) => terminalService.handleCommand(...args),
+                fetchCommand: (options: any) => terminalService.handleCommand(options.args, options.env),
                 wasmFs: kernel.fs.wasmFs,
             });
 
