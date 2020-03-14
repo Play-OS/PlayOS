@@ -19,7 +19,7 @@ export default function AboutDialog(props: Props) {
     return (
         <Dialog open={props.open} onClose={() => props.onClose()}>
             <DialogTitle className={styles.title}>
-                <img src="res/img/PlayOSLogoSide_black.svg" alt="PlayOS" />
+                <img src="./res/img/PlayOSLogoSide_black.svg" alt="PlayOS" />
                 <span>Matterhorn</span>
             </DialogTitle>
             <DialogContent className={styles.content}>
