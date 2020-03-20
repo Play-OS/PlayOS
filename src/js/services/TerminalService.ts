@@ -65,8 +65,13 @@ export default class TerminalService extends EventEmitter {
 
         let terminalResult: string = '';
 
+        if (this.terminal) {
+            this.terminal.wasmTty.print('\n');
+        }
+
         process.on('message', (msg: string) => {
             if (this.terminal) {
+                this.terminal.wasmTty.print(msg, true);
                 terminalResult += msg;
             }
         });

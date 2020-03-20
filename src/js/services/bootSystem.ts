@@ -5,7 +5,7 @@ import BackgroundTerminal from '../background/BackgroundTerminal';
 import isNodeJs from './isNodeJs';
 
 
-export default async function πbootSystem(keys: PrivateKey) {
+export default async function bootSystem(keys: PrivateKey) {
     let kernel: Kernel;
 
     if (isNodeJs()) {

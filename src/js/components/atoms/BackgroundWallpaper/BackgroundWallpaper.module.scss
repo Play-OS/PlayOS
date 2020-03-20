@@ -1,0 +1,42 @@
+.wrapper {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.defaultBackground {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+
+    width: 100%;
+    height: 100%;
+
+    background-image: var(--default-background);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    opacity: 1;
+
+    transition: opacity 2s ease-in-out;
+}
+
+.backgroundSet {
+    opacity: 0;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    z-index: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}

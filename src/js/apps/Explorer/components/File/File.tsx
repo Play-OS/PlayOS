@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Dirent from 'memfs/lib/Dirent';
 import InsertDriveFileOutlinedIcon from '@material-ui/icons/InsertDriveFileOutlined';
 import WebIcon from '@material-ui/icons/Web';
 import getFileExtension from '../../../../services/micro/getFileExtension';

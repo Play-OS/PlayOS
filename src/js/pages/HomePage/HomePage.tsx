@@ -35,7 +35,7 @@ class HomePage extends React.Component<Props, State> {
         await bootSystem(keys);
 
         if (!this.props.user.info.fullName && keys) {
-            this.props.dispatch(loadUserInfo());
+            this.props.dispatch(loadUserInfo(keys));
             this.props.dispatch(loadApps());
         }
     }

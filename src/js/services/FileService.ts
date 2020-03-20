@@ -45,7 +45,6 @@ export async function getFile(path: string): Promise<Buffer> {
         });
 
         process.on('exit', () => {
-            console.log('[] buffer -> ', output);
             resolve(Buffer.from(output));
         });
     });

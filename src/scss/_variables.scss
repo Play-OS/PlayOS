@@ -7,3 +7,7 @@ $dashboard-tab-size: 48px;
 $desktop-breakpoint: 960px;
 
 $container-large: 1500px;
+
+:root {
+    --default-background: linear-gradient(45deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+}

@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import KeyService from '../../services/KeyService';
+
 const styles = require('./RegisterPage.module.scss');
 
 export default function RegisterPage() {
@@ -15,7 +16,7 @@ export default function RegisterPage() {
     const [keys, setKeys] = React.useState('');
 
     function handleChange(name: string) {
-        return function(event: React.ChangeEvent<HTMLInputElement>) {
+        return (event: React.ChangeEvent<HTMLInputElement>) => {
             setValues({
                 ...values,
                 [name]: event.target.value,
@@ -45,20 +46,24 @@ export default function RegisterPage() {
     return (
         <div>
             <div>
-                {!keys && <>
-                    <TextField className={styles.textField} label="Username" onChange={handleChange('username')} value={values.username} fullWidth />
-                    <TextField className={styles.textField} label="Password" type="password" onChange={handleChange('password')} value={values.password} fullWidth />
-                    <TextField className={styles.textField} label="Confirm Password" type="password" onChange={handleChange('passwordConfirm')} value={values.passwordConfirm} fullWidth />
-                    <Button disabled={!isAllFieldsFilledIn} onClick={createAccount} color="primary" variant="contained" fullWidth>Create account</Button>
-                </>}
+                {!keys && (
+                    <>
+                        <TextField className={styles.textField} label="Username" onChange={handleChange('username')} value={values.username} fullWidth />
+                        <TextField className={styles.textField} label="Password" type="password" onChange={handleChange('password')} value={values.password} fullWidth />
+                        <TextField className={styles.textField} label="Confirm Password" type="password" onChange={handleChange('passwordConfirm')} value={values.passwordConfirm} fullWidth />
+                        <Button disabled={!isAllFieldsFilledIn} onClick={createAccount} color="primary" variant="contained" fullWidth>Create account</Button>
+                    </>
+                )}
 
-                {keys && <>
-                    <Typography variant="subtitle1" gutterBottom>
-                        <b>Please save the following words securely. They are the only way to recover your account.</b>
-                    </Typography>
-                    <TextField className={styles.textField} multiline InputProps={{ readOnly: true }} value={keys} fullWidth />
-                    <Button href="#/os/home" color="primary" variant="contained" fullWidth>I saved my keys</Button>
-                </>}
+                {keys && (
+                    <>
+                        <Typography variant="subtitle1" gutterBottom>
+                            <b>Please save the following words securely. They are the only way to recover your account.</b>
+                        </Typography>
+                        <TextField className={styles.textField} multiline InputProps={{ readOnly: true }} value={keys} fullWidth />
+                        <Button href="#/os/home" color="primary" variant="contained" fullWidth>I saved my keys</Button>
+                    </>
+                )}
             </div>
         </div>
     );

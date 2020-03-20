@@ -1,5 +1,7 @@
 import InstanceBag from "../InstanceBag";
 import Kernel from "../../vendor/kernel";
+import { PrivateKey } from "../services/providers/IProvider";
+import AuthService from "../services/AuthService";
 
 export interface UserInfo {
     info: {
@@ -41,34 +43,25 @@ function UserInfoStore(state = defaultState, action: any) {
     return currentState;
 }
 
-export function loadUserInfo() {
-    return async (dispatch: any) => {
-        const kernel = InstanceBag.get<Kernel>('kernel');
-        const username = await kernel.registry.get<string>('username');
-
-        console.log('[] username -> ', username);
-
-        // Make sure we preload the background image to get a nice effect
-        // const response = await fetch(user.wallpaper);
-        // const blob = await response.blob();
-        // const blobUrl = window.URL.createObjectURL(blob);
-        // user.wallpaper = blobUrl;
-
-        dispatch(setUserInfo({
-            fullName: username,
-            address: '',
-            profilePic: '',
-            wallpaper: '',
-            currencyTicker: '',
-            balance: '',
-        }));
-    }
-}
-
 export function setUserInfo(payload: any) {
     return {
         type: 'SET_USER_INFO',
         payload,
+    };
+}
+
+export function loadUserInfo(privateKey: PrivateKey) {
+    return async (dispatch: any) => {
+        const kernel = InstanceBag.get<Kernel>('kernel');
+        const userInfo = await AuthService.getAccountInfo(privateKey, kernel);
+
+        // Make sure we preload the background image to get a nice effect
+        const response = await fetch(userInfo.wallpaper);
+        const blob = await response.blob();
+        const blobUrl = window.URL.createObjectURL(blob);
+        userInfo.wallpaper = blobUrl;
+
+        dispatch(setUserInfo(userInfo));
     };
 }
 

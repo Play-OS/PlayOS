@@ -15,8 +15,9 @@ interface Props {
 }
 
 export default function Folder(props: Props) {
+    const { folder } = props;
     const [icon, setIcon] = React.useState('');
-    const [name, setName] = React.useState(props.folder.name);
+    const [name, setName] = React.useState(folder.name);
 
     React.useEffect(() => {
         async function processFile() {
@@ -34,7 +35,7 @@ export default function Folder(props: Props) {
                 // const info = await getWappInformation(file);
 
                 if (wappInfo !== null) {
-                    const newFolderName = folderName.replace('.' + WAPP_EXTENSION, '');
+                    const newFolderName = folderName.replace(`.${WAPP_EXTENSION}`, '');
 
                     setIcon(wappInfo.icon);
                     setName(newFolderName);
