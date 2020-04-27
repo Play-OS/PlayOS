@@ -1,6 +1,7 @@
 # ![PlayOS](./screenshots/logo.png) - Web Operating System 🚀
 
-[![Discord Chat](https://img.shields.io/discord/605799122469126157.svg)](https://discord.gg/prWSGrZ)  ![Dependencies](https://david-dm.org/FranklinWaller/PlayOS.svg)
+![Node.js CI](https://github.com/Play-OS/PlayOS/workflows/Node.js%20CI/badge.svg)
+ [![Discord Chat](https://img.shields.io/discord/605799122469126157.svg)](https://discord.gg/prWSGrZ)  ![Dependencies](https://david-dm.org/FranklinWaller/PlayOS.svg) 
 
 PlayOS gives users an easy way to access their apps, games, storage, data, notifications and more. It is accessible from any device that has an internet browser. This allows you to pick up from any app where you left off. This is done by synchronizing the state between devices. Giving users a seamless experience.
  
