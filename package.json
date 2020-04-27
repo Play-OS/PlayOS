@@ -1,6 +1,6 @@
 {
   "name": "playos",
-  "version": "2.0.0-alpha",
+  "version": "2.0.0",
   "description": "PlayOS, blockchain agnostic portal",
   "main": "index.js",
   "scripts": {
