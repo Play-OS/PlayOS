@@ -10,13 +10,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import Dirent from 'memfs/lib/Dirent';
 import InstanceBag from '../../InstanceBag';
 import Folder from './components/Folder';
 import File from './components/File';
 import AppHeader from '../../components/molecules/AppHeader';
 import Dropzone from '../../components/molecules/Dropzone';
-import Kernel from '../../../vendor/kernel';
 import BackgroundTerminal from '../../background/BackgroundTerminal';
 import { getDirectoryListing, Listing } from '../../services/FileService';
 

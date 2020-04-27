@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
-import classnames from 'classnames';
 import styles from './DefaultLayout.module.scss';
 import logo from '../../img/PlayOSLogoSide_white.svg';
 import ChoosePage from '../pages/ChoosePage';

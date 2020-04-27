@@ -14,19 +14,22 @@ interface Props {
     onClick: (folder: Listing) => void;
 }
 
-export default function Folder(props: Props) {
-    const { folder } = props;
+export default function Folder({
+    folder,
+    path,
+    onClick,
+}: Props) {
     const [icon, setIcon] = React.useState('');
     const [name, setName] = React.useState(folder.name);
 
     React.useEffect(() => {
         async function processFile() {
             // This is a special folder with an "extension"
-            const folderName: any = props.folder.name;
+            const folderName: any = folder.name;
             const folderExtension = getFileExtension(folderName);
 
             if (folderExtension === WAPP_EXTENSION) {
-                const wappInfo = await getWappInformation(`${props.path}/${folderName}`);
+                const wappInfo = await getWappInformation(`${path}/${folderName}`);
 
 
                 // We should read the wapp for an icon
@@ -44,11 +47,12 @@ export default function Folder(props: Props) {
         }
 
         processFile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <div className={styles.folder}>
-            <div className={styles.iconWrapper} onClick={() => props.onClick(props.folder)}>
+            <div className={styles.iconWrapper} onClick={() => onClick(folder)}>
                 {icon === '' && <FolderIcon className={styles.icon} />}
                 {icon !== '' && <img alt="Folder" className={styles.appIcon} src={icon} />}
             </div>
