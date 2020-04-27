@@ -3,6 +3,7 @@ import { PrivateKey } from './providers/IProvider';
 import InstanceBag from '../InstanceBag';
 import BackgroundTerminal from '../background/BackgroundTerminal';
 import isNodeJs from './isNodeJs';
+import ReferenceProvider from '../../vendor/kernel/provider/ReferenceProvider';
 
 
 export default async function bootSystem(keys: PrivateKey) {
@@ -12,7 +13,7 @@ export default async function bootSystem(keys: PrivateKey) {
         const syncProvider = new SyncProvider(new DesktopProvider(), [new BrowserProvider()]);
         kernel = await bootKernel(keys.privateKey, syncProvider);
     } else {
-        kernel = await bootKernel(keys.privateKey, new BrowserProvider()); //new RutileProvider(rutileConfig.httpHost, rutileConfig.chainId, rutileConfig.coreAddress));
+        kernel = await bootKernel(keys.privateKey, new ReferenceProvider()); //new RutileProvider(rutileConfig.httpHost, rutileConfig.chainId, rutileConfig.coreAddress));
     }
 
     if (!(await kernel.fs.exists('/etc/environment'))) {

@@ -6,6 +6,8 @@ class AuthService {
     static async getAccountInfo(privateKey: PrivateKey, kernel: Kernel): Promise<Account> {
         const username = await kernel.registry.get<string>('username');
 
+        console.log('[] username -> ', username);
+
         return {
             currencyTicker: 'RUT',
             balance: '0',

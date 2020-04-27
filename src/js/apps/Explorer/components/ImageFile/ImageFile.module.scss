@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height:100%;
+    max-width: 100%;
+    height: 100%;
+
+    img {
+        height: 100%;
+        border: 1px solid gray;
+        box-sizing: border-box;
+    }
+}
+
+.imageFrame {
+    height: 100%;
+    background-color: white;
+    border: 1px solid gray;
+    padding: 4px;
+    box-shadow: 1px 1px 1px lightgrey;
+}

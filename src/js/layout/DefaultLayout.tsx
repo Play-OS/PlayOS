@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router';
+import { Route, withRouter, RouteComponentProps } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
 import styles from './DefaultLayout.module.scss';
@@ -10,6 +10,7 @@ import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import HomePage from '../pages/HomePage/HomePage';
 import BackgroundWallpaper from '../components/atoms/BackgroundWallpaper';
+import AuthService from '../services/AuthService';
 
 function getRoutes() {
     return (
@@ -22,7 +23,7 @@ function getRoutes() {
     );
 }
 
-interface Props {
+interface Props extends RouteComponentProps {
     user: any;
     currentPathName: string;
 }
@@ -30,6 +31,18 @@ interface Props {
 function DefaultLayout(props: Props) {
     const { user, currentPathName } = props;
     const { wallpaper } = user.info;
+
+    useEffect(() => {
+        async function run () {
+            const isLoggedIn = await AuthService.isLoggedIn();
+
+            if (isLoggedIn && currentPathName !== '/os/home') {
+                props.history.push('/os/home');
+            }
+        }
+
+        run();
+    }, []);
 
     return (
         <MuiThemeProvider>
@@ -69,4 +82,4 @@ const mapStateToProps = (store: any) => ({
     currentPathName: store.router.location ? store.router.location.pathname : '',
 });
 
-export default connect(mapStateToProps)(DefaultLayout);
+export default withRouter(connect(mapStateToProps)(DefaultLayout));

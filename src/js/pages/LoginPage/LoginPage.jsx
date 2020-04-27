@@ -6,6 +6,7 @@ import Configuration from '../../Configuration';
 import KeyService from '../../services/KeyService';
 import { loadUserInfo } from '../../store/UserInfoStore';
 import AuthService from '../../services/AuthService';
+
 const styles = require('./LoginPage.module.scss');
 
 class IndexPage extends React.Component {
@@ -45,7 +46,7 @@ class IndexPage extends React.Component {
             return;
         }
 
-        const redirectUri = decodeURIComponent(this.props.location.query.redirectUri);
+        const redirectUri = decodeURIComponent(this.props.location?.query?.redirectUri);
         const keys = KeyService.fromMnemonic(this.state.privateKey);
 
         // Login was succesfull! Let's redirect
@@ -60,7 +61,7 @@ class IndexPage extends React.Component {
     }
 
     redirectSuccess() {
-        const redirectUri = decodeURIComponent(this.props.location.query.redirectUri);
+        const redirectUri = decodeURIComponent(this.props.location?.query?.redirectUri);
 
         // Login was succesfull! Let's redirect
         if (redirectUri && redirectUri !== 'undefined') {
@@ -80,20 +81,20 @@ class IndexPage extends React.Component {
     render() {
         return (
             <div className="IndexPage">
-                <React.Fragment>
+                <>
                     <form className={styles.form} onSubmit={this.handleFormSubmit}>
                         <TextField fullWidth label="Recovery phrase" required multiline onChange={this.handleChange} value={this.state.privateKey} className={styles.input} />
                         {/* <input type="email" multiline required placeholder="Recovery phrase" ref={(elem) => { this.emailInput = elem; }} className="IndexPage-Form-Input" /> */}
                         <Button type="submit" color="primary" variant="contained" fullWidth className={styles.button}>Login</Button>
                     </form>
                     <a className={styles.link} href="#/os/register">Don't have an account? Create one!</a>
-                </React.Fragment>
+                </>
             </div>
         );
     }
 }
 
-const mapStateToProps = store => ({
+const mapStateToProps = (store) => ({
     user: store.UserInfoStore,
     SnackBarMessageStore: store.SnackBarMessageStore,
 });

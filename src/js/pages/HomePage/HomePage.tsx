@@ -9,9 +9,11 @@ import { loadApps } from '../../store/applications/applicationsActions';
 import AppProcessesHolder from '../../components/organims/AppProcessesHolder';
 import bootSystem from '../../services/bootSystem';
 import redirect from '../../services/redirect';
+import Application from '../../models/Application';
 
 interface Props {
     user: UserInfo;
+    applications: Application[];
     dispatch: (func: any) => void;
 }
 
@@ -41,7 +43,7 @@ class HomePage extends React.Component<Props, State> {
     }
 
     static getDerivedStateFromProps(props: Props, state: State): State {
-        if (props.user.info.fullName) {
+        if (props.user.info.fullName && props.applications.length) {
             return {
                 ...state,
                 isLoaded: true,
@@ -71,6 +73,7 @@ class HomePage extends React.Component<Props, State> {
 
 const mapStateToProps = (store: any) => ({
     user: store.UserInfoStore,
+    applications: store.ApplicationStore.apps,
 });
 
 // @ts-ignore
