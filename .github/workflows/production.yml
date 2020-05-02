@@ -5,13 +5,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ development ]
+    branches: [ master ]
   pull_request:
-    branches: [ development ]
+    branches: [ master ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -36,3 +35,14 @@ jobs:
         path: build
       env:
         CI: true
+    - name: Upload to production
+      uses: sebastianpopp/ftp-action@releases/v2
+      with:
+        host: ${{ secrets.FTP_SERVER }}
+        user: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        localDir: "build"
+        remoteDir: "subdomains/os"
+
+
+
