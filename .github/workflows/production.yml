@@ -35,14 +35,3 @@ jobs:
         path: build
       env:
         CI: true
-    - name: Upload to production
-      uses: sebastianpopp/ftp-action@releases/v2
-      with:
-        host: ${{ secrets.FTP_SERVER }}
-        user: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        localDir: "build"
-        remoteDir: "subdomains/os"
-
-
-
