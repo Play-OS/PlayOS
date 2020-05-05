@@ -11,6 +11,8 @@ PlayOS can be integrated with any storage/server architecture there is through p
 
 We are still porting code over to a provider based manner, any help is greatly appreciated.
 
+All designs can be viewed at https://www.figma.com/file/lGE9MAcc7EuwUFI6oj45L9/PlayOS?node-id=3%3A115
+
 ## ⚙️ Running PlayOS
 ```npm i && npm start```
 
