@@ -1,6 +1,7 @@
 import { ApplicationStoreActions } from './applicationStore';
 import UserService from '../../services/UserService';
 import Application from '../../models/Application';
+import { setAppsLoading, setApps as setAppsAction } from '../apps/apps';
 
 /**
  * Loads the applications that where installed by the private key holder
@@ -12,16 +13,12 @@ import Application from '../../models/Application';
 export function loadApps() {
     return async (dispatch: Function) => {
         try {
-            dispatch({
-                type: ApplicationStoreActions.APPLICATION_STORE_PENDING,
-            });
+            dispatch(setAppsLoading(true));
 
             const apps = await UserService.getInstalled();
+            dispatch(setAppsAction(apps));
 
-            dispatch({
-                type: ApplicationStoreActions.APPLICATION_STORE_FULFILLED,
-                payload: apps,
-            });
+            dispatch(setAppsLoading(false));
         } catch (error) {
             dispatch({
                 type: ApplicationStoreActions.APPLICATION_STORE_REJECTED,

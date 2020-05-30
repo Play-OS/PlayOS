@@ -10,6 +10,17 @@ import AppProcessesStore from './AppProcessesStore';
 import SideBarNavigationStore from './SideBarNavigationStore';
 import ApplicationStore from './applications/applicationStore';
 import MultitaskStore from './MultitaskStore';
+import auth, { AuthState } from './auth/auth';
+import apps, { AppsState } from './apps/apps';
+import kernel, { KernelState } from './kernel/kernel';
+import files, { FilesState } from './files/files';
+
+export interface Reducers {
+    auth: AuthState,
+    apps: AppsState,
+    kernel: KernelState,
+    files: FilesState,
+}
 
 export const history = createHashHistory();
 
@@ -25,19 +36,11 @@ const createRootReducers = (history: any) => combineReducers({
     SideBarNavigationStore,
     ApplicationStore,
     MultitaskStore,
+    auth,
+    apps,
+    kernel,
+    files,
 });
-
-// Lastly combine all reducers
-// const reducers = combineReducers({
-//     ExampleStore,
-//     routing: routerReducer,
-//     SnackBarMessageStore,
-//     UserInfoStore,
-//     AppProcessesStore,
-//     SideBarNavigationStore,
-//     ApplicationStore,
-//     MultitaskStore,
-// });
 
 // And create our store
 const store = createStore(

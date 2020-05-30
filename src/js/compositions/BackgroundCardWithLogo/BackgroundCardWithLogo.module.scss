@@ -1,0 +1,47 @@
+@import "../../../scss/mixins";
+
+.wallpaper {
+    display: none;
+
+    @include for-size(tablet-portrait-up) {
+        display: block;
+    }
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    padding: 0 2rem;
+    box-shadow: none;
+
+    @include for-size(tablet-portrait-up) {
+        width: 37rem;
+        box-shadow: 0px .4rem .7rem rgba(0, 0, 0, 0.25);
+        padding-bottom: 2rem;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+.logoWrapper {
+    display: flex;
+    justify-content: center;
+    padding: 4.7rem 0;
+
+    img {
+        width: 14.2rem;
+        filter: var(--logo-filter);
+    }
+}

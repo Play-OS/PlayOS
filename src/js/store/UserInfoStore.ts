@@ -2,6 +2,7 @@ import InstanceBag from "../InstanceBag";
 import Kernel from "../../vendor/kernel";
 import { PrivateKey } from "../services/providers/IProvider";
 import AuthService from "../services/AuthService";
+import { setAuthUser } from "./auth/auth";
 
 export interface UserInfo {
     info: {
@@ -62,6 +63,7 @@ export function loadUserInfo(privateKey: PrivateKey) {
         userInfo.wallpaper = blobUrl;
 
         dispatch(setUserInfo(userInfo));
+        dispatch(setAuthUser(userInfo))
     };
 }
 

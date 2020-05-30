@@ -127,7 +127,7 @@ function AppWindow(props: Props) {
 
                             {!process.app.playos.isWasm &&
                                 <>
-                                    <iframe title={process.app.name} src={mainUrl} className={styles.iframe} onFocus={() => console.log('Iframe')}>
+                                    <iframe title={process.app.name} src={mainUrl} className={styles.iframe}>
                                         Content could not be loaded
                                     </iframe>
                                 </>

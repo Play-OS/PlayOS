@@ -108,6 +108,9 @@ export function setHeighestZIndex(zIndex: number) {
 }
 
 export function openApp(app: Application) {
+    const url = new URL(app.start_url, app.manifest_url);
+    window.open(url.href, '_blank', 'rel="noopener,noreferrer"');
+
     return {
         type: ActionTypes.OPEN_APP,
         payload: app,

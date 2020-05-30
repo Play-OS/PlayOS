@@ -1,14 +1,15 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
+import ButtonLink from '../../components/atoms/ButtonLink';
 
 const styles = require('./ChoosePage.module.scss');
 
 function ChoosePage() {
     return (
         <div className="ChoosePage">
-            <Button href="#/os/register" color="primary" variant="contained" className={styles.button} fullWidth>
+            <ButtonLink href="#/os/register" variant="contained">
                 Create a new id
-            </Button>
+            </ButtonLink>
             <Button href="#/os/login" className={styles.button} fullWidth>
                 Sign in with an existing id
             </Button>

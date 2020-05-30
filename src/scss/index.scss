@@ -1,5 +1,6 @@
 @import './lib/blur';
 @import './layout/importer';
+@import './variables';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
 html, body {
@@ -8,7 +9,17 @@ html, body {
     overflow: hidden;
     background: white;
     margin: 0;
-    font-family: 'Open Sans', sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: var(--f-primary);
+    font-size: 1.6rem;
+    color: var(--c-text);
+    background-color: var(--c-white);
 }
 
 #app {
@@ -17,5 +28,29 @@ html, body {
 }
 
 :root {
+    --c-primary: #97D1A8;
+    --c-secondary: #3083DC;
+    --c-gray: #5E5E5E;
+    --c-light-gray: #D3D5D4;
+    --c-lighter-gray: #F4F4F4;
+    --c-text: #303133;
+    --c-negative: #EE6055;
+    --c-warning: #F5BE54;
+    --c-positive: #6FC745;
+    --c-white: #FFFFFF;
+    --c-black: #000000;
+    --logo-filter: none;
+
+    --f-primary: "Roboto", "Helvetica", "Arial", sans-serif;
+
     --default-background: linear-gradient(45deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --c-white: #393b39;
+        --c-text: #e1e1e1;
+        --c-lighter-gray: #303230;
+        --logo-filter: invert(1);
+    }
 }

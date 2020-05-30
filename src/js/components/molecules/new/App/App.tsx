@@ -16,6 +16,7 @@ function App(props: Props) {
 
     function handleAppClick() {
         const terminal = InstanceBag.get<BackgroundTerminal>('terminal');
+        console.log('[] app -> ', app);
         terminal.runCommand(`open ${app.location}`);
     }
 

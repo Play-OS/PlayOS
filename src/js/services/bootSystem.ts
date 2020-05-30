@@ -16,17 +16,15 @@ export default async function bootSystem(keys: PrivateKey) {
         kernel = await bootKernel(keys.privateKey, new ReferenceProvider()); //new RutileProvider(rutileConfig.httpHost, rutileConfig.chainId, rutileConfig.coreAddress));
     }
 
-    if (!(await kernel.fs.exists('/etc/environment'))) {
-        // We need to create some defaults
-        await kernel.fs.writeFile('/etc/environment', '$PATH=/usr/sbin:/usr/bin:/sbin:/bin');
-    }
-
     if (sessionStorage.getItem('username')) {
         await kernel.registry.set('username', sessionStorage.getItem('username'), false);
         sessionStorage.removeItem('username');
     }
 
     const backgroundTerminal = new BackgroundTerminal(kernel);
+
+
+    console.log('[] kernel -> ', kernel);
 
     InstanceBag.set('kernel', kernel);
     InstanceBag.set('terminal', backgroundTerminal);

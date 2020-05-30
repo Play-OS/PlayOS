@@ -1,16 +1,24 @@
 import * as React from 'react';
+
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-
-import { Route, Redirect } from 'react-router';
+import { Route, Redirect, Switch } from 'react-router';
 import { HashRouter } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
-// Layouts
-import DefaultLayout from './layout/DefaultLayout';
-
+import RegisterPage from './pages/RegisterPage';
+import AuthenticationPage from './pages/AuthenticationPage';
+import ConnectedNavigation from './connectors/ConnectedNavigation/ConnectedNavigation';
 import store, { history } from './store';
-import LoadableStoreApp from './apps/Store';
+
+import '../scss/index.scss';
+
+const theme = createMuiTheme({
+    typography: {
+        fontSize: 20,
+    }
+});
 
 export default class App {
     domId: string;
@@ -31,13 +39,22 @@ export default class App {
         ReactDOM.render(
             <Provider store={store}>
                 <ConnectedRouter history={history}>
-                    <HashRouter>
-                        <Route exact path="/">
-                            <Redirect exact from="/" to="/os/choose" />
-                        </Route>
-                        <Route path="/store" component={LoadableStoreApp} />
-                        <Route path="/os" component={DefaultLayout} />
-                    </HashRouter>
+                    <MuiThemeProvider theme={theme}>
+                        <HashRouter>
+                            <Switch>
+                                <Route exact path="/register" component={RegisterPage} />
+                                <Route exact path="/auth" component={AuthenticationPage} />
+                                <Route path="/" component={ConnectedNavigation} />
+                                <Redirect to="/home" />
+                                {/* <Route path="/register" component={RegisterPage} />
+                                <Route exact path="/home" component={HomePage} />
+                                <Route exact path="/marketplace" component={MarketplacePage} />
+                                <Route path="/apps" component={AppsPage} />
+                                <Route path="/files" component={FilesPage} />
+                                <Redirect to="/home" /> */}
+                            </Switch>
+                        </HashRouter>
+                    </MuiThemeProvider>
                 </ConnectedRouter>
             </Provider>,
             document.getElementById(this.domId),

@@ -1,6 +1,7 @@
 import { PrivateKey, Account } from './providers/IProvider';
 import KeyService from './KeyService';
 import Kernel from '../../vendor/kernel';
+import { AuthenticationRequest } from '../models/Authentication';
 
 class AuthService {
     static async getAccountInfo(privateKey: PrivateKey, kernel: Kernel): Promise<Account> {
@@ -43,6 +44,10 @@ class AuthService {
 
         return true;
     }
+}
+
+export function parseEncodedAuthRequest(request: string): AuthenticationRequest {
+    return JSON.parse(atob(request)) as AuthenticationRequest;
 }
 
 export default AuthService;

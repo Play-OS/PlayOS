@@ -51,18 +51,9 @@ function DefaultLayout(props: Props) {
 
                 {currentPathName !== '/os/home'
                     && (
-                        <section className={styles.defaultLayoutPanel}>
-                            <div className={styles.defaultLayoutPanelMessage}>
-                                <span className={styles.defaultLayoutPanelMessageLogo}>
-                                    <img src={logo} alt="Logo" />
-                                </span>
-                            </div>
-                            <Paper zDepth={5} className={styles.defaultLayoutPanelPaper}>
-                                <div className={styles.defaultLayoutPanelContent}>
-                                    {getRoutes()}
-                                </div>
-                            </Paper>
-                        </section>
+                        <>
+                            {getRoutes()}
+                        </>
                     )}
 
                 {currentPathName === '/os/home'

@@ -1,0 +1,21 @@
+@import "../../../scss/mixins";
+
+.drawer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    // padding: 3rem;
+}
+
+.logo {
+    padding: 3rem;
+
+    img {
+        filter: var(--logo-filter);
+    }
+}
+
+.listItem {
+    padding-left: 3rem!important;
+    color: var(--c-text) !important;
+}

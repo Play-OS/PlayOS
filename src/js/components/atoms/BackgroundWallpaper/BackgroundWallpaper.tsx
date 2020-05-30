@@ -4,6 +4,7 @@ import styles from './BackgroundWallpaper.module.scss';
 
 interface Props {
     src?: string;
+    className?: string;
 }
 
 export default function BackgroundWallpaper(props: Props) {
@@ -15,7 +16,7 @@ export default function BackgroundWallpaper(props: Props) {
     });
 
     return (
-        <div className={styles.wrapper}>
+        <div className={classnames(styles.wrapper, props.className)}>
             <div className={defaultBackgroundClassName} />
             <div className={styles.background} style={{ backgroundImage }} />
         </div>
