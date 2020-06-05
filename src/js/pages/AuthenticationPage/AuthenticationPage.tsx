@@ -1,11 +1,12 @@
 import React, { ReactElement } from 'react';
 import ConnectedAuthentication from '../../connectors/ConnectedAuthentication/ConnectedAuthentication';
+import BackgroundCardWithLogo from '../../compositions/BackgroundCardWithLogo/BackgroundCardWithLogo';
 
 
 export default function AuthenticationPage(): ReactElement {
     return (
-        <div>
+        <BackgroundCardWithLogo includeLogo={false}>
             <ConnectedAuthentication />
-        </div>
+        </BackgroundCardWithLogo>
     );
 }

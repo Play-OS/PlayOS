@@ -1,8 +1,8 @@
 import ApiResponse, { ApiResponseType } from "../models/ApiResponse";
 import trans from "../lang/trans";
-import Application from "../models/Application";
+import Application, { ApplicationViewModel, transformToApplicationViewModel } from "../models/Application";
 
-export async function fetchAppInformationFromManifestUri(manifestUri: string): Promise<ApiResponse<Application, string>> {
+export async function fetchAppInformationFromManifestUri(manifestUri: string): Promise<ApiResponse<ApplicationViewModel, string>> {
     try {
         const response = await fetch(manifestUri);
 
@@ -14,10 +14,12 @@ export async function fetchAppInformationFromManifestUri(manifestUri: string): P
             }
         }
 
+        const data = await response.json() as Application;
+
         return {
             status: response.status,
             type: ApiResponseType.Success,
-            data: await response.json(),
+            data: transformToApplicationViewModel(data, manifestUri),
         }
     } catch (error) {
         return {

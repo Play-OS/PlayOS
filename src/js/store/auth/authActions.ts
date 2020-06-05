@@ -1,4 +1,4 @@
-import { setAuthLoading } from "./auth";
+import { setAuthLoading, setAuthRequestManifest } from "./auth";
 import KeyService from "../../services/KeyService";
 import { RegisterFormValues } from "../../services/RegisterService";
 import { fetchAppInformationFromManifestUri } from "../../services/ApplicationService";
@@ -27,6 +27,6 @@ export function loadAuthRequest() {
         const manifestUri = new URL(authRequest.manifest_uri, authRequest.domain_name);
         const manifest = await fetchAppInformationFromManifestUri(manifestUri.href);
 
-        console.log('[] manifest -> ', manifest);
+        dispatch(setAuthRequestManifest(manifest.data!));
     }
 }

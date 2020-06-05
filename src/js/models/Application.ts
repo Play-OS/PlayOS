@@ -53,4 +53,30 @@ interface Application {
     // supportedDeviceTypes: string[],
 }
 
+export interface ApplicationViewModel {
+    name: string;
+    short_name: string;
+    manifest_url: string;
+    icons: ApplicationIcon[];
+}
+
+function resolveApplicationIcons(icon: ApplicationIcon, baseUrl: string): ApplicationIcon {
+    const url = new URL(icon.src, baseUrl);
+
+    return {
+        src: url.href,
+        sizes: icon.sizes,
+        type: icon.type,
+    }
+}
+
+export function transformToApplicationViewModel(app: Application, manifestUrl: string): ApplicationViewModel {
+    return {
+        name: app.name || 'Unknown app',
+        icons: Array.isArray(app.icons) ? app.icons.map(icon => resolveApplicationIcons(icon, manifestUrl)) : [],
+        short_name: app.short_name || 'Unknown app',
+        manifest_url: manifestUrl,
+    }
+}
+
 export default Application;
