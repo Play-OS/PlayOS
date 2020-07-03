@@ -2,10 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { Account } from '../../services/providers/IProvider';
 import { ApplicationViewModel } from '../../models/Application';
+import { AuthenticationRequest } from '../../models/Authentication';
 
 export type AuthState = Readonly<{
     user?: Account;
     authRequestManifest?: ApplicationViewModel;
+    authRequest?: AuthenticationRequest;
     authError?: string;
     authLoginError?: string;
     authLoading: boolean;
@@ -13,6 +15,7 @@ export type AuthState = Readonly<{
 
 const initialState: AuthState = {
     authError: undefined,
+    authRequest: undefined,
     authLoading: false,
     authLoginError: undefined,
     user: undefined,
@@ -22,6 +25,12 @@ const authSlice = createSlice({
     initialState,
     name: 'auth',
     reducers: {
+        setAuthRequest(state: AuthState, action: PayloadAction<AuthenticationRequest>): AuthState {
+            return {
+                ...state,
+                authRequest: action.payload,
+            }
+        },
         setAuthRequestManifest(state: AuthState, action: PayloadAction<ApplicationViewModel>): AuthState {
             return {
                 ...state,
@@ -56,6 +65,7 @@ const authSlice = createSlice({
 });
 
 export const {
+    setAuthRequest,
     setAuthUser,
     setAuthError,
     setAuthLoading,

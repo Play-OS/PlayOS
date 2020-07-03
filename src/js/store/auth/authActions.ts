@@ -1,4 +1,4 @@
-import { setAuthLoading, setAuthRequestManifest } from "./auth";
+import { setAuthLoading, setAuthRequestManifest, setAuthRequest } from "./auth";
 import KeyService from "../../services/KeyService";
 import { RegisterFormValues } from "../../services/RegisterService";
 import { fetchAppInformationFromManifestUri } from "../../services/ApplicationService";
@@ -14,8 +14,15 @@ export function authRegister(formValues: RegisterFormValues) {
     }
 }
 
+export function approveAuthRequest() {
+    return async (dispatch: Function) => {
+
+    }
+}
+
 export function loadAuthRequest() {
     return async (dispatch: Function) => {
+        dispatch(setAuthLoading(true));
         const url = new URL(window.location.href);
         const encodedAuthRequest = url.searchParams.get('authRequest');
 
@@ -27,6 +34,8 @@ export function loadAuthRequest() {
         const manifestUri = new URL(authRequest.manifest_uri, authRequest.domain_name);
         const manifest = await fetchAppInformationFromManifestUri(manifestUri.href);
 
+        dispatch(setAuthRequest(authRequest));
         dispatch(setAuthRequestManifest(manifest.data!));
+        dispatch(setAuthLoading(false));
     }
 }
