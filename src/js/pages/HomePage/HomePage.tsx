@@ -1,11 +1,22 @@
-import React from 'react';
-import ConnectedNavigation from '../../connectors/ConnectedNavigation/ConnectedNavigation';
-import trans from '../../lang/trans';
+import React, { useEffect } from 'react';
+import ConnectedHeader from '../../connectors/ConnectedHeader/ConnectedHeader';
+import BackgroundWallpaper from '../../components/atoms/BackgroundWallpaper';
+import ConnectedApps from '../../connectors/ConnectedApps/ConnectedApps';
+import { bootKernelSystem } from '../../store/kernel/kernelActions';
+import { useDispatch } from 'react-redux';
 
 export default function HomePage() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(bootKernelSystem());
+    }, []);
+
     return (
         <>
-            Hello World
+            <BackgroundWallpaper />
+            <ConnectedHeader />
+            <ConnectedApps />
         </>
     );
 };

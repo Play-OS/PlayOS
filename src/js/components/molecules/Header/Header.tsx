@@ -39,10 +39,8 @@ function Header() {
                     <Time />
                 </div>
                 <div className={styles['Header-Item']}>
-                    <Profile />
                 </div>
             </div>
-            <SideNavigation />
         </>
     );
 }

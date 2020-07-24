@@ -9,7 +9,7 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
 import RegisterPage from './pages/RegisterPage';
 import AuthenticationPage from './pages/AuthenticationPage';
-import ConnectedNavigation from './connectors/ConnectedNavigation/ConnectedNavigation';
+import HomePage from './pages/HomePage';
 import store, { history } from './store';
 
 import '../scss/index.scss';
@@ -44,14 +44,8 @@ export default class App {
                             <Switch>
                                 <Route exact path="/register" component={RegisterPage} />
                                 <Route exact path="/auth" component={AuthenticationPage} />
-                                <Route path="/" component={ConnectedNavigation} />
+                                <Route path="/" component={HomePage} />
                                 <Redirect to="/home" />
-                                {/* <Route path="/register" component={RegisterPage} />
-                                <Route exact path="/home" component={HomePage} />
-                                <Route exact path="/marketplace" component={MarketplacePage} />
-                                <Route path="/apps" component={AppsPage} />
-                                <Route path="/files" component={FilesPage} />
-                                <Redirect to="/home" /> */}
                             </Switch>
                         </HashRouter>
                     </MuiThemeProvider>

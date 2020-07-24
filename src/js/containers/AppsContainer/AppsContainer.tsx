@@ -4,8 +4,6 @@ import { ParsedApplicationInfo } from '../../../vendor/kernel/core/WasmParser';
 
 import styles from './AppsContainer.module.scss';
 import FullscreenLoader from '../../compositions/FullscreenLoader/FullscreenLoader';
-import TitleBar from '../../compositions/TitleBar/TitleBar';
-import trans from '../../lang/trans';
 
 interface Props {
     apps: ParsedApplicationInfo[];

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -7,21 +6,24 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import InfoIcon from '@material-ui/icons/Info';
-import { setOpenSideBarNavigationState } from '../../../store/SideBarNavigationStore';
 import AuthService from '../../../services/AuthService';
 import AboutDialog from './AboutDialog';
-const styles = require('./SideNavigation.module.scss');
+
+import styles from './SideNavigation.module.scss';
 
 interface Props {
     isOpen: boolean;
-    dispatch: Function;
+    onRequestClose: () => void;
 }
 
-function SideNavigation(props: Props) {
+export default function SideNavigation({
+    isOpen,
+    onRequestClose,
+}: Props) {
     const [isAboutDialogOpen, setAboutDialogOpen] = React.useState(false);
 
     function handleDrawerOnClose() {
-        props.dispatch(setOpenSideBarNavigationState(false));
+        onRequestClose();
     }
 
     async function handleLogoutClick() {
@@ -36,7 +38,7 @@ function SideNavigation(props: Props) {
 
     return (
         <>
-            <Drawer className={styles.drawer} anchor="right" open={props.isOpen} onClose={handleDrawerOnClose}>
+            <Drawer className={styles.drawer} anchor="right" open={isOpen} onClose={handleDrawerOnClose}>
                 <List className={styles.drawerList}>
                     <ListItem button onClick={handleAboutClick}>
                         <ListItemIcon>
@@ -56,10 +58,3 @@ function SideNavigation(props: Props) {
         </>
     );
 }
-
-const mapStateToProps = (state: any) => ({
-    user: state.UserInfoStore,
-    isOpen: state.SideBarNavigationStore.isOpen,
-});
-
-export default connect(mapStateToProps)(SideNavigation);
