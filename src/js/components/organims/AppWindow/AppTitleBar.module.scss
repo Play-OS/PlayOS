@@ -3,7 +3,7 @@
 $appbar-height: 35px;
 $window-border-radius: 5px;
 
-.appBar {
+.app-title-bar {
     width: 100%;
     height: $appbar-height;
     background: #f6f6f6;
@@ -14,17 +14,15 @@ $window-border-radius: 5px;
     cursor: default;
     position: relative;
     z-index: 9999;
+    font-size: 1.6rem;
+
+    @media screen and (min-width: $desktop-breakpoint) {
+        border-top-left-radius: $window-border-radius;
+        border-top-right-radius: $window-border-radius;
+    }
 }
 
 .placeholder {
     width: 48px;
     height: 48px;
 }
-
-@media screen and (min-width: $desktop-breakpoint) {
-    .appBar {
-        border-top-left-radius: $window-border-radius;
-        border-top-right-radius: $window-border-radius;
-    }
-}
-

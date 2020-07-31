@@ -19,8 +19,9 @@ $appbar-height: 35px;
     position: absolute;
     background: black;
     border-radius: $window-border-radius;
+    box-shadow: 0 0px 5px 4px rgba(0, 0, 0, 0.16);
+
     top: 0;
-    box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
 
     &.halfSnapped {
         width: 50% !important;

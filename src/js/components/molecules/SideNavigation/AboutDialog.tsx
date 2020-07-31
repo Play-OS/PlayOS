@@ -17,13 +17,13 @@ interface Props {
 
 export default function AboutDialog(props: Props) {
     return (
-        <Dialog open={props.open} onClose={() => props.onClose()}>
+        <Dialog open={props.open} PaperProps={{ className: styles['about-dialog__paper'] }} onClose={() => props.onClose()}>
             <DialogTitle className={styles.title}>
-                <img src="./res/img/PlayOSLogoSide_black.svg" alt="PlayOS" />
+                <img className={styles['about-dialog__logo']} src="./res/img/PlayOSLogoSide_black.svg" alt="PlayOS" />
                 <span>Matterhorn</span>
             </DialogTitle>
             <DialogContent className={styles.content}>
-                <DialogContentText>
+                <DialogContentText className={styles['about-dialog__content-text']}>
                     <Typography variant="body2" className={styles.version}>v{packageJson.version}</Typography>
                     Licensed under GPL v3 <br />
                     Code available at GitHub

@@ -1,3 +1,18 @@
+.about-dialog {
+    &__paper {
+        color: var(--c-black) !important;
+        background-color: var(--c-white) !important;
+    }
+
+    &__content-text {
+        color: var(--c-black) !important;
+    }
+
+    &__logo {
+        filter: var(--logo-filter);
+    }
+}
+
 .title {
     padding-bottom: 0 !important;
 
@@ -11,6 +26,7 @@
 }
 
 .content {
+    color: var(--c-black) !important;
     padding-top: 0 !important;
 }
 

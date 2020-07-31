@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -7,22 +7,20 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import InfoIcon from '@material-ui/icons/Info';
-import { setOpenSideBarNavigationState } from '../../../store/SideBarNavigationStore';
 import AuthService from '../../../services/AuthService';
 import AboutDialog from './AboutDialog';
 const styles = require('./SideNavigation.module.scss');
 
 interface Props {
     isOpen: boolean;
-    dispatch: Function;
+    onRequestClose: () => void;
 }
 
-function SideNavigation(props: Props) {
-    const [isAboutDialogOpen, setAboutDialogOpen] = React.useState(false);
-
-    function handleDrawerOnClose() {
-        props.dispatch(setOpenSideBarNavigationState(false));
-    }
+export default function SideNavigation({
+    isOpen,
+    onRequestClose,
+}: Props) {
+    const [isAboutDialogOpen, setAboutDialogOpen] = useState(false);
 
     async function handleLogoutClick() {
         await AuthService.logout();
@@ -30,22 +28,22 @@ function SideNavigation(props: Props) {
     }
 
     function handleAboutClick() {
-        handleDrawerOnClose();
+        onRequestClose();
         setAboutDialogOpen(true);
     }
 
     return (
         <>
-            <Drawer className={styles.drawer} anchor="right" open={props.isOpen} onClose={handleDrawerOnClose}>
+            <Drawer className={styles.drawer} anchor="right" PaperProps={{ className: styles['side-navigation__paper'] }} open={isOpen} onClose={onRequestClose}>
                 <List className={styles.drawerList}>
-                    <ListItem button onClick={handleAboutClick}>
-                        <ListItemIcon>
+                    <ListItem className={styles['side-navigation__list-item']} button onClick={handleAboutClick}>
+                        <ListItemIcon className={styles['side-navigation__list-item-icon']}>
                             <InfoIcon />
                         </ListItemIcon>
                         <ListItemText>About PlayOS</ListItemText>
                     </ListItem>
                     <ListItem button onClick={handleLogoutClick}>
-                        <ListItemIcon>
+                        <ListItemIcon className={styles['side-navigation__list-item-icon']}>
                             <PowerSettingsNewIcon />
                         </ListItemIcon>
                         <ListItemText>Logout</ListItemText>
@@ -56,10 +54,3 @@ function SideNavigation(props: Props) {
         </>
     );
 }
-
-const mapStateToProps = (state: any) => ({
-    user: state.UserInfoStore,
-    isOpen: state.SideBarNavigationStore.isOpen,
-});
-
-export default connect(mapStateToProps)(SideNavigation);

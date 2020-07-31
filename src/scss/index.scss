@@ -1,14 +1,21 @@
 @import './lib/blur';
+@import './variables';
 @import './layout/importer';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+html {
+    font-size: 62.5%;
+}
 
 html, body {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    background: white;
     margin: 0;
     font-family: 'Open Sans', sans-serif;
+    font-family: var(--f-primary);
+    color: var(--c-text);
+    background-color: var(--c-white);
 }
 
 #app {
@@ -17,5 +24,32 @@ html, body {
 }
 
 :root {
+    --c-primary: #97D1A8;
+    --c-secondary: #3083DC;
+    --c-gray: #5E5E5E;
+    --c-light-gray: #D3D5D4;
+    --c-lighter-gray: #F4F4F4;
+    --c-text: #303133;
+    --c-negative: #EE6055;
+    --c-warning: #F5BE54;
+    --c-positive: #6FC745;
+    --c-white: #FFFFFF;
+    --c-black: #000000;
+    --logo-filter: none;
+
+    --c-status-bar: rgba(255, 255, 255, 0.5);
+    --f-primary: "Roboto", "Helvetica", "Arial", sans-serif;
+
     --default-background: linear-gradient(45deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --c-white: #393b39;
+        --c-black: #ffffff;
+        --c-text: #e1e1e1;
+        --c-lighter-gray: #303230;
+        --logo-filter: invert(1);
+        --c-status-bar: rgba(0, 0, 0, 0.5);
+    }
 }

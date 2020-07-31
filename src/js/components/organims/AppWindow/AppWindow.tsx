@@ -92,7 +92,7 @@ function AppWindow(props: Props) {
             }}
             minWidth={300}
             minHeight={300}
-            dragHandleClassName={titleBarStyles.appBar}
+            dragHandleClassName={titleBarStyles['app-title-bar']}
             bounds='parent'
             className={rndClassNames}
             style={{ zIndex: windowZIndex }}

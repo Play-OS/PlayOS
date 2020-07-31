@@ -1,11 +1,9 @@
 import * as React from 'react';
 import Loadable from 'react-loadable';
-// import ProgressBar from '../../../components/molecules/ProgressBar/index';
 
 function Loading() {
     return (
         <div>Loading</div>
-        // <ProgressBar />
     );
 }
 

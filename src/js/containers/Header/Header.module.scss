@@ -1,15 +1,14 @@
-@import '../../../../scss/variables';
+@import '../../../scss/variables';
 
-.Header {
+.header {
     color: white;
     font-weight: 100;
-    font-size: 16px;
+    font-size: 1.6rem;
     width: 100%;
     height: $header-height-mobile;
 
-    background: rgba(50, 50, 50, 0.8);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid #3C3C3C;
+    background: var(--c-status-bar);
+    backdrop-filter: blur(200px);
 
     position: fixed;
     top: 0;
@@ -28,14 +27,24 @@
     align-items: center;
     justify-content: space-between;
 
-    &-Item {
-        width: 33.333333%;
+    &__item {
+        padding: 0 1rem;
+        color: var(--c-black);
     }
 
-    &-Controls {
+    &__logo {
+        height: 2.8rem;
+        filter: var(--logo-filter);
+    }
+
+    &__controls {
         display: flex;
         justify-content: flex-start;
         align-items: center;
+    }
+
+    &__menu-button {
+        color: var(--c-black) !important;
     }
 
     &--no-transparent {

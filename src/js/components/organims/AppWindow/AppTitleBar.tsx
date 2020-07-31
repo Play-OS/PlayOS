@@ -14,8 +14,6 @@ interface Props {
 }
 
 function AppTitleBar(props: Props) {
-    const isDesktop = useMedia('(min-width: 960px)');
-
     function handleCloseClick() {
         props.dispatch(killProcess(props.process.id));
     }
@@ -23,13 +21,9 @@ function AppTitleBar(props: Props) {
     const textColor = getIdealTextColor(props.process.app.theme_color);
 
     return (
-        <header className={styles.appBar} style={{ backgroundColor: props.process.app.theme_color }}>
+        <header className={styles['app-title-bar']} style={{ backgroundColor: props.process.app.theme_color }}>
             <div className={styles.placeholder}></div>
-            {/* <IconButton aria-label="Back" style={{ color: textColor }}>
-                <ArrowBackIcon />
-            </IconButton> */}
-            {isDesktop && <span style={{ color: textColor }}>{props.process.app.short_name}</span>}
-            {!isDesktop && <Time style={{ color: textColor }} />}
+            <span style={{ color: textColor }}>{props.process.app.short_name}</span>
             <IconButton aria-label="Close" onClick={handleCloseClick} style={{ color: textColor }}>
                 <CloseIcon />
             </IconButton>

@@ -24,13 +24,11 @@ function getRoutes() {
 }
 
 interface Props extends RouteComponentProps {
-    user: any;
     currentPathName: string;
 }
 
 function DefaultLayout(props: Props) {
-    const { user, currentPathName } = props;
-    const { wallpaper } = user.info;
+    const { currentPathName } = props;
 
     useEffect(() => {
         async function run () {
@@ -42,12 +40,12 @@ function DefaultLayout(props: Props) {
         }
 
         run();
-    }, []);
+    }, [props.history, currentPathName]);
 
     return (
         <MuiThemeProvider>
             <div className={styles.defaultLayout}>
-                <BackgroundWallpaper src={wallpaper} />
+                <BackgroundWallpaper />
 
                 {currentPathName !== '/os/home'
                     && (
