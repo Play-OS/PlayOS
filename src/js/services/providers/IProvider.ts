@@ -13,6 +13,7 @@ export interface Account {
     wallpaper: string;
     currencyTicker: string;
     balance: string;
+    nonce: number;
 }
 
 export default interface IProvider {

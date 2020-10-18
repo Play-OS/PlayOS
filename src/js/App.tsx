@@ -9,6 +9,7 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
 import store, { history } from './store';
 import HomePage from './pages/HomePage';
+import AuthenticationPage from './pages/AuthenticationPage';
 
 const theme = createMuiTheme({
     typography: {
@@ -38,7 +39,8 @@ export default class App {
                     <MuiThemeProvider theme={theme}>
                         <HashRouter>
                             <Switch>
-                                <Route path="/" component={HomePage} />
+                                <Route exact path="/" component={HomePage} />
+                                <Route exact path="/auth" component={AuthenticationPage} />
                             </Switch>
                         </HashRouter>
                     </MuiThemeProvider>

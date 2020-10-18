@@ -25,7 +25,7 @@ export default function RegisterPage() {
     }
 
     function createAccount() {
-        const privateKey = KeyService.createRadomPrivateKey();
+        const privateKey = KeyService.createRandomPrivateKey();
         KeyService.saveKeys(privateKey);
 
         sessionStorage.setItem('username', values.username);

@@ -12,6 +12,8 @@
     "form.username.label": "Username",
 
     "button.register": "Register",
+    "button.approve": "Approve",
+    "button.cancel": "Cancel",
 
     "registerpage.managed.text": "On managed account we will secure the account for you. You can have a username and password like your regular accounts",
     "registerpage.unmanaged.text": "Accounts are secured by a private key that only you have access to. This way no one, not even PlayOS can access your data"

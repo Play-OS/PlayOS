@@ -1,12 +1,11 @@
 import { PrivateKey, Account } from './providers/IProvider';
 import KeyService from './KeyService';
 import Kernel from '../../vendor/kernel';
+import { AuthenticationRequest } from '../models/Authentication';
 
 class AuthService {
     static async getAccountInfo(privateKey: PrivateKey, kernel: Kernel): Promise<Account> {
         const username = await kernel.registry.get<string>('username');
-
-        console.log('[] username -> ', username);
 
         return {
             currencyTicker: 'RUT',
@@ -16,6 +15,7 @@ class AuthService {
             address: privateKey.address,
             profilePic: '',
             wallpaper: './res/img/background.jpg',
+            nonce: 1,
         };
     }
 
@@ -43,6 +43,10 @@ class AuthService {
 
         return true;
     }
+}
+
+export function parseEncodedAuthRequest(request: string): AuthenticationRequest {
+    return JSON.parse(atob(request)) as AuthenticationRequest;
 }
 
 export default AuthService;
