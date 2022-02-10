@@ -87,7 +87,7 @@
     "@types/web3": "^1.2.2",
     "documentation": "12.1.4",
     "eslint-config-airbnb": "^18.1.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "standard-version": "^8.0.1",
     "typescript": "^3.8.3",
     "workerize-loader": "^1.1.0"
